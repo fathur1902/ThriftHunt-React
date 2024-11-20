@@ -9,7 +9,8 @@ import { Product } from "./Pages/Product/Product";
 import { FlashSale } from "./Pages/Product/FlashSale";
 // import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 import { Profile } from "./Pages/Profile/Profile";
-
+import { Dashboard } from "./Pages/Dashboard/Dashboard";
+import { Checkout } from "./Pages/Checkout/Checkout";
 function App() {
   return (
     <BrowserRouter>
@@ -35,6 +36,8 @@ function AppContent() {
         <Route path="Profile" element={<Profile />} />
         {/* <Route path="ProductDetail" element={<ProductDetai
         {/* <Route path="ProductDetail" element={<ProductDetail />} /> */}
+        <Route path="Dashboard" element={<Dashboard />} />
+        <Route path="Checkout" element={<Checkout />} />
       </Routes>
       {showFooter && <Footer />}
     </>
