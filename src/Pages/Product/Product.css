@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+
+:root {
+  --color-1: #12538b;
+  --color-2: #0b3558;
+  --color-3: #0a2d4b;
+  --color-4: #123467;
+  --color-5: #051625;
+  --button-color-start: #5041d2;
+  --button-color-end: #1798e5;
+  --text-color: #f4f6f9;
+  --navbar-bg-color: #1a237e;
+  --btn-hover-color-start: #1798e5;
+  --btn-hover-color-end: #5041d2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Oxygen", sans-serif;
+}
+
+body {
+  background: radial-gradient(
+    circle,
+    rgba(16, 76, 128, 1) 0%,
+    rgba(10, 49, 82, 1) 66%,
+    rgba(8, 38, 64, 1) 84%,
+    rgba(2, 9, 16, 1) 100%
+  );
+  color: var(--text-color);
+  line-height: 1.6rem;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.tittle {
+  padding-left: 0;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-12,
+.col-md-3,
+.col-md-9 {
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.col-md-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-md-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.list-group-container {
+  background-color: transparent;
+  padding: 10px;
+  font-size: 0.8rem;
+  border: 2px solid;
+  border-image: linear-gradient(to right, #4b6b9d, #00c6ff);
+  border-image-slice: 1;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.list-group {
+  color: #f0f0f0;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.list-group-item-action {
+  color: var(--text-color) !important;
+}
+
+.selected-category {
+  color: #00c6ff !important;
+}
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.list-group-item input {
+  margin-right: 10px;
+}
+
+.list-group-item:hover {
+  color: #00c6ff;
+}
+
+.product-card {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+  border-radius: 5px;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.product-card .card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card .card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: left;
+  color: var(--color-5);
+}
+
+.product-card .price {
+  color: var(--color-5);
+  font-size: 1rem;
+}
+
+.product-card .price::before {
+  content: "Rp. ";
+}
+
+.product-card i {
+  color: var(--color-5);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.product-card i:hover {
+  color: #00c6ff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-md-left {
+  text-align: left;
+}
+.flash-sale-timer .btn {
+  background: linear-gradient(90deg, #663cda, #2a7adf, #494bd4, #114f87);
+  color: var(--text-color);
+  font-size: 1rem;
+  border: 1px solid;
+  padding: 15px 20px;
+  border-radius: 8px;
+  width: 265px;
+  height: 70px;
+  display: inline-block;
+  text-align: center;
+  line-height: 1rem;
+}

@@ -1,0 +1,70 @@
+:root {
+  --color-1: #12538b;
+  --color-2: #0b3558;
+  --color-3: #0a2d4b;
+  --color-4: #123467;
+  --color-5: #051625;
+  --color-6: #141718;
+  --button-color-start: #5041d2;
+  --button-color-end: #1798e5;
+  --text-color: #f4f6f9;
+  --navbar-bg-color: #1a237e;
+  --btn-hover-color-start: #1798e5;
+  --btn-hover-color-end: #5041d2;
+}
+header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #115087, #352588, #352588);
+  padding: 1rem;
+  gap: 10rem;
+  width: 100%;
+  top: 0;
+  border-bottom: none;
+  box-shadow: none;
+  display: flex;
+}
+
+.navbar .form-control {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  width: 350px;
+  height: 20px;
+  border-radius: 20px;
+  padding: 0 10px;
+  box-shadow: 0 0 0 2px transparent,
+    0 0 0 2px linear-gradient(90deg, #1895e4, #3864da, #5e3ed7);
+}
+
+.navbar .form-control :focus {
+  box-shadow: 0 0 0 2px transparent,
+    0 0 0 2px linear-gradient(90deg, #1895e4, #3864da, #5e3ed7);
+}
+
+.navbar .nav-link {
+  color: var(--text-color);
+}
+.navbar-collapse{
+  padding-left: 100px;
+  gap: 50px;
+  font-size: 1rem;
+}
+
+.search-input {
+  padding-right: 10px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 5%;
+  right: 35px;
+  color: var(--text-color);
+  font-size: 13px;
+  pointer-events: none;
+}

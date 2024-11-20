@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+
+:root {
+  --color-1: #12538b;
+  --color-2: #0b3558;
+  --color-3: #0a2d4b;
+  --color-4: #123467;
+  --color-5: #051625;
+  --button-color-start: #5041d2;
+  --button-color-end: #1798e5;
+  --text-color: #f4f6f9;
+  --navbar-bg-color: #1a237e;
+  --btn-hover-color-start: #1798e5;
+  --btn-hover-color-end: #5041d2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Oxygen", sans-serif;
+}
+
+.login-container {
+  background: #f4f4f4;
+  padding-top: 100px;
+}
+.box-area {
+  width: 100%;
+  max-width: 800px;
+  margin: 100px auto;
+}
+
+/*------------ Right box ------------*/
+.right-box {
+  padding: 40px 30px 40px 40px;
+}
+
+/*------------ Custom Placeholder ------------*/
+::placeholder {
+  font-size: 0.8rem;
+}
+
+.rounded-4 {
+  border-radius: 20px;
+}
+
+.rounded-5 {
+  border-radius: 30px;
+}
+@media only screen and (max-width: 768px) {
+  .box-area {
+    margin: 0 10px;
+  }
+
+  .left-box {
+    height: 100px;
+    overflow: hidden;
+  }
+
+  .right-box {
+    padding: 20px;
+  }
+}

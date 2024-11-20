@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+
+:root {
+  --color-1: #2b297f;
+  --color-2: #114f87;
+  --color-3: #332587;
+  --button-color-start: #5041d2;
+  --button-color-end: #1798e5;
+  --text-color: #f4f6f9;
+  --navbar-bg-color: #332587;
+  --btn-hover-color-start: #2b297f;
+  --btn-hover-color-end: #f4f6f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Oxygen", sans-serif;
+}
+body {
+  margin: 0;
+  padding: 0; 
+  overflow-x: hidden; 
+}
+
+.container-about {
+  background: radial-gradient(circle at 20% 40%, #0b3b62, #0a234a, #05162b);
+  padding-top: 1px;
+  margin-top: 0;
+}
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+/* Sub Judul Tentang Kami */
+.section-tentang {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #121212;
+  margin-top: 5px;
+}
+
+.deskripsi-tentang {
+  font-size: 1rem;
+  color: #121212;
+  margin-top: 10px;
+}
+
+.bi {
+  margin-left: 5px;
+}
+
+.tentang {
+  background-color: var(--text-color);
+  padding: 0;
+  margin-top: 100px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 40px;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Info Kontak */
+.contact-info {
+  background: #ffffff;
+  padding: 15px;
+  color: #333;
+  border-radius: 15px;
+  height: 130px;
+  margin-bottom: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h6 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.contact-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Form Kontak */
+.contact-form input,
+.contact-form textarea {
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.9rem;
+  width: 100%;
+  color: #333;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.btn-tentang-custom {
+  background: none;
+  color: #121212;
+  margin-left: -13px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 0;
+  text-decoration: underline;
+  margin-bottom: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.btn-tentang-custom :hover {
+  color: var(--btn-hover-color-start) !important;
+  text-decoration: none;
+}
+
+.btn-kirim {
+  background: linear-gradient(
+    90deg,
+    var(--button-color-start),
+    var(--button-color-end)
+  );
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  margin-bottom: 25px;
+}
+
+.btn-kirim :hover {
+  background: linear-gradient(
+    90deg,
+    var(--button-color-end),
+    var(--button-color-start)
+  );
+}
+
+.map {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 300px;
+  margin-top: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.form-label {
+  color: var(--text-color);
+}
