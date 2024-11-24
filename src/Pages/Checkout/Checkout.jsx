@@ -4,7 +4,7 @@ import './Checkout.css';
 
 export function Checkout() {
   return (
-    <div className="container my-5">
+    <div className="container my-5 p-5">
       <h2>ThriftHunt | Pemesanan</h2>
 
       <h4 className="mt-4">Alamat Pengiriman</h4>
@@ -16,7 +16,7 @@ export function Checkout() {
       </p>
 
       <h4 className="mt-4">Rincian Produk</h4>
-      <div className="card p-3">
+      <div className="card-checkout p-3">
         <table className="table table-borderless">
           <thead>
             <tr>
@@ -96,7 +96,7 @@ export function Checkout() {
       </div>
 
       <h4 className="mt-4">Metode Pembayaran</h4>
-      <div className="card p-3">
+      <div className="card-checkout p-3">
         <div className="form-check">
           <input
             className="form-check-input"
@@ -118,7 +118,7 @@ export function Checkout() {
       </div>
 
       <h4 className="mt-4">Rincian Pembayaran</h4>
-      <div className="card p-3">
+      <div className="card-checkout p-3">
         <div className="row">
           <div className="col-6">
             <p>Subtotal untuk Produk</p>

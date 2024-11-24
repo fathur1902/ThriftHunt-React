@@ -2,12 +2,15 @@
 .container {
     max-width: 1200px; /* Menyesuaikan lebar maksimum kontainer */
     margin: 0 auto; /* Memastikan kontainer tidak berada di tengah secara horizontal */
+    color: white;
   }
   
-  .card {
+  .card-checkout {
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px; /* Memberi jarak antar card */
+    background: white;
+    color: black;
   }
   
   .table thead {

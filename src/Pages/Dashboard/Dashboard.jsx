@@ -1,131 +1,123 @@
-// src/App.jsx
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Dashboard.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Dashboard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faBox, faArrowLeft, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export function Dashboard() {
-  // Fungsi untuk menangani perubahan halaman (dapat disesuaikan nanti untuk routing)
   const changePage = (pageUrl) => {
     window.location.href = pageUrl;
   };
 
   return (
-    <div className="d-flex">
+    <div className="bg-light d-flex">
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className="sidebar p-4">
         <div className="d-flex align-items-center mb-4">
           <div
-            className="bg-secondary rounded-circle w-10 h-10 me-3"
-            style={{ width: '40px', height: '40px' }}
+            className="bg-secondary rounded-circle me-2"
+            style={{ width: "40px", height: "40px" }}
           ></div>
           <h1 className="fs-4 fw-bold">Thrift Hunt</h1>
         </div>
-        <button className="btn btn-light" onClick={() => changePage('edit-produk.html')}>
-          <i className="fas fa-edit me-2"></i> Edit Produk
+        <button className="btn btn-light mb-1" onClick={() => changePage("edit-produk.html")}>
+          <FontAwesomeIcon icon={faEdit} className="me-2" />
+          Edit Produk
         </button>
-        <button className="btn btn-gradient" onClick={() => changePage('lihat-pesanan.html')}>
-          <i className="fas fa-box me-2"></i> Lihat Pesanan
+        <button className="btn btn-gradient mb-1" onClick={() => changePage("lihat-pesanan.html")}>
+          <FontAwesomeIcon icon={faBox} className="me-2" />
+          Lihat Pesanan
         </button>
-        <button className="btn btn-gradient" onClick={() => changePage('home.html')}>
-          <i className="fas fa-arrow-left me-2"></i> Home
+        <button className="btn btn-gradient" onClick={() => changePage("home.html")}>
+          <FontAwesomeIcon icon={faArrowLeft} className="me-2" />
+          Home
         </button>
       </div>
 
-      {/* Content Area */}
-      <div className="content flex-grow-1">
-        <div className="header">
-          <input className="form-control search-bar" placeholder="Mencari..." type="text" />
-          <div className="user-info">
-            <span>Admin Thrift Hunt</span>
-            <img
-              alt="User Image"
-              src="https://storage.googleapis.com/a1aa/image/TqtCKCaHwMoWNZ5BguSPcPjXmTPqiujUQt0P1EPmSyw1dp8E.jpg"
+      {/* Main Content */}
+      <div className="flex-fill p-4">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h2 className="fs-3 fw-semibold">Produk</h2>
+          <div className="d-flex align-items-center">
+            <input
+              className="form-control me-3"
+              type="text"
+              placeholder="Mencari..."
+              style={{ width: "200px" }}
             />
-          </div>
-        </div>
-
-        <h2>Tambahkan Produk Baru</h2>
-
-        <div className="row">
-          {/* Product Form */}
-          <div className="col-md-6">
-            <div className="card-custom">
-              <div className="mb-3">
-                <label className="form-label" htmlFor="productName">
-                  Nama Produk
-                </label>
-                <input className="form-control" id="productName" type="text" value="Denim Wrangler 80s" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="brand">
-                  Merek
-                </label>
-                <input className="form-control" id="brand" type="text" value="Wrangler" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="productDescription">
-                  Deskripsi Detail Produk
-                </label>
-                <textarea
-                  className="form-control"
-                  id="productDescription"
-                  rows="3"
-                >
-                  Denim Wrangler 80s dari era 80-an, berbahan denim tebal, berwarna biru dengan sedikit pudar di bagian siku. Tetap nyaman dan pas untuk gaya retro autentik.
-                </textarea>
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Ukuran</label>
-                <div>
-                  {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-                    <button key={size} className="btn btn-outline-light size-btn">
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Kategori</label>
-                <div>
-                  {['Pria', 'Wanita', 'Aksesoris'].map((category) => (
-                    <button key={category} className="btn btn-outline-light category-btn">
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="price">
-                  Harga
-                </label>
-                <input className="form-control" id="price" type="text" value="Rp. 100.000" />
-              </div>
+            <FontAwesomeIcon icon={faSearch} className="text-muted" />
+            <div className="d-flex align-items-center ms-4">
+              <div
+                className="bg-secondary rounded-circle me-2"
+                style={{ width: "40px", height: "40px" }}
+              ></div>
+              <span>Admin Thrift Hunt</span>
             </div>
           </div>
+        </div>
+        <button
+          className="btn btn-primary mb-4"
+          onClick={() => changePage("plusproduct.html")}
+        >
+          Tambah Produk
+        </button>
 
-          {/* Product Image */}
-          <div className="col-md-6">
-            <div className="card-custom">
-              <div className="mb-3">
-                <label className="form-label">Gambar Produk</label>
-                <div className="image-upload">
-                  {['Z81jy0cQ4Wp6CJ51eSiTcWleLRix9o9bqKW3PelwrlUguLlnA', 'LqeNzARNajVSfUhvnooicrrGVyHGnoRm0hezwleRZjeq7uUeE', 'EDHalqGcE26vNF1gEPNWCvJVnKfl0Ts45y7vlAGE1yxq7S5JA', 'gQiNQKleeeSfUSekzPBvFeJmG3fqrNOVvONdlS899Azwp7S5JA'].map((image, index) => (
+        {/* Product Table */}
+        <div className="table-responsive">
+          <table className="table table-striped table-bordered">
+            <thead className="table-primary">
+              <tr>
+                <th>Produk</th>
+                <th>Harga</th>
+                <th>Kuantitas</th>
+                <th>Kategori</th>
+                <th>Tindakan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Product Row 1 */}
+              <tr>
+                <td>
+                  <div className="d-flex align-items-center">
                     <img
-                      key={index}
-                      alt={`Product Image ${index + 1}`}
-                      src={`https://storage.googleapis.com/a1aa/image/${image}.jpg`}
+                      src="https://via.placeholder.com/50"
+                      alt="Denim Wrangler 80s"
+                      className="rounded-circle me-3"
+                      width="50"
+                      height="50"
                     />
-                  ))}
-                  <div className="add-image">
-                    <i className="fas fa-plus"></i>
+                    <div>
+                      <div>Denim Wrangler 80s</div>
+                      <small className="text-muted">Ukuran: M</small>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                </td>
+                <td>Rp. 100.000</td>
+                <td>
+                  <input
+                    className="form-control text-center"
+                    type="number"
+                    defaultValue="1"
+                    style={{ width: "70px" }}
+                  />
+                </td>
+                <td>Pria</td>
+                <td>
+                  <Link className="btn btn-warning btn-sm me-2" to="/TambahP">
+                    <FontAwesomeIcon icon={faEdit} className="me-1" />
+                    Edit
+                  </Link>
+                  <button className="btn btn-danger btn-sm">
+                    <FontAwesomeIcon icon={faTrash} className="me-1" />
+                    Hapus
+                  </button>
+                </td>
+              </tr>
+              {/* Duplicate rows if needed */}
+            </tbody>
+          </table>
         </div>
-
-        <button className="btn btn-custom mt-3">Simpan Produk</button>
       </div>
     </div>
   );

@@ -9,8 +9,10 @@ import { Product } from "./Pages/Product/Product";
 import { FlashSale } from "./Pages/Product/FlashSale";
 // import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 import { Profile } from "./Pages/Profile/Profile";
-import { Dashboard } from "./Pages/Dashboard/Dashboard";
+import { TambahP } from "./Pages/TambahP/TambahP";
 import { Checkout } from "./Pages/Checkout/Checkout";
+import { Kode } from "./Pages/Kode/Kode";
+import { Dashboard } from "./Pages/Dashboard/Dashboard";
 function App() {
   return (
     <BrowserRouter>
@@ -22,7 +24,10 @@ function AppContent() {
   const location = useLocation();
   const showFooter =
     location.pathname.toLowerCase() !== "/login" &&
-    location.pathname.toLowerCase() !== "/signup";
+    location.pathname.toLowerCase() !== "/signup" &&
+    location.pathname.toLowerCase() !== "/tambahp" &&
+    location.pathname.toLowerCase() !== "/dashboard";
+
   return (
     <>
       <Navbar />
@@ -36,8 +41,10 @@ function AppContent() {
         <Route path="Profile" element={<Profile />} />
         {/* <Route path="ProductDetail" element={<ProductDetai
         {/* <Route path="ProductDetail" element={<ProductDetail />} /> */}
-        <Route path="Dashboard" element={<Dashboard />} />
+        <Route path="TambahP" element={<TambahP />} />
         <Route path="Checkout" element={<Checkout />} />
+        <Route path="Kode" element={<Kode />} />
+        <Route path="Dashboard" element={<Dashboard />} />
       </Routes>
       {showFooter && <Footer />}
     </>
