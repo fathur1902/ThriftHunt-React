@@ -48,9 +48,9 @@ header {
 }
 
 .navbar .nav-link {
-  color: var(--text-color);
+  color: var(--text-color) ;
 }
-.navbar-collapse{
+.navbar-collapse {
   padding-left: 100px;
   gap: 50px;
   font-size: 1rem;

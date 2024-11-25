@@ -58,11 +58,13 @@
     var(--button-color-start),
     var(--button-color-end)
   );
+  color: var(--text-color);
+  text-decoration: none;
   border: none;
   padding: 0.8rem 3rem;
   min-width: 200px;
   font-size: 1rem;
-  border-radius: 30px;
+  border-radius: 50px;
   transition: background-color 0.3s ease;
 }
 
@@ -84,7 +86,7 @@
   padding-bottom: 200px;
 }
 
-.section-title-produk {
+.section-title {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 20px;
@@ -93,6 +95,7 @@
 .countdown-timer {
   display: flex;
   gap: 5px;
+  align-items: center;
 }
 
 .countdown-timer .timer-box {
@@ -101,7 +104,6 @@
   font-size: 1rem;
   font-weight: bold;
   border-radius: 5px;
-  margin-right: 5px;
   color: #333;
 }
 
@@ -112,7 +114,7 @@
     var(--button-color-end)
   );
   color: #fff;
-  padding: 7px 14px;
+  padding: 9px 18px;
   border-radius: 50px;
   text-decoration: none;
   margin-bottom: 25px;

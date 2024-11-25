@@ -35,7 +35,7 @@ export function About() {
                   Indonesia. Dibuat sejak 2024. Layanan pelanggan kami selalu
                   siap mendukung Anda 24/7.
                 </p>
-                <a href="halaman_KPK.html" className="btn btn-tentang-custom">
+                <a href="/product" className="btn-tentang-custom">
                   Belanja Sekarang
                   <i className="bi bi-arrow-right"></i>
                 </a>

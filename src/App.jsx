@@ -7,8 +7,14 @@ import { About } from "./Pages/About/About";
 import { Signup } from "./Pages/SignUp/SignUp";
 import { Product } from "./Pages/Product/Product";
 import { FlashSale } from "./Pages/Product/FlashSale";
-// import ProductDetail from "./Pages/ProductDetail/ProductDetail";
+import { ProductDetail } from "./Pages/ProductDetail/ProductDetail";
 import { Profile } from "./Pages/Profile/Profile";
+import { EditProfile } from "./Pages/EditProfile/EditProfile";
+import { Category } from "./component/Category/Category";
+import { TambahP } from "./Pages/TambahP/TambahP";
+import { Checkout } from "./Pages/Checkout/Checkout";
+import { Kode } from "./Pages/Kode/Kode";
+import { Dashboard } from "./Pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -26,15 +32,20 @@ function AppContent() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="Home" element={<Home />} />
         <Route path="Login" element={<Login />} />
         <Route path="About" element={<About />} />
         <Route path="SignUp" element={<Signup />} />
         <Route path="Product" element={<Product />} />
         <Route path="FlashSale" element={<FlashSale />} />
         <Route path="Profile" element={<Profile />} />
-        {/* <Route path="ProductDetail" element={<ProductDetai
-        {/* <Route path="ProductDetail" element={<ProductDetail />} /> */}
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="EditProfile" element={<EditProfile />} />
+        <Route path="/category/:categoryName" element={<Category />} />
+        <Route path="TambahP" element={<TambahP />} />
+        <Route path="Checkout" element={<Checkout />} />
+        <Route path="Kode" element={<Kode />} />
+        <Route path="Dashboard" element={<Dashboard />} />
       </Routes>
       {showFooter && <Footer />}
     </>

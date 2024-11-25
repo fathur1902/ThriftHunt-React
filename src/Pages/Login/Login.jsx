@@ -24,7 +24,7 @@ export function Login() {
       }).then((result) => {
         if (result.isConfirmed) {
           // Redirect jika diperlukan (ganti dengan route yang sesuai)
-          window.location.href = "/Home";
+          window.location.href = "/home";
         }
       });
     }

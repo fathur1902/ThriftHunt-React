@@ -14,8 +14,7 @@ export function Profile() {
                 className="profile-img"
               />
               <h3 className="profile-name">Sofia Havertz</h3>
-              <p className="profile-income">Penghasilan | Rp. 300.000</p>
-              <a href="edit-profile.html" className="btn edit-btn">
+              <a href="/EditProfile" className="btn edit-btn">
                 Edit Profil
               </a>
               <button className="btn logout-btn">Keluar</button>

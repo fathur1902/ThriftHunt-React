@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link untuk navigasi
+import { Link } from "react-router-dom";
+import products from "../../data/product";
 import "./Product.css";
 
 export function Product() {
@@ -9,81 +10,6 @@ export function Product() {
     sizes: [],
   });
 
-  const product = [
-    {
-      id: 1,
-      name: "Celana Chino",
-      price: 40000,
-      category: "Bawahan Pria",
-      size: "M",
-      img: "/assets/images/Celana Chino.jpg",
-    },
-    {
-      id: 2,
-      name: "Celana Jeans",
-      price: 50000,
-      category: "Bawahan Wanita",
-      size: "L",
-      img: "/assets/images/Celana Jeans.jpg",
-    },
-    {
-      id: 3,
-      name: "Kaos Vneck Hitam",
-      price: 50000,
-      category: "Atasan Pria",
-      size: "M",
-      img: "/assets/images/Kaos Vneck Hitam.jpg",
-    },
-    {
-      id: 4,
-      name: "Rok A-Line",
-      price: 30000,
-      category: "Bawahan Wanita",
-      size: "S",
-      img: "/assets/images/Rok A-Line.jpg",
-    },
-    {
-      id: 5,
-      name: "Celana Pendek",
-      price: 50000,
-      category: "Bawahan Pria",
-      size: "L",
-      img: "/assets/images/Celana Pendek.jpg",
-    },
-    {
-      id: 6,
-      name: "Celana Corduroy",
-      price: 50000,
-      category: "Bawahan Wanita",
-      size: "S",
-      img: "/assets/images/Celana Corduroy.jpg",
-    },
-    {
-      id: 7,
-      name: "Topi",
-      price: 50000,
-      category: "Aksesoris",
-      size: "L",
-      img: "/assets/images/topi.jpg",
-    },
-    {
-      id: 8,
-      name: "Sepatu Thruffle Boots",
-      price: 50000,
-      category: "Aksesoris",
-      size: "XL",
-      img: "/assets/images/sepatu Truffle Boots.jpg",
-    },
-    {
-      id: 9,
-      name: "Ransel Denim",
-      price: 50000,
-      category: "Aksesoris",
-      size: "L",
-      img: "/assets/images/Ransel Denim.jpg",
-    },
-  ];
-
   const handleCheckboxChange = (type, value) => {
     setFilters((prev) => {
       const newFilters = { ...prev };
@@ -92,11 +18,11 @@ export function Product() {
       } else {
         newFilters[type].push(value);
       }
-    //   console.log("Updated Filters:", newFilters);
       return newFilters;
     });
   };
-  const filteredProduct = product.filter((product) => {
+
+  const filteredProduct = products.filter((product) => {
     const { categories, prices, sizes } = filters;
 
     const inCategory = categories.length
@@ -113,11 +39,13 @@ export function Product() {
 
     return inCategory && inPrice && inSize;
   });
+
+
   return (
     <div className="container mt-5">
-      <section className="tittle mb-4 text-md-left">
+      {/* <section className="tittle mb-4 text-md-left">
         <h2>Koleksi Produk Kami</h2>
-      </section>
+      </section> */}
       <div className="row">
         <section className="col-12 col-md-3">
           <div className="list-group-container mx-md-0 mx-auto mb-3">
@@ -150,7 +78,6 @@ export function Product() {
               <Link to="/flashsale" className="text-decoration-none text-white">
                 Flash Sale
               </Link>
-              {""}
             </div>
           </div>
           <div className="list-group-container mb-3">
@@ -199,22 +126,25 @@ export function Product() {
         </section>
         <section className="col-md-9">
           <div className="row">
+            <h2 className="tittle mb-4 text-md-left">Koleksi Produk Kami</h2>
             {filteredProduct.length > 0 ? (
               filteredProduct.map((product) => (
                 <div key={product.id} className="col-md-4 mb-4">
                   <div className="card product-card">
-                    <img
-                      src={product.img}
-                      className="card-img-top"
-                      alt={product.name}
-                    />
+                    <Link to={`../product/${product.id}`}>
+                      <img
+                        src={product.img}
+                        className="card-img-top"
+                        alt={product.name}
+                      />
+                    </Link>
                     <div className="card-body d-flex flex-column">
                       <h5 className="card-title mb-auto text-start">
                         {product.name}
                       </h5>
                       <div className="d-flex justify-content-between align-items-center mt-3">
                         <span className="price">
-                          Rp. {product.price.toLocaleString()}
+                          {product.price.toLocaleString()}
                         </span>
                         <i className="bi bi-plus-circle fs-5"></i>
                       </div>
