@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import "./Product.css";
 
 export function FlashSale() {
@@ -9,10 +9,9 @@ export function FlashSale() {
     sizes: [],
   });
 
-  const [countdown1, setCountdown1] = useState(0); 
-  const [countdown2, setCountdown2] = useState(0); 
-  const [countdown3, setCountdown3] = useState(0); 
-
+  const [countdown1, setCountdown1] = useState(0);
+  const [countdown2, setCountdown2] = useState(0);
+  const [countdown3, setCountdown3] = useState(0);
 
   const product = [
     {
@@ -89,7 +88,6 @@ export function FlashSale() {
     },
   ];
 
-
   const handleCheckboxChange = (type, value) => {
     setFilters((prev) => {
       const newFilters = { ...prev };
@@ -122,13 +120,13 @@ export function FlashSale() {
   useEffect(() => {
     const interval1 = setInterval(() => {
       setCountdown1((prev) => (prev === 0 ? 0 : prev - 1));
-    }, 1000); 
+    }, 1000);
     const interval2 = setInterval(() => {
       setCountdown2((prev) => (prev === 0 ? 0 : prev - 1));
-    }, 1000); 
+    }, 1000);
     const interval3 = setInterval(() => {
       setCountdown3((prev) => (prev === 0 ? 0 : prev - 1));
-    }, 1000); 
+    }, 1000);
 
     return () => {
       clearInterval(interval1);
@@ -148,21 +146,9 @@ export function FlashSale() {
 
   return (
     <div className="container mt-5">
-
-      <section className="tittle mb-4 text-md-left">
+      {/* <section className="tittle mb-4 text-md-left">
         <h2>Koleksi Produk Kami</h2>
-      </section>
-      <section className="flash-sale-timer d-flex justify-content-end mb-4 flex-wrap">
-        <button className="btn btn-primary mx-2 mb-2" id="countdown1">
-          {formatTime(countdown1)} <br /> Sedang Berjalan
-        </button>
-        <button className="btn btn-primary mx-2 mb-2" id="countdown2">
-          {formatTime(countdown2)} <br /> Akan Datang
-        </button>
-        <button className="btn btn-primary mx-2 mb-2" id="countdown3">
-          {formatTime(countdown3)} <br /> Besok
-        </button>
-      </section>
+      </section> */}
 
       <div className="row">
         <section className="col-12 col-md-3">
@@ -247,6 +233,18 @@ export function FlashSale() {
         </section>
 
         <section className="col-md-9">
+          <h2 className="tittle mb-4 text-md-left">Koleksi Produk Kami</h2>
+          <section className="flash-sale-timer d-flex justify-content-end mb-2 flex-wrap">
+            <button className="btn btn-primary mx-2 mb-2" id="countdown1">
+              {formatTime(countdown1)} <br /> Sedang Berjalan
+            </button>
+            <button className="btn btn-primary mx-2 mb-2" id="countdown2">
+              {formatTime(countdown2)} <br /> Akan Datang
+            </button>
+            <button className="btn btn-primary mx-2 mb-2" id="countdown3">
+              {formatTime(countdown3)} <br /> Besok
+            </button>
+          </section>
           <div className="row">
             {filteredProduct.length > 0 ? (
               filteredProduct.map((product) => (

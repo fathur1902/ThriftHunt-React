@@ -1,5 +1,5 @@
 import "./Home.css";
-
+import { Link } from "react-router-dom";
 export function Home() {
   return (
     <>
@@ -17,7 +17,7 @@ export function Home() {
                   Temukan harta karun fashion yang pas untuk setiap momen dalam
                   hidupmu.
                 </p>
-                <a href="halaman_KPK.html" className="btn btn-primary btn-lg">
+                <a href="/product" className="btn-primary ">
                   Jelajahi
                 </a>
               </div>
@@ -25,7 +25,7 @@ export function Home() {
           </div>
         </section>
 
-        <section className="flash-sale-section py-5 mt-5">
+        <section className="flash-sale-section mt-5">
           <div className="container display-flex justify-content-between align-items-center">
             <h2 className="section-title">Flash Sale</h2>
             <div
@@ -42,7 +42,7 @@ export function Home() {
                 00
               </span>
             </div>
-            <a href="halaman_flashsale.html" className="btn-custom">
+            <a href="/flashsale" className="btn-custom">
               Lihat Semua
             </a>
           </div>
@@ -135,7 +135,10 @@ export function Home() {
             </p>
             <div className="row justify-content-center">
               <div className="col-6 col-md-3">
-                <a href="halaman_AP.html" className="text-decoration-none">
+                <Link
+                  to="/category/Atasan Pria"
+                  className="text-decoration-none"
+                >
                   <div className="kategori-card">
                     <img
                       src="/assets/images/pakaian pria.jpg"
@@ -146,11 +149,11 @@ export function Home() {
                       <p>Pakaian Pria</p>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
-              <div className="col-6 col-md-3 d-flex flex-column kategori-dual ">
-                <a
-                  href="halaman_AW.html"
+              <div className="col-6 col-md-3 d-flex flex-column kategori-dual">
+                <Link
+                  to="/category/bawahan wanita"
                   className="text-decoration-none kategori-link"
                 >
                   <div className="kategori-card mb-2">
@@ -163,9 +166,9 @@ export function Home() {
                       <p>Pakaian Wanita</p>
                     </div>
                   </div>
-                </a>
-                <a
-                  href="halaman_KA.html"
+                </Link>
+                <Link
+                  to="/category/aksesoris"
                   className="text-decoration-none kategori-link"
                 >
                   <div className="kategori-card mt-2">
@@ -178,24 +181,21 @@ export function Home() {
                       <p>Aksesoris</p>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="col-6 col-md-3">
-                <a
-                  href="halaman_flashsale.html"
-                  className="text-decoration-none"
-                >
+                <Link to="/flashsale" className="text-decoration-none">
                   <div className="kategori-card">
                     <img
                       src="/assets/images/sepatu.jpg"
-                      alt="Aksesoris"
+                      alt="Flash Sale"
                       className="kategori-image"
                     />
                     <div className="kategori-overlay">
                       <p>Flash Sale</p>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@ export function Home() {
               Temukan fashion pakaian yang paling dicari! Setiap item menawarkan
               gaya dan kualitas unggul dengan harga terjangkau.
             </p>
-            <a href="halaman_KPK.html" className="btn-lihat-semua">
+            <a href="/product" className="btn-lihat-semua">
               Lihat Semua
             </a>
 
