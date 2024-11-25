@@ -15,7 +15,7 @@ export function Checkout() {
         <a className="btn btn-custom btn-sm ms-2" href="alamat.html">Ubah</a>
       </p>
 
-      <h4 className="mt-4">Rincian Produk</h4>
+      <h4 className="mt-4">Rincian Pro</h4>
       <div className="card-checkout p-3">
         <table className="table table-borderless">
           <thead>
