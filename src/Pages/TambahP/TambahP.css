@@ -1,5 +1,6 @@
 /* Styling untuk Sidebar */
 .sidebar {
+
   width: 250px;
   min-height: 100vh;
   background-color: #007bff;
@@ -23,10 +24,36 @@
 
 .sidebar .btn-gradient:hover {
   background: linear-gradient(135deg, #3498db, #6c5ce7);
+
+    width: 250px;
+    min-height: 100vh;
+    background-color: #007bff;
+    color: white;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.sidebar .btn {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.sidebar .btn-gradient {
+    background: linear-gradient(135deg, #6c5ce7, #3498db);
+    border: none;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar .btn-gradient:hover {
+    background: linear-gradient(135deg, #3498db, #6c5ce7);
+
 }
 
 /* Styling untuk Konten */
 .content {
+
   padding: 100px;
   color: black;
 }
@@ -52,10 +79,38 @@
   height: 40px;
   border-radius: 50%;
   margin-left: 10px;
+
+    padding: 100px;
+    color: black;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header .search-bar {
+    width: 300px;
+}
+
+.header .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.header .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+
 }
 
 /* Styling untuk Card Produk */
 .card-custom {
+
   background: radial-gradient(circle at 20% 40%, #0b3b62, #0a234a, #05162b);
   color: white;
   padding: 20px;
@@ -67,19 +122,40 @@
 .card-custom textarea {
   background-color: white;
   color: black;
+
+    background: radial-gradient(circle at 20% 40%, #0b3b62, #0a234a, #05162b);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.card-custom input, .card-custom textarea {
+    background-color: white;
+    color: black;
+
 }
 
 /* Styling untuk Button */
 .btn-custom {
+
   background: radial-gradient(circle at 20% 40%, #0b3b62, #0a234a, #05162b);
   color: white;
   border: none;
   border-radius: 20px;
   padding: 10px 20px;
+
+    background: radial-gradient(circle at 20% 40%, #0b3b62, #0a234a, #05162b);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+
 }
 
 /* Styling untuk Upload Gambar Produk */
 .image-upload {
+
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -106,4 +182,32 @@
   background-color: #ffffff !important;
   color: #1a2a6c !important;
   border: 1px solid #1a2a6c !important;
+
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.image-upload img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.image-upload .add-image {
+    width: 60px;
+    height: 60px;
+    border: 2px dashed white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.active-btn {
+    background-color: #ffffff !important;
+    color: #1a2a6c !important;
+    border: 1px solid #1a2a6c !important;
+
 }
