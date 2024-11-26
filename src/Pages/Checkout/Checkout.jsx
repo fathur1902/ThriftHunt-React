@@ -1,12 +1,6 @@
-
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Checkout.css";
-
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Checkout.css';
-
 
 export function Checkout() {
   return (
@@ -15,7 +9,6 @@ export function Checkout() {
 
       <h4 className="mt-4">Alamat Pengiriman</h4>
       <p>
-
         <strong>Ascending (+62) 852315642578</strong>
         <br />
         Perumahan Telang Indah, Jalan Telang Indah Barat Gang IV No. 4, Telang,
@@ -23,12 +16,6 @@ export function Checkout() {
         <a className="btn btn-custom btn-sm ms-2" href="alamat.html">
           Ubah
         </a>
-
-        <strong>Ascending (+62) 852315642578</strong><br />
-        Perumahan Telang Indah, Jalan Telang Indah Barat Gang IV No. 4,
-        Telang, Bangkalan, KAB. BANGKALAN - BANGKALAN, JAWA TIMUR, ID 69119
-        <a className="btn btn-custom btn-sm ms-2" href="alamat.html">Ubah</a>
-
       </p>
 
       <h4 className="mt-4">Rincian Pro</h4>
@@ -52,12 +39,8 @@ export function Checkout() {
                   height="50"
                   width="50"
                 />
-
                 Thrift Kaos Vneck Hitam
                 <br />
-
-                Thrift Kaos Vneck Hitam<br />
-
                 Ukuran: M
               </td>
               <td>Rp. 50.000</td>
@@ -73,12 +56,8 @@ export function Checkout() {
                   height="50"
                   width="50"
                 />
-
                 Denim Wrangler 80s
                 <br />
-
-                Denim Wrangler 80s<br />
-
                 Ukuran: L
               </td>
               <td>Rp. 100.000</td>
@@ -94,12 +73,8 @@ export function Checkout() {
                   height="50"
                   width="50"
                 />
-
                 Vans Checkerboard Classic
                 <br />
-
-                Vans Checkerboard Classic<br />
-
                 Ukuran: 39
               </td>
               <td>Rp. 100.000</td>
@@ -115,12 +90,8 @@ export function Checkout() {
                   height="50"
                   width="50"
                 />
-
                 Kaos Band Metallica 90s
                 <br />
-
-                Kaos Band Metallica 90s<br />
-
                 Ukuran: L
               </td>
               <td>Rp. 50.000</td>
@@ -140,13 +111,9 @@ export function Checkout() {
             id="bank"
             value="bank"
           />
-
           <label className="form-check-label" htmlFor="bank">
             Bank
           </label>
-
-          <label className="form-check-label" htmlFor="bank">Bank</label>
-
         </div>
         <div className="form-check">
           <input
@@ -155,13 +122,9 @@ export function Checkout() {
             id="cod"
             value="cod"
           />
-
           <label className="form-check-label" htmlFor="cod">
             COD
           </label>
-
-          <label className="form-check-label" htmlFor="cod">COD</label>
-
         </div>
       </div>
 
@@ -181,7 +144,6 @@ export function Checkout() {
             <h5>Rp. 290.000</h5>
           </div>
         </div>
-
         <a className="btn btn-custom w-100" href="kode-bayar.html">
           Buat Pesanan
         </a>
@@ -189,10 +151,3 @@ export function Checkout() {
     </div>
   );
 }
-
-        <a className="btn btn-custom w-100" href="kode-bayar.html">Buat Pesanan</a>
-      </div>
-    </div>
-  );
-};
-
