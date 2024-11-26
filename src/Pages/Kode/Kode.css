@@ -1,5 +1,4 @@
 .card-kode {
-
   margin: 147px auto; /* Membuat kartu berada di tengah halaman */
   width: 60%;
   max-width: 800px;
@@ -9,17 +8,6 @@
 }
 
 /* .card-header {
-
-    margin: 147px auto; /* Membuat kartu berada di tengah halaman */
-    width: 60%;
-    max-width: 800px;
-    border-radius: 20px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    background: white;
-  }
-  
-  /* .card-header {
-
     background: linear-gradient(90deg, #2e3192 0%, #1bffff 100%);
     color: white;
     font-weight: bold;
@@ -48,27 +36,3 @@
 .btn-link:hover {
   color: #2e3192;
 }
-
-  .btn-primary {
-    background: linear-gradient(90deg, #2e3192 0%, #1bffff 100%);
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-  }
-  
-  .btn-primary:hover {
-    background: linear-gradient(90deg, #1bffff 0%, #2e3192 100%);
-  }
-  
-  .btn-link {
-    color: #1bffff;
-    font-weight: bold;
-    text-decoration: none;
-    text-align: right;
-  }
-  
-  .btn-link:hover {
-    color: #2e3192;
-  }
-  
-
