@@ -9,10 +9,8 @@ import { Product } from "./Pages/Product/Product";
 import { FlashSale } from "./Pages/Product/FlashSale";
 import { ProductDetail } from "./Pages/ProductDetail/ProductDetail";
 import { Profile } from "./Pages/Profile/Profile";
-
 import { EditProfile } from "./Pages/EditProfile/EditProfile";
 import { Category } from "./component/Category/Category";
-
 import { TambahP } from "./Pages/TambahP/TambahP";
 import { Checkout } from "./Pages/Checkout/Checkout";
 import { Kode } from "./Pages/Kode/Kode";
@@ -45,14 +43,9 @@ function AppContent() {
         <Route path="Product" element={<Product />} />
         <Route path="FlashSale" element={<FlashSale />} />
         <Route path="Profile" element={<Profile />} />
-
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="EditProfile" element={<EditProfile />} />
         <Route path="/category/:categoryName" element={<Category />} />
-
-        {/* <Route path="ProductDetail" element={<ProductDetai
-        {/* <Route path="ProductDetail" element={<ProductDetail />} /> */}
-
         <Route path="TambahP" element={<TambahP />} />
         <Route path="Checkout" element={<Checkout />} />
         <Route path="Kode" element={<Kode />} />
