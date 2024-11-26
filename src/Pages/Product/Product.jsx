@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import products from "../../data/product";
 import "./Product.css";
@@ -10,42 +10,46 @@ export function Product() {
     sizes: [],
   });
 
+  const [filteredProduct, setFilteredProduct] = useState(products);
+
   const handleCheckboxChange = (type, value) => {
     setFilters((prev) => {
-      const newFilters = { ...prev };
-      if (newFilters[type].includes(value)) {
-        newFilters[type] = newFilters[type].filter((item) => item !== value);
-      } else {
-        newFilters[type].push(value);
-      }
-      return newFilters;
+      const isAlreadySelected = prev[type].includes(value);
+      const updatedValues = isAlreadySelected
+        ? prev[type].filter((item) => item !== value) 
+        : [...prev[type], value]; 
+
+      return {
+        ...prev,
+        [type]: updatedValues, 
+      };
     });
   };
 
-  const filteredProduct = products.filter((product) => {
+  useEffect(() => {
     const { categories, prices, sizes } = filters;
 
-    const inCategory = categories.length
-      ? categories.includes(product.category)
-      : true;
-    const inPrice =
-      prices.length > 0
-        ? prices.some((range) => {
-            const [min, max] = range.split("-").map(Number);
-            return product.price >= min && product.price <= max;
-          })
-        : true;
-    const inSize = sizes.length ? sizes.includes(product.size) : true;
+    const filtered = products.filter((product) => {
+      const inCategory =
+        categories.length === 0 || categories.includes(product.category);
 
-    return inCategory && inPrice && inSize;
-  });
+      const inPrice =
+        prices.length === 0 ||
+        prices.some((range) => {
+          const [min, max] = range.split("-").map(Number);
+          return product.price >= min && product.price <= max;
+        });
 
+      const inSize = sizes.length === 0 || sizes.includes(product.size);
+
+      return inCategory && inPrice && inSize;
+    });
+
+    setFilteredProduct(filtered);
+  }, [filters]); 
 
   return (
     <div className="container mt-5">
-      {/* <section className="tittle mb-4 text-md-left">
-        <h2>Koleksi Produk Kami</h2>
-      </section> */}
       <div className="row">
         <section className="col-12 col-md-3">
           <div className="list-group-container mx-md-0 mx-auto mb-3">
