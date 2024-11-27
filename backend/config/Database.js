@@ -1,8 +1,8 @@
-import {Sequalize} from "sequelize";
+import { Sequelize } from "sequelize";
 
-const db = new Sequalize('thrifthunt','root','',{
-    host : 'localhost',
-    dialect: 'mysql',
-})
+const db = new Sequelize("thrifthunt_db", "root", "", {
+  host: "localhost",
+  dialect: "mysql",
+});
 
 export default db;

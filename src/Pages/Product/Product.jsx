@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import products from "../../data/product";
+import axios from "axios"; // Install axios jika belum: npm install axios
 import "./Product.css";
 
 export function Product() {
@@ -10,22 +10,40 @@ export function Product() {
     sizes: [],
   });
 
-  const [filteredProduct, setFilteredProduct] = useState(products);
+  const [products, setProducts] = useState([]); // Data produk dari backend
+  const [filteredProduct, setFilteredProduct] = useState([]); // Produk yang difilter
+
+  // Ambil data dari backend
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/products");
+        // console.log("Produk:", response.data);
+        setProducts(response.data);
+        setFilteredProduct(response.data); // Awalnya tampilkan semua produk
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleCheckboxChange = (type, value) => {
     setFilters((prev) => {
       const isAlreadySelected = prev[type].includes(value);
       const updatedValues = isAlreadySelected
-        ? prev[type].filter((item) => item !== value) 
-        : [...prev[type], value]; 
+        ? prev[type].filter((item) => item !== value)
+        : [...prev[type], value];
 
       return {
         ...prev,
-        [type]: updatedValues, 
+        [type]: updatedValues,
       };
     });
   };
 
+  // Filter produk berdasarkan kategori, harga, dan ukuran
   useEffect(() => {
     const { categories, prices, sizes } = filters;
 
@@ -46,7 +64,7 @@ export function Product() {
     });
 
     setFilteredProduct(filtered);
-  }, [filters]); 
+  }, [filters, products]);
 
   return (
     <div className="container mt-5">
@@ -135,9 +153,9 @@ export function Product() {
               filteredProduct.map((product) => (
                 <div key={product.id} className="col-md-4 mb-4">
                   <div className="card product-card">
-                    <Link to={`../product/${product.id}`}>
+                    <Link to={`/product/${product.id}`}>
                       <img
-                        src={product.img}
+                        src={`http://localhost:3000/uploads/${product.image}`}
                         className="card-img-top"
                         alt={product.name}
                       />
