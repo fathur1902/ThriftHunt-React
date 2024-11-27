@@ -5,7 +5,7 @@ import './TambahP.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faBox, faArrowLeft, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export function TambahP() {
+export function EditP() {
   // Fungsi untuk menangani perubahan halaman (dapat disesuaikan nanti untuk routing)
   const changePage = (pageUrl) => {
     window.location.href = pageUrl;

@@ -50,9 +50,9 @@ export function Login() {
             <div className="col-md-6 right-box">
               <div className="row align-items-center">
                 <div className="header-text mb-2">
-                  <h2>Masuk</h2>
+                  <h2 className=" text-black ">Masuk</h2>
                 </div>
-                <small>Masukkan email</small>
+                <small className=" text-black " >Masukkan email</small>
                 <div className="input-group mb-3">
                   <input
                     type="email"
@@ -64,7 +64,7 @@ export function Login() {
                   />
                 </div>
 
-                <small>Masukkan sandi</small>
+                <small className=" text-black ">Masukkan sandi</small>
                 <div className="input-group mb-1">
                   <input
                     type="password"
@@ -89,7 +89,7 @@ export function Login() {
                       htmlFor="formCheck"
                       className="form-check-label text-secondary"
                     >
-                      <small>Ingat saya</small>
+                      <small className=" text-black " >Ingat saya</small>
                     </label>
                   </div>
                   <div className="forgot">
@@ -123,7 +123,7 @@ export function Login() {
 
                 {/* Link untuk halaman signup */}
                 <div className="row">
-                  <small>
+                  <small className=" text-black " >
                     Belum memiliki akun? <a href="/SignUp">Buat akun</a>
                   </small>
                 </div>

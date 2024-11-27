@@ -14,65 +14,20 @@ export function Profile() {
                 className="profile-img"
               />
               <h3 className="profile-name">Sofia Havertz</h3>
-              <a href="/EditProfile" className="btn edit-btn">
+              <a href="/EditProfile" className="btn-profile edit-btn text-center">
                 Edit Profil
               </a>
-              <button className="btn logout-btn">Keluar</button>
+              <button className="btn-profile logout-btn">Keluar</button>
             </div>
 
             <div className="address-section">
               <h3>Alamat</h3>
               <div className="address-box">
-                <h4>
+              <h4>
                   Alamat Utama{" "}
-                  <span className="edit-link">
+                  <a href="/ubahalamat" className="edit-link">
                     <i className="bi bi-pencil-fill"></i> Edit
-                  </span>
-                </h4>
-                <p>
-                  Sofia Havertz
-                  <br />
-                  (+) 234 567 890
-                  <br />
-                  Surabaya, Jawa Timur, Indonesia
-                </p>
-              </div>
-              <div className="address-box">
-                <h4>
-                  Alamat Toko{" "}
-                  <span className="edit-link">
-                    <i className="bi bi-pencil-fill"></i> Edit
-                  </span>
-                </h4>
-                <p>
-                  Sofia Havertz
-                  <br />
-                  (+) 234 567 890
-                  <br />
-                  Surabaya, Jawa Timur, Indonesia
-                </p>
-              </div>
-              <div className="address-box">
-                <h4>
-                  Alamat Rumah{" "}
-                  <span className="edit-link">
-                    <i className="bi bi-pencil-fill"></i> Edit
-                  </span>
-                </h4>
-                <p>
-                  Sofia Havertz
-                  <br />
-                  (+) 234 567 890
-                  <br />
-                  Surabaya, Jawa Timur, Indonesia
-                </p>
-              </div>
-              <div className="address-box">
-                <h4>
-                  Alamat Kantor{" "}
-                  <span className="edit-link">
-                    <i className="bi bi-pencil-fill"></i> Edit
-                  </span>
+                  </a>
                 </h4>
                 <p>
                   Sofia Havertz

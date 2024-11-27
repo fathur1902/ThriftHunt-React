@@ -1,0 +1,25 @@
+/* Ganti nama kelas CSS agar lebih spesifik */
+.ubah-alamat input::placeholder,
+.ubah-alamat select {
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.ubah-alamat .form-control, 
+.ubah-alamat .form-select {
+    border-radius: 8px;
+    height: 45px;
+}
+
+.ubah-alamat .btn-primary {
+    background: linear-gradient(135deg, #0984e3, #74b9ff);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.ubah-alamat .btn-primary:hover {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+}
