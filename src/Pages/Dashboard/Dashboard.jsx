@@ -13,25 +13,25 @@ export function Dashboard() {
   return (
     <div className="bg-light d-flex">
       {/* Sidebar */}
-      <div className="sidebar p-4">
+      <div className="sidebar mt-0">
         <div className="d-flex align-items-center mb-4">
           <div
-            className="bg-secondary rounded-circle me-2"
+            className="bg-white rounded-circle me-2"
             style={{ width: "40px", height: "40px" }}
           ></div>
           <h1 className="fs-4 fw-bold">Thrift Hunt</h1>
         </div>
-        <button className="btn btn-light mb-1" onClick={() => changePage("edit-produk.html")}>
+        <button className="btn btn-light mb-3" onClick={() => changePage("dashboard")}>
           <FontAwesomeIcon icon={faEdit} className="me-2" />
           Edit Produk
         </button>
-        <button className="btn btn-gradient mb-1" onClick={() => changePage("lihat-pesanan.html")}>
+        <button className="btn btn-gradient mb-3" onClick={() => changePage("/dashboardp")}>
           <FontAwesomeIcon icon={faBox} className="me-2" />
           Lihat Pesanan
         </button>
-        <button className="btn btn-gradient" onClick={() => changePage("home.html")}>
+        <button className="btn btn-gradient" onClick={() => changePage("/login")}>
           <FontAwesomeIcon icon={faArrowLeft} className="me-2" />
-          Home
+          Logout
         </button>
       </div>
 
@@ -58,7 +58,7 @@ export function Dashboard() {
         </div>
         <button
           className="btn btn-primary mb-4"
-          onClick={() => changePage("plusproduct.html")}
+          onClick={() => changePage("/tambahp")}
         >
           Tambah Produk
         </button>
@@ -104,7 +104,7 @@ export function Dashboard() {
                 </td>
                 <td>Pria</td>
                 <td>
-                  <Link className="btn btn-warning btn-sm me-2" to="/TambahP">
+                  <Link className="btn btn-warning btn-sm me-2" to="/EditP">
                     <FontAwesomeIcon icon={faEdit} className="me-1" />
                     Edit
                   </Link>

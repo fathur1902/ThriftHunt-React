@@ -73,9 +73,9 @@ export function Signup() {
           <div className="col-md-6 right-box">
             <div className="row align-items-center">
               <div className="header-text mb-2">
-                <h2>Daftar</h2>
+                <h2 className=" text-black ">Daftar</h2>
               </div>
-              <small>Nama Lengkap</small>
+              <small className=" text-black " >Nama Lengkap</small>
               <div className="input-group mb-3">
                 <input
                   id="nama"
@@ -86,7 +86,7 @@ export function Signup() {
                   onChange={handleChange}
                 />
               </div>
-              <small>Email</small>
+              <small className=" text-black " >Email</small>
               <div className="input-group mb-3">
                 <input
                   id="email"
@@ -97,7 +97,7 @@ export function Signup() {
                   onChange={handleChange}
                 />
               </div>
-              <small>Sandi</small>
+              <small className=" text-black " >Sandi</small>
               <div className="input-group mb-3">
                 <input
                   id="password"
@@ -108,7 +108,7 @@ export function Signup() {
                   onChange={handleChange}
                 />
               </div>
-              <small>Konfirmasi Sandi</small>
+              <small className=" text-black " >Konfirmasi Sandi</small>
               <div className="input-group mb-3">
                 <input
                   id="confirmPassword"
@@ -158,7 +158,7 @@ export function Signup() {
                 </button>
               </div>
               <div className="row">
-                <small>
+                <small className=" text-black " >
                   Sudah punya akun? <a href="/Login">Masuk aja</a>
                 </small>
               </div>

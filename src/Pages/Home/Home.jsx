@@ -151,7 +151,7 @@ export function Home() {
                   </div>
                 </Link>
               </div>
-              <div className="col-6 col-md-3 d-flex flex-column kategori-dual">
+              <div className="col-3 d-flex flex-column kategori-dual mt-3">
                 <Link
                   to="/category/bawahan wanita"
                   className="text-decoration-none kategori-link"
@@ -171,7 +171,7 @@ export function Home() {
                   to="/category/aksesoris"
                   className="text-decoration-none kategori-link"
                 >
-                  <div className="kategori-card mt-2">
+                  <div className="kategori-card mt-4">
                     <img
                       src="/assets/images/aksesoris.jpg"
                       alt="Aksesoris"

@@ -21,7 +21,7 @@ export function Navbar() {
             >
               <input
                 type="search"
-                className="form-control search-input me-4"
+                className="form-control search-input"
                 placeholder="mencari..."
                 aria-label="Search"
               />
