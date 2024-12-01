@@ -6,7 +6,6 @@ export function EditProfile() {
     lastName: "",
     phone: "",
     email: "",
-    address: "",
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
@@ -80,19 +79,6 @@ export function EditProfile() {
                 id="email"
                 placeholder="Masukkan Email"
                 value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="address" className="form-label">
-                Alamat
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="address"
-                placeholder="Masukkan Alamat"
-                value={formData.address}
                 onChange={handleChange}
               />
             </div>

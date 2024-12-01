@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import "./Signup.css"; // Pastikan file CSS Anda sudah terhubung.
+import axios from "axios";
+import "./Signup.css";
 
 export function Signup() {
   const [formData, setFormData] = useState({
-    nama: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
     agree: false,
+    role: "user",
   });
 
+  // Fungsi untuk menangani perubahan pada form
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
     setFormData({
@@ -19,38 +22,72 @@ export function Signup() {
     });
   };
 
-  const validateDaftar = () => {
-    const { nama, email, password, confirmPassword, agree } = formData;
+  // Fungsi validasi form
+  const validateForm = () => {
+    const { name, email, password, confirmPassword, agree } = formData;
 
-    if (!nama || !email || !password || !confirmPassword) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Mohon isi semua kolom yang diperlukan.",
-      });
-    } else if (password !== confirmPassword) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Konfirmasi sandi tidak sesuai.",
-      });
-    } else if (!agree) {
-      Swal.fire({
-        icon: "warning",
-        title: "Peringatan",
-        text: "Anda harus menyetujui Ketentuan Layanan dan Kebijakan Privasi.",
-      });
-    } else {
+    if (!name || !email || !password || !confirmPassword) {
+      return {
+        isValid: false,
+        message: "Mohon isi semua kolom yang diperlukan.",
+      };
+    }
+    if (password !== confirmPassword) {
+      return { isValid: false, message: "Konfirmasi sandi tidak sesuai." };
+    }
+    if (!agree) {
+      return {
+        isValid: false,
+        message:
+          "Anda harus menyetujui Ketentuan Layanan dan Kebijakan Privasi.",
+      };
+    }
+
+    return { isValid: true }; // Validasi berhasil
+  };
+
+  // Fungsi untuk mengirim data ke server
+  const submitForm = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/users/register",
+        formData
+      );
+
       Swal.fire({
         title: "Good job!",
         text: "Anda berhasil daftar!",
         icon: "success",
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = "/login";
+          window.location.href = "/login"; // Redirect ke halaman login
         }
       });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Pendaftaran gagal",
+        text:
+          error.response?.data?.message || "Terjadi kesalahan saat pendaftaran",
+      });
     }
+  };
+
+  // Fungsi untuk memvalidasi dan mengirim data
+  const handleSubmit = () => {
+    const validation = validateForm();
+
+    if (!validation.isValid) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: validation.message,
+      });
+      return;
+    }
+
+    submitForm(); // Panggil fungsi submitForm jika validasi berhasil
   };
 
   return (
@@ -73,20 +110,20 @@ export function Signup() {
           <div className="col-md-6 right-box">
             <div className="row align-items-center">
               <div className="header-text mb-2">
-                <h2 className=" text-black ">Daftar</h2>
+                <h2 className="text-black">Daftar</h2>
               </div>
-              <small className=" text-black " >Nama Lengkap</small>
+              <small className="text-black">Nama Lengkap</small>
               <div className="input-group mb-3">
                 <input
-                  id="nama"
+                  id="name"
                   type="text"
                   className="form-control form-control-lg bg-light fs-6"
                   placeholder="Nama lengkap"
-                  value={formData.nama}
+                  value={formData.name}
                   onChange={handleChange}
                 />
               </div>
-              <small className=" text-black " >Email</small>
+              <small className="text-black">Email</small>
               <div className="input-group mb-3">
                 <input
                   id="email"
@@ -97,7 +134,7 @@ export function Signup() {
                   onChange={handleChange}
                 />
               </div>
-              <small className=" text-black " >Sandi</small>
+              <small className="text-black">Sandi</small>
               <div className="input-group mb-3">
                 <input
                   id="password"
@@ -108,7 +145,7 @@ export function Signup() {
                   onChange={handleChange}
                 />
               </div>
-              <small className=" text-black " >Konfirmasi Sandi</small>
+              <small className="text-black">Konfirmasi Sandi</small>
               <div className="input-group mb-3">
                 <input
                   id="confirmPassword"
@@ -118,6 +155,18 @@ export function Signup() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 />
+              </div>
+              <small className="text-black">Role</small>
+              <div className="input-group mb-3">
+                <select
+                  id="role"
+                  className="form-control form-control-lg bg-light fs-6"
+                  value={formData.role || "user"} // Default 'user'
+                  onChange={handleChange}
+                >
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
               </div>
               <div className="input-group mb-3 d-flex justify-content-between">
                 <div className="form-check">
@@ -140,7 +189,7 @@ export function Signup() {
               </div>
               <div className="input-group mb-3">
                 <button
-                  onClick={validateDaftar}
+                  onClick={handleSubmit}
                   className="btn btn-lg btn-primary w-100 fs-6"
                 >
                   Daftar
@@ -158,7 +207,7 @@ export function Signup() {
                 </button>
               </div>
               <div className="row">
-                <small className=" text-black " >
+                <small className="text-black">
                   Sudah punya akun? <a href="/Login">Masuk aja</a>
                 </small>
               </div>

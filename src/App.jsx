@@ -22,6 +22,7 @@ import { Selesai } from "./Pages/RiwayatPesanan/Selesai";
 import { Dibatalkan } from "./Pages/RiwayatPesanan/Dibatalkan";
 import { UbahAlamat } from "./Pages/UbahAlamat/UbahAlamat";
 import { TambahP } from "./Pages/TambahP/TambahP";
+import { Keranjang } from "./Pages/Keranjang/Keranjang";
 
 function App() {
   return (
@@ -33,18 +34,20 @@ function App() {
 function AppContent() {
   const location = useLocation();
   const showFooter =
-    location.pathname.toLowerCase() !== "/login" &&
-    location.pathname.toLowerCase() !== "/signup" &&
-    location.pathname.toLowerCase() !== "/editp" &&
-    location.pathname.toLowerCase() !== "/dashboardp" &&
-    location.pathname.toLowerCase() !== "/tambahp" &&
-    location.pathname.toLowerCase() !== "/dashboard";
+    !location.pathname.toLowerCase().includes("/login") &&
+    !location.pathname.toLowerCase().includes("/signup") &&
+    !location.pathname.toLowerCase().includes("/editp") &&
+    !location.pathname.toLowerCase().includes("/dashboardp") &&
+    !location.pathname.toLowerCase().includes("/tambahp") &&
+    !location.pathname.toLowerCase().includes("/dashboard");
 
   const showNavbar =
-    location.pathname.toLowerCase() !== "/editp" &&
-    location.pathname.toLowerCase() !== "/dashboardp" &&
-    location.pathname.toLowerCase() !== "/tambahp" &&
-    location.pathname.toLowerCase() !== "/dashboard";
+    !location.pathname.toLowerCase().includes("/editp") &&
+    !location.pathname.toLowerCase().includes("/login") &&
+    !location.pathname.toLowerCase().includes("/signup") &&
+    !location.pathname.toLowerCase().includes("/dashboardp") &&
+    !location.pathname.toLowerCase().includes("/tambahp") &&
+    !location.pathname.toLowerCase().includes("/dashboard");
 
   return (
     <>
@@ -61,7 +64,7 @@ function AppContent() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="EditProfile" element={<EditProfile />} />
         <Route path="/category/:categoryName" element={<Category />} />
-        <Route path="EditP" element={<EditP />} />
+        <Route path="/editp/:id" element={<EditP />} />
         <Route path="Checkout" element={<Checkout />} />
         <Route path="Kode" element={<Kode />} />
         <Route path="Dashboard" element={<Dashboard />} />
@@ -72,6 +75,7 @@ function AppContent() {
         <Route path="Dibatalkan" element={<Dibatalkan />} />
         <Route path="UbahAlamat" element={<UbahAlamat />} />
         <Route path="TambahP" element={<TambahP />} />
+        <Route path="Keranjang" element={<Keranjang />} />
       </Routes>
       {showFooter && <Footer />}
     </>

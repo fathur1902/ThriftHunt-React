@@ -1,7 +1,20 @@
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
 
 export function Navbar() {
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk menyimpan kata kunci pencarian
+  const navigate = useNavigate(); // Hook untuk navigasi programmatically
+
+  // Fungsi untuk menangani pencarian
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      // Arahkan ke halaman pencarian dengan query parameter
+      navigate(`/search?query=${searchTerm}`);
+    }
+  };
+
   return (
     <>
       <header>
@@ -18,14 +31,17 @@ export function Navbar() {
             <form
               className="d-flex flex-wrap mx-5 position-relative"
               role="search"
+              onSubmit={handleSearch} // Menambahkan handler untuk form submission
             >
               <input
                 type="search"
                 className="form-control search-input"
                 placeholder="mencari..."
                 aria-label="Search"
+                value={searchTerm} // Mengikat input dengan state
+                onChange={(e) => setSearchTerm(e.target.value)} // Mengubah nilai state saat input berubah
               />
-              <span className="search-icon">
+              <span className="search-icon" onClick={handleSearch}>
                 <i className="bi bi-search"></i>
               </span>
             </form>
@@ -53,10 +69,15 @@ export function Navbar() {
                 Produk
               </Link>
 
-              <Link className="nav-link" to="/cart">
+              <Link className="nav-link" to="/keranjang">
                 <i className="bi bi-cart"></i>
               </Link>
-
+              <Link
+                className="nav-link"
+                to="https://wa.me/+6289678737216?text=Chat%20Dengan%20Admin"
+              >
+                <i className="bi bi-chat-dots"></i>
+              </Link>
               <Link className="nav-link" to="/profile">
                 <i className="bi bi-person"></i>
               </Link>

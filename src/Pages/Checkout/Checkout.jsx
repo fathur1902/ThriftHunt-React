@@ -13,7 +13,7 @@ export function Checkout() {
         <br />
         Perumahan Telang Indah, Jalan Telang Indah Barat Gang IV No. 4, Telang,
         Bangkalan, KAB. BANGKALAN - BANGKALAN, JAWA TIMUR, ID 69119
-        <a className="btn btn-custom btn-sm ms-2" href="alamat.html">
+        <a className="btn btn-custom btn-sm ms-2" href="/ubahalamat">
           Ubah
         </a>
       </p>
@@ -144,7 +144,7 @@ export function Checkout() {
             <h5>Rp. 290.000</h5>
           </div>
         </div>
-        <a className="btn btn-custom w-100" href="kode-bayar.html">
+        <a className="btn btn-custom w-100" href="/kode">
           Buat Pesanan
         </a>
       </div>

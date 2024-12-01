@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+
+.badan {
+
+    margin: 0 auto; /* Memastikan kontainer tidak berada di tengah secara horizontal */
+    color: white;
+  }
+
+  .tulisan {
+    max-width: 1320px; /* Menyesuaikan lebar maksimum kontainer */
+    margin: 0 auto; /* Memastikan kontainer tidak berada di tengah secara horizontal */
+    color: white;
+  }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.container-keranjang {
+    flex: 1; 
+    margin-top: 300px;
+}
+
+.table-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 50px;
+}
+
+.nama-keranjang {
+    margin-left: 50px;
+    color: var(--text-color);
+}
+
+.table thead {
+    background-color: var(--color-2);
+    color: var(--text-color);
+}
+
+.table tbody tr {
+    vertical-align: middle;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-control button {
+    background: linear-gradient(180deg, var(--button-color-start), var(--button-color-end));
+    color: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.quantity-control input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    margin: 0 5px;
+}
+
+.checkout-btn {
+    background: linear-gradient(180deg, var(--button-color-start), var(--button-color-end));
+    color: var(--text-color);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background: linear-gradient(180deg, var(--btn-hover-color-start), var(--btn-hover-color-end));
+}
+
+
+    

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import axios from "axios"; // Import axios untuk komunikasi dengan backend
 import "./Login.css";
 
 export function Login() {
@@ -7,8 +8,8 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  // Fungsi untuk validasi login
-  const validateLogin = (e) => {
+  // Fungsi untuk validasi login dan kirim data ke backend
+  const validateLogin = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       Swal.fire({
@@ -17,18 +18,38 @@ export function Login() {
         text: "Mohon isi email dan sandi Anda.",
       });
     } else {
-      Swal.fire({
-        title: "Good job!",
-        text: "Anda berhasil login!",
-        icon: "success",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Redirect jika diperlukan (ganti dengan route yang sesuai)
-          window.location.href = "/home";
+      try {
+        // Kirim data login ke backend
+        const response = await axios.post("http://localhost:3000/api/users/login", {
+          email,
+          password,
+        });
+
+        if (response.status === 200) {
+          // Menangani response jika login berhasil
+          Swal.fire({
+            title: "Good job!",
+            text: "Anda berhasil login!",
+            icon: "success",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Redirect berdasarkan role pengguna
+              const redirectUrl = response.data.redirectUrl;
+              window.location.href = redirectUrl; // Redirect ke halaman sesuai role
+            }
+          });
         }
-      });
+      } catch (error) {
+        // Tangani error jika login gagal
+        Swal.fire({
+          icon: "error",
+          title: "Login failed",
+          text: error.response?.data?.message || "Terjadi kesalahan saat login",
+        });
+      }
     }
   };
+
   return (
     <>
       <div className="login-container">
@@ -52,7 +73,7 @@ export function Login() {
                 <div className="header-text mb-2">
                   <h2 className=" text-black ">Masuk</h2>
                 </div>
-                <small className=" text-black " >Masukkan email</small>
+                <small className=" text-black ">Masukkan email</small>
                 <div className="input-group mb-3">
                   <input
                     type="email"
@@ -89,7 +110,7 @@ export function Login() {
                       htmlFor="formCheck"
                       className="form-check-label text-secondary"
                     >
-                      <small className=" text-black " >Ingat saya</small>
+                      <small className=" text-black ">Ingat saya</small>
                     </label>
                   </div>
                   <div className="forgot">
@@ -123,7 +144,7 @@ export function Login() {
 
                 {/* Link untuk halaman signup */}
                 <div className="row">
-                  <small className=" text-black " >
+                  <small className=" text-black ">
                     Belum memiliki akun? <a href="/SignUp">Buat akun</a>
                   </small>
                 </div>
