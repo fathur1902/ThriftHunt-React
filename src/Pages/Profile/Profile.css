@@ -51,7 +51,7 @@
   margin-bottom: 20px;
 }
 
-.btn {
+.btn-profile{
   display: block;
   width: 100%;
   padding: 10px;
@@ -71,6 +71,7 @@
   padding: 8px 16px;
   border-radius: 50px;
   font-weight: bold;
+  text-decoration: none;
   transition: background 0.3s;
 }
 
@@ -107,10 +108,8 @@
 }
 
 .address-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
   color: var(--text-color);
+  width: 1000px;
 }
 
 .address-section h3 {

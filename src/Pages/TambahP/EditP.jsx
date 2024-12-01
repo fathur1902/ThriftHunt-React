@@ -1,22 +1,44 @@
-// src/App.jsx
-import React, { useState } from "react";
-import axios from "axios"; // Tambahkan axios
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./TambahP.css";
+import "./TambahP.css"; // Menggunakan CSS yang sama dengan TambahP
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faBox, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-export function TambahP() {
+export function EditP() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [sizes, setSizes] = useState([]);
   const [image, setImage] = useState(null);
+  const [existingImage, setExistingImage] = useState("");
   const [category, setCategory] = useState("");
-  const [previewImage, setPreviewImage] = useState(null);
-  const changePage = (pageUrl) => {
-    window.location.href = pageUrl;
-  };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/products/${id}`
+        );
+        const product = response.data;
+
+        setName(product.name);
+        setDescription(product.description);
+        setPrice(product.price);
+        setSizes(product.sizes || []);
+        setExistingImage(product.image);
+        setCategory(product.category);
+      } catch (error) {
+        console.error("Gagal memuat data produk:", error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
 
   const toggleSize = (size) => {
     setSizes((prevSizes) =>
@@ -27,22 +49,11 @@ export function TambahP() {
   };
 
   const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
-    if (file) {
-      setPreviewImage(URL.createObjectURL(file));
-    }
+    setImage(event.target.files[0]);
   };
 
-  const handleSaveProduct = async () => {
-    if (
-      !name ||
-      !description ||
-      !price ||
-      sizes.length === 0 ||
-      !image ||
-      !category
-    ) {
+  const handleSave = async () => {
+    if (!name || !description || !price || sizes.length === 0 || !category) {
       alert("Mohon lengkapi semua data produk!");
       return;
     }
@@ -52,25 +63,20 @@ export function TambahP() {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("sizes", sizes.join(","));
-    formData.append("image", image);
+    if (image) {
+      formData.append("image", image);
+    }
     formData.append("category", category);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/products",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      alert("Produk berhasil ditambahkan!");
-      console.log(response.data);
-      changePage("/dashboard");
+      await axios.patch(`http://localhost:3000/api/products/${id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      alert("Produk berhasil diperbarui!");
+      navigate("/dashboard");
     } catch (error) {
-      console.error("Gagal menambahkan produk:", error);
-      alert("Terjadi kesalahan saat menambahkan produk.");
+      console.error("Gagal menyimpan perubahan produk:", error);
+      alert("Gagal menyimpan perubahan. Silakan coba lagi.");
     }
   };
 
@@ -87,22 +93,19 @@ export function TambahP() {
         </div>
         <button
           className="btn btn-light mb-3"
-          onClick={() => changePage("dashboard")}
+          onClick={() => navigate("/dashboard")}
         >
           <FontAwesomeIcon icon={faEdit} className="me-2" />
-          Edit Produk
+          Dashboard
         </button>
         <button
           className="btn btn-gradient mb-3"
-          onClick={() => changePage("/dashboardp")}
+          onClick={() => navigate("/dashboardp")}
         >
           <FontAwesomeIcon icon={faBox} className="me-2" />
           Lihat Pesanan
         </button>
-        <button
-          className="btn btn-gradient"
-          onClick={() => changePage("/login")}
-        >
+        <button className="btn btn-gradient" onClick={() => navigate("/login")}>
           <FontAwesomeIcon icon={faArrowLeft} className="me-2" />
           Logout
         </button>
@@ -110,42 +113,33 @@ export function TambahP() {
 
       {/* Content Area */}
       <div className="flex-fill p-4">
-        <h2>Tambahkan Produk Baru</h2>
+        <h2>Edit Produk</h2>
 
         <div className="row">
           <div className="col-md-6">
             <div className="card-custom">
               <div className="mb-3">
-                <label className="form-label" htmlFor="productName">
-                  Nama Produk
-                </label>
+                <label className="form-label">Nama Produk</label>
                 <input
                   className="form-control"
-                  id="productName"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label" htmlFor="productDescription">
-                  Deskripsi
-                </label>
+                <label className="form-label">Deskripsi</label>
                 <textarea
                   className="form-control"
-                  id="productDescription"
                   rows="3"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label" htmlFor="price">
-                  Harga
-                </label>
+                <label className="form-label">Harga</label>
                 <input
                   className="form-control"
-                  id="price"
                   type="text"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
@@ -197,28 +191,28 @@ export function TambahP() {
                   type="file"
                   onChange={handleImageUpload}
                 />
+                {existingImage && !image && (
+                  <div className="mt-3 text-center">
+                    <p>Gambar saat ini:</p>
+                    <img
+                      src={`http://localhost:3000/uploads/${existingImage}`}
+                      alt="Gambar Produk"
+                      style={{
+                        width: "70%",
+                        maxHeight: "340px",
+                        objectFit: "cover",
+                        borderRadius: "8px",
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
-            {previewImage && (
-              <div className="mt-3">
-                <h5>Pratinjau Gambar:</h5>
-                <img
-                  src={previewImage}
-                  alt="Pratinjau"
-                  style={{
-                    width: "70%",
-                    maxHeight: "350px",
-                    objectFit: "cover",
-                    borderRadius: "8px",
-                  }}
-                />
-              </div>
-            )}
           </div>
         </div>
 
-        <button className="btn btn-custom mt-3" onClick={handleSaveProduct}>
-          Simpan Produk
+        <button className="btn btn-custom mt-3" onClick={handleSave}>
+          Simpan Perubahan
         </button>
       </div>
     </div>

@@ -24,7 +24,9 @@
 .login-container {
   background: #f4f4f4;
   padding: 95px;
+  color: #051625;
 }
+
 .box-area {
   width: 100%;
   max-width: 800px;

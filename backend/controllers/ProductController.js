@@ -80,10 +80,10 @@ export const updateProduct = async (req, res) => {
         .json({ error: "Invalid size. Allowed: S, M, L, XL, XXL" });
     }
 
-    let image = product.image; 
+    let image = product.image;
     if (req.files && req.files.image) {
       const file = req.files.image;
-      const fileName = Date.now() + path.extname(file.name); 
+      const fileName = Date.now() + path.extname(file.name);
       const uploadPath = path.resolve(`uploads/${fileName}`);
       await file.mv(uploadPath);
       if (product.image) {

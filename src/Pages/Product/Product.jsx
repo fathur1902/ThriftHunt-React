@@ -58,7 +58,7 @@ export function Product() {
           return product.price >= min && product.price <= max;
         });
 
-      const inSize = sizes.length === 0 || sizes.includes(product.size);
+      const inSize = sizes.length === 0 || sizes.includes(product.sizes);
 
       return inCategory && inPrice && inSize;
     });
@@ -128,20 +128,20 @@ export function Product() {
           </div>
           <div className="list-group-container mb-3">
             <h5 className="list-group">| Ukuran</h5>
-            {["S", "M", "L", "XL", "XXL"].map((size) => (
+            {["S", "M", "L", "XL", "XXL"].map((sizes) => (
               <label
-                key={size}
+                key={sizes}
                 className={`list-group-item list-group-item-action ${
-                  filters.sizes.includes(size) ? "selected-category" : ""
+                  filters.sizes.includes(sizes) ? "selected-category" : ""
                 }`}
               >
                 <input
                   type="checkbox"
                   className="mr-2"
-                  value={size}
-                  onChange={() => handleCheckboxChange("sizes", size)}
+                  value={sizes}
+                  onChange={() => handleCheckboxChange("sizes", sizes)}
                 />{" "}
-                {size}
+                {sizes}
               </label>
             ))}
           </div>

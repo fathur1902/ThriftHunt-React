@@ -46,7 +46,7 @@ export function Kode() {
           Bayar pesanan ke Virtual Account di atas sebelum membuat pesanan baru
           untuk memastikan nomor tetap sama.
         </div>
-        <button className="btn btn-primary mt-4">Selanjutnya</button>
+        <a href="/dikirim" className="btn btn-primary mt-4">Selanjutnya</a>
       </div>
     </div>
   );

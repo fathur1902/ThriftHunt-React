@@ -56,8 +56,8 @@ export function ProductDetail() {
                 <strong>Ukuran:</strong> {product.size}
               </li>
             </ul>
-            <Link className="btn btn-primary w-100">Beli Sekarang</Link>
-            <Link className="btn btn-outline-secondary w-100">
+            <Link to={"/checkout"} className="btn btn-primary w-100">Beli Sekarang</Link>
+            <Link to={"/keranjang"} className="btn btn-outline-secondary w-100">
               Masukan Keranjang
             </Link>
           </div>
