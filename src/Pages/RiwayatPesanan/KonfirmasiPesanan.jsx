@@ -1,7 +1,7 @@
 import React from "react";
 import "./RiwayatPesanan.css";
 
-export const RiwayatPesanan = () => {
+export const KonfimasiPesanan = () => {
   const changePage = (pageUrl) => {
     // Redirect ke halaman yang sesuai
     window.location.href = pageUrl;
@@ -15,13 +15,13 @@ export const RiwayatPesanan = () => {
       {/* Tabs */}
       <div className="tabs-container my-4 d-flex justify-content-around bg-white p-3 rounded">
       <div
-          className="tab-item"
+          className="tab-item active-tab"
           onClick={() => changePage("/konfirmasipesanan")}
         >
           Konfirmasi Pesanan
         </div>
         <div
-          className="tab-item active-tab"
+          className="tab-item"
           onClick={() => changePage("/riwayatpesanan")}
         >
           Sedang Dikemas
@@ -40,7 +40,7 @@ export const RiwayatPesanan = () => {
         </div>
         <div
           className="tab-item"
-          onClick={() => changePage("/dikirim")}
+          onClick={() => changePage("/dibatalkan")}
         >
           Dibatalkan
         </div>
@@ -124,6 +124,7 @@ export const RiwayatPesanan = () => {
         {/* Buttons */}
         <div className="d-flex justify-content-end mt-4">
           <button className="btn btn-primary mr-3">Hubungi Kami</button>
+          <button className="btn btn-outline-primary">Batalkan Pesanan</button>
         </div>
       </div>
     </div>

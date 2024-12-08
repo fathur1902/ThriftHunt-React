@@ -89,7 +89,7 @@ export function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="navbar-collapse" id="navbarNav">
-            <Link className="nav-link active" to="/">
+            <Link className="nav-link active" to="/home">
               Home
             </Link>
 

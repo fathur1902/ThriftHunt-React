@@ -51,12 +51,17 @@
   border-radius: 30px;
 }
 @media only screen and (max-width: 768px) {
+  .login-container{
+    padding: 10px;
+    padding-bottom: 200px;
+  }
+
   .box-area {
     margin: 0 10px;
   }
 
   .left-box {
-    height: 100px;
+    height: 200px;
     overflow: hidden;
   }
 

@@ -179,12 +179,12 @@ body {
 .flash-sale-timer .btn {
   background: linear-gradient(90deg, #663cda, #2a7adf, #494bd4, #114f87);
   color: var(--text-color);
-  font-size: 1rem;
+  font-size: 1.1rem;
   border: 1px solid;
   padding: 15px 20px;
   border-radius: 8px;
-  width: 260px;
-  height: 70px;
+  width: 354px;
+  height: 80px;
   display: inline-block;
   text-align: center;
   line-height: 1rem;
@@ -194,3 +194,23 @@ body {
   border: none;
   background: transparent;
 }
+
+/* Responsivitas tambahan untuk perangkat kecil */
+@media (max-width: 768px) {
+  .product-card img {
+    height: 200px;
+    object-fit: cover;
+    
+  }
+}
+
+@media (max-width: 576px) {
+.list-group-container{
+  margin-top: 50px;
+}
+
+  .product-card img {
+    height: 200px;
+  }
+}
+
