@@ -105,7 +105,7 @@ function OrderCard({ name, address, phone, details }) {
         <button className="status-btn">Sedang Dikemas</button>
         <button className="status-btn">Dikirim</button>
         <button className="status-btn">Selesai</button>
-        <button className="status-btn">Chat Pembeli</button>
+        <button className="btn btn-danger">Hapus</button>
       </div>
     </div>
   );
