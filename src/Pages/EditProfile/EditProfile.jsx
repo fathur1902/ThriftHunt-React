@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function EditProfile() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    oldPassword: "",
+    name: "",
     newPassword: "",
     confirmPassword: "",
+    profileImage: null,
   });
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -19,9 +20,41 @@ export function EditProfile() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Tambahkan logika untuk submit data
+
+    if (formData.newPassword !== formData.confirmPassword) {
+      setMessage("Konfirmasi kata sandi tidak cocok!");
+      return;
+    }
+
+    try {
+      const payload = new FormData();
+      payload.append("name", formData.name);
+      if (formData.newPassword)
+        payload.append("password", formData.newPassword);
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(
+        "http://localhost:3000/api/users/profile",
+        payload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setMessage(response.data.message);
+      setTimeout(() => {
+        navigate("/profile"); 
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+      setMessage(error.response?.data?.message || "Gagal mengupdate profil");
+    }
   };
 
   return (
@@ -29,76 +62,30 @@ export function EditProfile() {
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
           <h2 className="text-center mb-4">Edit Profil</h2>
+          {message && <div className="alert alert-info">{message}</div>}
           <form onSubmit={handleSubmit} className="p-4 border rounded shadow">
             <div className="mb-3">
-              <label htmlFor="firstName" className="form-label">
-                Nama Depan
+              <label htmlFor="name" className="form-label">
+                Nama Lengkap
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="firstName"
-                placeholder="Masukkan Nama Depan"
-                value={formData.firstName}
+                id="name"
+                placeholder="Masukkan Nama Lengkap"
+                value={formData.name}
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="lastName" className="form-label">
-                Nama Belakang
+              <label htmlFor="newPassword" className="form-label">
+                Ganti Kata Sandi
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="lastName"
-                placeholder="Masukkan Nama Belakang"
-                value={formData.lastName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label">
-                Nomor HP
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="phone"
-                placeholder="Masukkan Nomor HP"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="Masukkan Email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="oldPassword" className="form-label">
-                Ganti Sandi
-              </label>
-              <input
-                type="password"
-                className="form-control mb-2"
-                id="oldPassword"
-                placeholder="Sandi Sebelumnya"
-                value={formData.oldPassword}
-                onChange={handleChange}
-              />
               <input
                 type="password"
                 className="form-control mb-2"
                 id="newPassword"
-                placeholder="Sandi Baru"
+                placeholder="Kata Sandi Baru"
                 value={formData.newPassword}
                 onChange={handleChange}
               />
@@ -106,7 +93,7 @@ export function EditProfile() {
                 type="password"
                 className="form-control"
                 id="confirmPassword"
-                placeholder="Konfirmasi Sandi Baru"
+                placeholder="Konfirmasi Kata Sandi Baru"
                 value={formData.confirmPassword}
                 onChange={handleChange}
               />

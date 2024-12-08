@@ -1,4 +1,6 @@
 import bcrypt from "bcrypt";
+import fs from "fs";
+import path from "path";
 import jwt from "jsonwebtoken";
 import User from "../models/UsersModels.js";
 
@@ -20,7 +22,9 @@ export const registerUser = async (req, res) => {
     if (role === "admin") {
       // Pastikan pengguna yang mendaftar sebagai admin memiliki akses admin
       if (!req.user || req.user.role !== "admin") {
-        return res.status(403).json({ message: "Only admins can create another admin" });
+        return res
+          .status(403)
+          .json({ message: "Only admins can create another admin" });
       }
     }
 
@@ -29,7 +33,7 @@ export const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: role || "user", 
+      role: role || "user",
     });
 
     res.status(201).json({
@@ -103,5 +107,151 @@ export const authenticateJWT = (req, res, next) => {
     next();
   } catch (error) {
     res.status(401).json({ message: "Invalid token" });
+  }
+};
+
+//mendapatkan user
+export const getProfile = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      profile: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        // password:user.password,
+        role: user.role,
+        profileImage: user.profileImage,
+        address: user.address,
+        city: user.city,
+        province: user.province,
+        postalCode: user.postalCode,
+        country: user.country,
+        phone: user.phone,
+      },
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching profile", error: error.message });
+  }
+};
+
+//update profile
+export const updateProfile = async (req, res) => {
+  const { name, password } = req.body;
+  const file = req.files?.profileImage;
+
+  try {
+    const user = await User.findByPk(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update nama
+    if (name) user.name = name;
+
+    // Update password
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+    }
+
+    // Update gambar profil
+    if (file) {
+      const uploadPath = path.join(process.cwd(), "uploads", file.name);
+
+      // Simpan file ke folder uploads
+      await file.mv(uploadPath);
+
+      // Hapus gambar lama jika ada
+      if (user.profileImage) {
+        const oldImagePath = path.join(
+          process.cwd(),
+          "uploads",
+          path.basename(user.profileImage)
+        );
+        if (fs.existsSync(oldImagePath)) {
+          fs.unlinkSync(oldImagePath);
+        }
+      }
+
+      user.profileImage = `/uploads/${file.name}`; // URL file
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      profile: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        profileImage: user.profileImage,
+      },
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error updating profile", error: error.message });
+  }
+};
+
+//menambahkan dan mengupdate alamat
+export const updateAddress = async (req, res) => {
+  try {
+    const { userId, address, city, postalCode, province, country, phone } =
+      req.body;
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.address = address || user.address;
+    user.city = city || user.city;
+    user.postalCode = postalCode || user.postalCode;
+    user.province = province || user.province;
+    user.country = country || user.country;
+    user.phone = phone || user.phone;
+
+    await user.save();
+
+    res.status(200).json({ message: "Address updated successfully", user });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
+//mendapatkan alamat
+export const getUserAddress = async (req, res) => {
+  try {
+    const userId = req.params.id; // Ambil ID user dari parameter URL
+    const user = await User.findByPk(userId, {
+      attributes: [
+        "address",
+        "city",
+        "province",
+        "postalCode",
+        "country",
+        "phone",
+      ],
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };

@@ -20,12 +20,16 @@ export function Login() {
     } else {
       try {
         // Kirim data login ke backend
-        const response = await axios.post("http://localhost:3000/api/users/login", {
-          email,
-          password,
-        });
+        const response = await axios.post(
+          "http://localhost:3000/api/users/login",
+          {
+            email,
+            password,
+          }
+        );
 
         if (response.status === 200) {
+          localStorage.setItem("token", response.data.token);
           // Menangani response jika login berhasil
           Swal.fire({
             title: "Good job!",
@@ -40,6 +44,7 @@ export function Login() {
           });
         }
       } catch (error) {
+        console.log(error);
         // Tangani error jika login gagal
         Swal.fire({
           icon: "error",

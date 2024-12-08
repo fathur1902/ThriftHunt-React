@@ -41,6 +41,15 @@
   margin-bottom: 10px;
 }
 
+.profile-img-container {
+  position: relative;
+  display: inline-block;
+}
+
+.edit-icon:hover {
+  background-color: #f0f0f0;
+}
+
 .profile-name {
   font-size: 1.5em;
   margin: 10px 0;
@@ -51,7 +60,7 @@
   margin-bottom: 20px;
 }
 
-.btn-profile{
+.btn-profile {
   display: block;
   width: 100%;
   padding: 10px;
@@ -94,6 +103,8 @@
   border: none;
   padding: 8px 16px;
   border-radius: 50px;
+  text-decoration: none;
+  text-align: center;
   font-weight: bold;
   transition: background 0.3s;
 }

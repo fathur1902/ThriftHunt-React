@@ -1,60 +1,77 @@
-import React, { useState } from "react";
-import "./Keranjang.css";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import "./Keranjang.css";
 
 export function Keranjang() {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Thrift Kaos Vneck Hitam",
-      size: "M",
-      price: 50000,
-      quantity: 1,
-      selected: false,
-    },
-    {
-      id: 2,
-      name: "Denim Wrangler 80s",
-      size: "L",
-      price: 100000,
-      quantity: 1,
-      selected: false,
-    },
-    {
-      id: 3,
-      name: "Polo Lacoste Original",
-      size: "M",
-      price: 50000,
-      quantity: 1,
-      selected: false,
-    },
-    {
-      id: 4,
-      name: "Kaos Band Metallica 90s",
-      size: "L",
-      price: 50000,
-      quantity: 1,
-      selected: false,
-    },
-  ]);
-
+  const [products, setProducts] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
 
-  const handleQuantityChange = (id, newQuantity) => {
+  // Ambil data produk dari backend
+  useEffect(() => {
+    const fetchCartProducts = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.get("http://localhost:3000/api/cart", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (Array.isArray(response.data)) {
+          setProducts(response.data);
+        } else {
+          console.error("Data tidak valid, bukan array", response.data);
+          setProducts([]);
+        }
+      } catch (error) {
+        console.error("Error fetching cart products:", error);
+        setProducts([]);
+      }
+    };
+
+    fetchCartProducts();
+  }, []);
+
+  const handleQuantityChange = async (id, newQuantity) => {
     if (newQuantity < 1) return;
 
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === id ? { ...product, quantity: newQuantity } : product
-      )
-    );
+    const token = localStorage.getItem("token");
+    try {
+      await axios.put(
+        `http://localhost:3000/api/cart/${id}`,
+        { quantity: newQuantity }, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product.id === id ? { ...product, quantity: newQuantity } : product
+        )
+      );
+    } catch (error) {
+      console.error("Error updating cart:", error);
+    }
   };
 
-  const handleRemoveProduct = (id) => {
-    setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== id)
-    );
+  const handleRemoveProduct = async (id) => {
+    const token = localStorage.getItem("token"); 
+    try {
+      await axios.delete(`http://localhost:3000/api/cart/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,  
+        },
+      });
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product.id !== id)
+      );
+    } catch (error) {
+      console.error("Error removing product:", error);
+    }
   };
+  
 
   const handleSelectAllChange = () => {
     setSelectAll((prevState) => !prevState);
@@ -74,11 +91,12 @@ export function Keranjang() {
   };
 
   const calculateTotalPrice = () => {
-    return products.reduce(
-      (total, product) =>
-        product.selected ? total + product.price * product.quantity : total,
-      0
-    );
+    return products.reduce((total, cartItem) => {
+      if (cartItem.selected) {
+        return total + parseFloat(cartItem.Product.price) * cartItem.quantity;
+      }
+      return total;
+    }, 0);
   };
 
   return (
@@ -97,53 +115,57 @@ export function Keranjang() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
+            {products.map((cartItem) => (
+              <tr key={cartItem.id}>
                 <td>
                   <input
                     type="checkbox"
-                    checked={product.selected}
-                    onChange={() => handleProductSelect(product.id)}
+                    checked={cartItem.selected || false}
+                    onChange={() => handleProductSelect(cartItem.id)}
                   />
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <img
-                      src="/assets/images/Celana Formal.jpg"
-                      alt={product.name}
+                      src={`http://localhost:3000/uploads/${cartItem.Product.image}`}
+                      alt={cartItem.Product.name}
                       width="50"
                       height="50"
                       className="me-2"
                     />
                     <div>
-                      <div>{product.name}</div>
-                      <div className="text-muted">Ukuran: {product.size}</div>
+                      <div>{cartItem.Product.name}</div>
+                      <div className="text-muted">
+                        Ukuran: {cartItem.Product.sizes}
+                      </div>
                     </div>
                   </div>
                 </td>
-                <td>Rp. {product.price.toLocaleString()}</td>
+                <td>
+                  Rp. {parseFloat(cartItem.Product.price).toLocaleString()}
+                </td>
                 <td>
                   <div className="quantity-control">
                     <button
                       onClick={() =>
-                        handleQuantityChange(product.id, product.quantity - 1)
+                        handleQuantityChange(cartItem.id, cartItem.quantity - 1)
                       }
                     >
                       -
                     </button>
                     <input
                       type="number"
-                      value={product.quantity}
+                      value={cartItem.quantity}
                       onChange={(e) =>
                         handleQuantityChange(
-                          product.id,
+                          cartItem.id,
                           parseInt(e.target.value) || 1
                         )
                       }
                     />
                     <button
                       onClick={() =>
-                        handleQuantityChange(product.id, product.quantity + 1)
+                        handleQuantityChange(cartItem.id, cartItem.quantity + 1)
                       }
                     >
                       +
@@ -151,16 +173,19 @@ export function Keranjang() {
                   </div>
                 </td>
                 <td>
-                  Rp. {(product.price * product.quantity).toLocaleString()}
+                  Rp.{" "}
+                  {(
+                    parseFloat(cartItem.Product.price) * cartItem.quantity
+                  ).toLocaleString()}
                 </td>
                 <td>
                   <i
                     className="fas fa-times"
                     style={{ cursor: "pointer", color: "red" }}
-                    onClick={() => handleRemoveProduct(product.id)}
+                    onClick={() => handleRemoveProduct(cartItem.id)}
                   ></i>
                   <button
-                    onClick={() => handleRemoveProduct(product.id)}
+                    onClick={() => handleRemoveProduct(cartItem.id)}
                     style={{
                       cursor: "pointer",
                       color: "black",
@@ -198,7 +223,12 @@ export function Keranjang() {
               <td>Total Harga</td>
               <td>Rp. {calculateTotalPrice().toLocaleString()}</td>
               <td>
-                <Link className="checkout-btn text-decoration-none" to={"/checkout"}>Checkout</Link>
+                <Link
+                  className="checkout-btn text-decoration-none"
+                  to={"/checkout"}
+                >
+                  Checkout
+                </Link>
               </td>
             </tr>
           </tfoot>

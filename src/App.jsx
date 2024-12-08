@@ -73,7 +73,7 @@ function AppContent() {
         <Route path="Dikirim" element={<Dikirim />} />
         <Route path="Selesai" element={<Selesai />} />
         <Route path="Dibatalkan" element={<Dibatalkan />} />
-        <Route path="UbahAlamat" element={<UbahAlamat />} />
+        <Route path="/ubahalamat/:userId" element={<UbahAlamat />} />
         <Route path="TambahP" element={<TambahP />} />
         <Route path="Keranjang" element={<Keranjang />} />
       </Routes>
