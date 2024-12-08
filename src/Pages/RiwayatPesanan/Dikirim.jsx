@@ -14,6 +14,12 @@ export const Dikirim = () => {
 
       {/* Tabs */}
       <div className="tabs-container my-4 d-flex justify-content-around bg-white p-3 rounded">
+      <div
+          className="tab-item"
+          onClick={() => changePage("/konfirmasipesanan")}
+        >
+          Konfirmasi Pesanan
+        </div>
         <div
           className="tab-item"
           onClick={() => changePage("/RiwayatPesanan")}

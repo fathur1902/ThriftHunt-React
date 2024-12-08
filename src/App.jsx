@@ -23,6 +23,7 @@ import { Dibatalkan } from "./Pages/RiwayatPesanan/Dibatalkan";
 import { UbahAlamat } from "./Pages/UbahAlamat/UbahAlamat";
 import { TambahP } from "./Pages/TambahP/TambahP";
 import { Keranjang } from "./Pages/Keranjang/Keranjang";
+import { KonfimasiPesanan } from "./Pages/RiwayatPesanan/KonfirmasiPesanan";
 
 function App() {
   return (
@@ -32,8 +33,10 @@ function App() {
   );
 }
 function AppContent() {
-  const location = useLocation();
+  const isRootPath = location.pathname === "/";
+
   const showFooter =
+    !isRootPath &&
     !location.pathname.toLowerCase().includes("/login") &&
     !location.pathname.toLowerCase().includes("/signup") &&
     !location.pathname.toLowerCase().includes("/editp") &&
@@ -42,6 +45,7 @@ function AppContent() {
     !location.pathname.toLowerCase().includes("/dashboard");
 
   const showNavbar =
+    !isRootPath &&
     !location.pathname.toLowerCase().includes("/editp") &&
     !location.pathname.toLowerCase().includes("/login") &&
     !location.pathname.toLowerCase().includes("/signup") &&
@@ -53,7 +57,7 @@ function AppContent() {
     <>
       {showNavbar && <Navbar />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="Home" element={<Home />} />
         <Route path="Login" element={<Login />} />
         <Route path="About" element={<About />} />
@@ -76,6 +80,7 @@ function AppContent() {
         <Route path="UbahAlamat" element={<UbahAlamat />} />
         <Route path="TambahP" element={<TambahP />} />
         <Route path="Keranjang" element={<Keranjang />} />
+        <Route path="KonfirmasiPesanan" element={<KonfimasiPesanan />} />
       </Routes>
       {showFooter && <Footer />}
     </>
