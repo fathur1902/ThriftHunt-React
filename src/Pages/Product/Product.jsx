@@ -42,6 +42,30 @@ export function Product() {
       };
     });
   };
+  const handleAddToCart = async (product) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/cart",
+        {
+          productId: product.id,
+          quantity: 1,
+          selected: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Product added to cart:", response.data);
+    } catch (error) {
+      console.error(
+        "Error adding product to cart:",
+        error?.response?.data || error.message
+      );
+    }
+  };
 
   // Filter produk berdasarkan kategori, harga, dan ukuran
   useEffect(() => {
@@ -157,8 +181,15 @@ export function Product() {
                     <div className="card-body d-flex flex-column">
                       <h5 className="card-title mb-auto">{product.name}</h5>
                       <div className="d-flex justify-content-between align-items-center mt-3">
-                        <span className="price">{`Rp. ${product.price.toLocaleString()}`}</span>
-                        <i className="bi bi-plus-circle fs-5"></i>
+                        <span className="price">
+                          {product.price.toLocaleString()}
+                        </span>
+                        <button
+                          className="btn-cart"
+                          onClick={() => handleAddToCart(product)}
+                        >
+                          <i className="bi bi-plus-circle fs-5"></i>
+                        </button>
                       </div>
                     </div>
                   </div>

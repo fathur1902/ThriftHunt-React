@@ -190,6 +190,11 @@ body {
   line-height: 1rem;
 }
 
+.btn-cart{
+  border: none;
+  background: transparent;
+}
+
 /* Responsivitas tambahan untuk perangkat kecil */
 @media (max-width: 768px) {
   .product-card img {
