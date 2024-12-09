@@ -133,7 +133,7 @@ export function FlashSale() {
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title text-center">{product.name}</h5>
                   <div className="d-flex justify-content-between align-items-center mt-3">
-                    <span className="price">{`Rp. ${product.price.toLocaleString()}`}</span>
+                    <span className="price"><del>399.000</del> {`${product.price.toLocaleString()}`}</span>
                     <i className="bi bi-plus-circle fs-5"></i>
                   </div>
                 </div>
