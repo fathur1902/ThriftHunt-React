@@ -43,6 +43,30 @@ export function ProductDetail() {
   if (!product) {
     return <div className="text-center my-5">Produk tidak ditemukan</div>;
   }
+  const handleAddToCart = async (product) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/cart",
+        {
+          productId: product.id,
+          quantity: 1,
+          selected: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // console.log("Product added to cart:", response.data);
+    } catch (error) {
+      console.error(
+        "Error adding product to cart:",
+        error?.response?.data || error.message
+      );
+    }
+  };
 
   return (
     <div className="container py-5 p-5">
@@ -97,7 +121,11 @@ export function ProductDetail() {
             <Link to={"/checkout"} className="btn btn-primary w-100 mb-2">
               Beli Sekarang
             </Link>
-            <Link to={"/keranjang"} className="btn btn-outline-secondary w-100">
+            <Link
+              to={"/keranjang"}
+              className="btn btn-outline-secondary w-100"
+              onClick={() => handleAddToCart(product)}
+            >
               Masukan Keranjang
             </Link>
           </div>
@@ -110,10 +138,7 @@ export function ProductDetail() {
         <div className="row g-3">
           {relatedProducts.length > 0 ? (
             relatedProducts.map((relatedProduct) => (
-              <div
-                key={relatedProduct.id}
-                className="col-6 col-md-4 col-lg-3"
-              >
+              <div key={relatedProduct.id} className="col-6 col-md-4 col-lg-3">
                 <Link
                   to={`/product/${relatedProduct.id}`}
                   className="product-item text-center text-decoration-none"
@@ -131,7 +156,9 @@ export function ProductDetail() {
               </div>
             ))
           ) : (
-            <p className="text-center">Tidak ada produk serupa yang tersedia.</p>
+            <p className="text-center">
+              Tidak ada produk serupa yang tersedia.
+            </p>
           )}
         </div>
       </div>

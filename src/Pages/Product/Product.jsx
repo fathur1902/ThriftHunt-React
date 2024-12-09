@@ -58,7 +58,7 @@ export function Product() {
           },
         }
       );
-      console.log("Product added to cart:", response.data);
+      // console.log("Product added to cart:", response.data);
     } catch (error) {
       console.error(
         "Error adding product to cart:",
@@ -83,7 +83,8 @@ export function Product() {
         });
 
       const inSize =
-        sizes.length === 0 || sizes.some((size) => product.sizes.includes(size));
+        sizes.length === 0 ||
+        sizes.some((size) => product.sizes.includes(size));
 
       return inCategory && inPrice && inSize;
     });
@@ -108,7 +109,9 @@ export function Product() {
               <label
                 key={category}
                 className={`list-group-item list-group-item-action ${
-                  filters.categories.includes(category) ? "selected-category" : ""
+                  filters.categories.includes(category)
+                    ? "selected-category"
+                    : ""
                 }`}
               >
                 <input
@@ -120,15 +123,22 @@ export function Product() {
                 {category}
               </label>
             ))}
+            <div className="list-group-item list-group-item-action">
+              <Link to="/flashsale" className="text-decoration-none text-white">
+                Flash Sale
+              </Link>
+            </div>
           </div>
           <div className="list-group-container mt-3">
             <h5 className="list-group">| Harga</h5>
-            {["20000-50000", "50000-100000", "100000-150000"].map(
+            {["20000-50000", "50000-100000", "100000-150000","150000-200000"].map(
               (priceRange) => (
                 <label
                   key={priceRange}
                   className={`list-group-item list-group-item-action ${
-                    filters.prices.includes(priceRange) ? "selected-category" : ""
+                    filters.prices.includes(priceRange)
+                      ? "selected-category"
+                      : ""
                   }`}
                 >
                   <input
@@ -196,7 +206,9 @@ export function Product() {
                 </div>
               ))
             ) : (
-              <p className="text-center">Tidak ada produk yang sesuai dengan filter.</p>
+              <p className="text-center">
+                Tidak ada produk yang sesuai dengan filter.
+              </p>
             )}
           </div>
         </section>

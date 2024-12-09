@@ -90,11 +90,11 @@ export function Navbar() {
           </button>
           <div className="navbar-collapse" id="navbarNav">
             <Link className="nav-link active" to="/home">
-              Home
+              Beranda
             </Link>
 
             <Link className="nav-link" to="/about">
-              About
+              Tentang Kami
             </Link>
 
             <Link className="nav-link" to="/product">
