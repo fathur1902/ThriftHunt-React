@@ -32,7 +32,7 @@ export function Kode() {
           <strong>Bank Mandiri</strong>
         </div>
         <div className="mb-4">
-          <small>Nomor VA:</small>
+          <small>Nomor Rekening:</small>
           <div className="d-flex justify-content-between align-items-center">
             <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
               1234567890123456

@@ -70,6 +70,19 @@ header {
   font-size: 13px;
   pointer-events: none;
 }
+.cart-item-count {
+  position: relative;
+  top: -10px;
+  right: 3px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 
 /* Responsive Design */
 @media screen and (max-width: 992px) {
@@ -110,3 +123,5 @@ header {
     font-size: 0.9rem;
   }
 }
+
+

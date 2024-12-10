@@ -21,9 +21,37 @@ const User = db.define("User", {
     allowNull: false,
     defaultValue: "user",
   },
+  profileImage: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  city: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  postalCode: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  province: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  country: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  phone: {
+    type: DataTypes.STRING, 
+    allowNull: true,
+  },
 });
 
 export default User;
 (async () => {
-  await db.sync({ alter: true });
+  await db.sync();
 })();

@@ -107,19 +107,21 @@ export function Checkout() {
         <div className="form-check">
           <input
             className="form-check-input"
-            type="checkbox"
+            type="radio"
             id="bank"
+            name="paymentMethod" // Semua radio memiliki nama yang sama untuk menjadi grup
             value="bank"
           />
           <label className="form-check-label" htmlFor="bank">
             Bank
           </label>
         </div>
-        <div className="form-check">
+        <div className="form-check mt-2">
           <input
             className="form-check-input"
-            type="checkbox"
+            type="radio"
             id="cod"
+            name="paymentMethod" // Nama yang sama dengan radio lain
             value="cod"
           />
           <label className="form-check-label" htmlFor="cod">
@@ -127,6 +129,7 @@ export function Checkout() {
           </label>
         </div>
       </div>
+
 
       <h4 className="mt-4">Rincian Pembayaran</h4>
       <div className="card-checkout p-3">

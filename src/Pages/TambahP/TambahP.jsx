@@ -80,7 +80,7 @@ export function TambahP() {
       <div className="sidebar mt-0">
         <div className="d-flex align-items-center mb-4">
           <div
-            className="bg-white rounded-circle me-3"
+            className="bg-white rounded-circle me-2"
             style={{ width: "40px", height: "40px" }}
           ></div>
           <h1 className="fs-4 fw-bold">Thrift Hunt</h1>
