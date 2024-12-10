@@ -33,6 +33,6 @@
   text-align: right;
 }
 
-.btn-link:hover {
-  color: #2e3192;
+.btn-link {
+  color: #0008ff;
 }

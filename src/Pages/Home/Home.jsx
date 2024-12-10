@@ -1,131 +1,145 @@
-import "./Home.css";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Home.css";
+
 export function Home() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    // Waktu akhir flash sale (ubah sesuai kebutuhan)
+    const flashSaleEndTime = new Date("2024-12-12T00:00:00").getTime();
+
+    // Fungsi untuk update waktu
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = flashSaleEndTime - now;
+
+      if (distance <= 0) {
+        // Jika waktu sudah habis, stop timer
+        clearInterval(interval);
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        setTimeLeft({ days, hours, minutes, seconds });
+      }
+    };
+
+    // Update waktu setiap detik
+    const interval = setInterval(updateCountdown, 1000);
+
+    // Jalankan sekali saat pertama kali
+    updateCountdown();
+
+    // Bersihkan interval jika komponen dibersihkan
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <>
-      <section className="home-container">
-        <section className="hero text-center text-white d-flex align-items-center justify-content-center">
-          <div className="container mt-5">
-            <div className="row justify-content-center">
-              <div className="col-12 col-md-10 col-lg-8 px-4">
-                <h1 className="display-4">
-                  Gaya Unik, Harga Asik. Tampil Keren Tanpa Beban di Kantong!
-                </h1>
-                <p className="lead mt-3 mb-4">
-                  Jelajahi gaya baru dan temukan pilihan fashion yang membuatmu
-                  tampil menarik dan percaya diri, semua tanpa menguras kantong!
-                  Temukan harta karun fashion yang pas untuk setiap momen dalam
-                  hidupmu.
-                </p>
-                <a href="/product" className="btn-primary ">
-                  Jelajahi
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="flash-sale-section mt-5">
-          <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <h2 className="section-title">Flash Sale</h2>
-            <div
-              className="countdown-timer mb-4"
-              style={{ marginRight: "auto", marginLeft: "20px" }}
-            >
-              <span id="hari" className="timer-box">
-                00
-              </span>
-              <span id="jam" className="timer-box">
-                00
-              </span>
-              <span id="menit" className="timer-box">
-                00
-              </span>
-            </div>
-            <a href="/flashsale" className="btn-custom">
-              Lihat Semua
-            </a>
-          </div>
+    <section className="home-container">
+      <section className="hero text-center text-white d-flex align-items-center justify-content-center">
+        <div className="container mt-5">
           <div className="row justify-content-center">
-            <div className="col-5 col-md-2">
-              <div
-                className="card text-white border-0"
-                style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
-              >
-                <img
-                  src="/assets/images/celana1.jpg"
-                  alt="Jeans Levi's 501 Vintage"
-                  className="card-img-top"
-                />
-                <div className="card-body text-center">
-                  <span className="badge-top">Tersisa 1</span>
-                  <h5 className="card-title mt-3">Jeans Levi's 501 Vintage</h5>
-                  <p className="card-text">
-                    <del>Rp 200.000</del> <strong>Rp 100.000</strong>
-                  </p>
-                </div>
-              </div>
+            <div className="col-12 col-md-10 col-lg-8 px-4">
+              <h1 className="display-4">
+                Gaya Unik, Harga Asik. Tampil Keren Tanpa Beban di Kantong!
+              </h1>
+              <p className="lead mt-3 mb-4">
+                Jelajahi gaya baru dan temukan pilihan fashion yang membuatmu
+                tampil menarik dan percaya diri, semua tanpa menguras kantong!
+                Temukan harta karun fashion yang pas untuk setiap momen dalam
+                hidupmu.
+              </p>
+              <Link to="/product" className="btn-primary">
+                Jelajahi
+              </Link>
             </div>
-            <div className="col-5 col-md-2">
-              <div
-                className="card text-white border-0"
-                style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
-              >
-                <img
-                  src="/assets/images/Flanel Ralph Lauren2.jpg"
-                  alt="Flanel Ralph Lauren2"
-                  className="card-img-top"
-                />
-                <div className="card-body text-center">
-                  <span className="badge-top">Tersisa 1</span>
-                  <h5 className="card-title mt-3">Flanel Ralph Lauren</h5>
-                  <p className="card-text">
-                    <del>Rp 100.000</del> <strong>Rp 50.000</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-5 col-md-2">
-              <div
-                className="card text-white border-0"
-                style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
-              >
-                <img
-                  src="/assets/images/Denim Wrangler 80s.jpg"
-                  alt="Denim Wrangler 80s"
-                  className="card-img-top"
-                />
-                <div className="card-body text-center">
-                  <span className="badge-top">Tersisa 1</span>
-                  <h5 className="card-title mt-3">Denim Wrangler 80s</h5>
-                  <p className="card-text">
-                    <del>Rp 300.000</del> <strong>Rp 150.000</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-5 col-md-2">
-              <div
-                className="card text-white border-0"
-                style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
-              >
-                <img
-                  src="/assets/images/Tas Coach Signature.jpg"
-                  alt="Tas Coach Signature"
-                  className="card-img-top"
-                />
-                <div className="card-body text-center">
-                  <span className="badge-top">Tersisa 1</span>
-                  <h5 className="card-title mt-3">Tas Coach Signature</h5>
-                  <p className="card-text">
-                    <del>Rp 200.000</del> <strong>Rp 50.000</strong>
-                  </p>
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="flash-sale-section mt-5">
+        <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+          <h2 className="section-title mt-5">Flash Sale</h2>
+          <div className="countdown-timer mb-1" style={{ marginRight: "auto", marginLeft: "20px" }}>
+            <span className="timer-box">
+              {timeLeft.days < 10 ? `0${timeLeft.days}` : timeLeft.days}
+            </span>
+            <span className="timer-box">
+              {timeLeft.hours < 10 ? `0${timeLeft.hours}` : timeLeft.hours}
+            </span>
+            <span className="timer-box">
+              {timeLeft.minutes < 10 ? `0${timeLeft.minutes}` : timeLeft.minutes}
+            </span>
+            <span className="timer-box">
+              {timeLeft.seconds < 10 ? `0${timeLeft.seconds}` : timeLeft.seconds}
+            </span>
+          </div>
+          <Link to="/flashsale" className="btn-custom mb-1">
+            Lihat Semua
+          </Link>
+        </div>
+
+        <div className="row justify-content-center">
+          <div className="col-5 col-md-2">
+            <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+              <img src="/assets/images/celana1.jpg" alt="Jeans Levi's 501 Vintage" className="card-img-top" />
+              <div className="card-body text-center">
+                <span className="badge-top">Tersisa 1</span>
+                <h5 className="card-title mt-3">Jeans Levi's 501 Vintage</h5>
+                <p className="card-text">
+                  <del>Rp 200.000</del> <strong>Rp 100.000</strong>
+                </p>
               </div>
             </div>
           </div>
-        </section>
 
+          <div className="col-5 col-md-2">
+            <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+              <img src="/assets/images/Flanel Ralph Lauren2.jpg" alt="Flanel Ralph Lauren" className="card-img-top" />
+              <div className="card-body text-center">
+                <span className="badge-top">Tersisa 1</span>
+                <h5 className="card-title mt-3">Flanel Ralph Lauren</h5>
+                <p className="card-text">
+                  <del>Rp 100.000</del> <strong>Rp 50.000</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-5 col-md-2">
+            <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+              <img src="/assets/images/Denim Wrangler 80s.jpg" alt="Denim Wrangler 80s" className="card-img-top" />
+              <div className="card-body text-center">
+                <span className="badge-top">Tersisa 1</span>
+                <h5 className="card-title mt-3">Denim Wrangler 80s</h5>
+                <p className="card-text">
+                  <del>Rp 300.000</del> <strong>Rp 150.000</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-5 col-md-2">
+            <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+              <img src="/assets/images/Tas Coach Signature.jpg" alt="Tas Coach Signature" className="card-img-top" />
+              <div className="card-body text-center">
+                <span className="badge-top">Tersisa 1</span>
+                <h5 className="card-title mt-3">Tas Coach Signature</h5>
+                <p className="card-text">
+                  <del>Rp 200.000</del> <strong>Rp 50.000</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
         <section className="kategori-section py-5">
           <div className="container text-center">
             <h2 className="section-title">Lihat Berbagai Kategori Kami</h2>
@@ -156,7 +170,7 @@ export function Home() {
                   to="/category/bawahan wanita"
                   className="text-decoration-none kategori-link"
                 >
-                  <div className="kategori-card mb-2">
+                  <div className="kategori-card mb-2 mt-4">
                     <img
                       src="/assets/images/pakaian wanita.jpg"
                       alt="Pakaian Wanita"
@@ -171,7 +185,7 @@ export function Home() {
                   to="/category/aksesoris"
                   className="text-decoration-none kategori-link"
                 >
-                  <div className="kategori-card mt-4">
+                  <div className="kategori-card mt-5">
                     <img
                       src="/assets/images/aksesoris.jpg"
                       alt="Aksesoris"
@@ -338,6 +352,5 @@ export function Home() {
           </div>
         </section>
       </section>
-    </>
   );
 }

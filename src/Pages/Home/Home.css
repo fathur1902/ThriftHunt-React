@@ -98,6 +98,16 @@
   font-size: 18px;
 }
 
+.timer-box {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff; /* Putih untuk teks */
+  background-color: #000; /* Hitam untuk latar belakang */
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
 .countdown-timer .timer-box {
   background: linear-gradient(90deg, #fbd061, #fe8f08);
   padding: 8px 10px;
@@ -425,7 +435,9 @@
     var(--btn-hover-color-end),
     var(--btn-hover-color-start)
   );
-}@media (max-width: 768px) {
+
+}
+@media (max-width: 768px) {
   .hero h1 {
     font-size: 2rem;
   }
@@ -523,54 +535,3 @@
   height: auto;
   object-fit: cover;
 }
-
-@media (max-width: 767px) {
-  .produk-card {
-    width: 200px;
-    height: 200px;
-  }
-
-  .outfit-card-container {
-    flex-direction: column;
-  }
-
-  .small-cards {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .small-cards > div {
-    width: 30%;
-  }
-
-  .section-title-outfit,
-  .section-description-outfit {
-    text-align: center;
-  }
-
-  .outfit-buttons {
-    justify-content: center;
-  }
-
-  .btn-wish {
-    align-self: center;
-  }
-}
-
-@media (max-width: 576px) {
-  .produk-card {
-    width: 150px;
-    height: 150px;
-  }
-
-  .section-title-produk,
-  .section-title-outfit {
-    font-size: 1.5rem;
-  }
-
-  .section-description,
-  .section-description-outfit {
-    font-size: 0.9rem;
-  }
-}
-

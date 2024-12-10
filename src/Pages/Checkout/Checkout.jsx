@@ -10,15 +10,15 @@ export function Checkout() {
       <h4 className="mt-4">Alamat Pengiriman</h4>
       <p>
         <strong>Ascending (+62) 852315642578</strong>
-        <br />
+        <br/>
         Perumahan Telang Indah, Jalan Telang Indah Barat Gang IV No. 4, Telang,
         Bangkalan, KAB. BANGKALAN - BANGKALAN, JAWA TIMUR, ID 69119
-        <a className="btn btn-custom btn-sm ms-2" href="/ubahalamat">
+        <a className="btn btn-custom btn-sm ms-3 mt-3" href="/ubahalamat">
           Ubah
         </a>
       </p>
 
-      <h4 className="mt-4">Rincian Pro</h4>
+      <h4 className="mt-4">Rincian Produk</h4>
       <div className="card-checkout p-3">
         <table className="table table-borderless">
           <thead>

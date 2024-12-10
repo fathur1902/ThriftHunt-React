@@ -11,7 +11,11 @@ export function Navbar() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      navigate(`/search?query=${searchTerm}`);
+      // Jika ada kata kunci pencarian, lanjutkan ke halaman pencarian
+      navigate(`/product?query=${searchTerm}`);
+    } else {
+      // Jika tidak ada kata kunci, kembalikan ke halaman produk tanpa query
+      navigate("/product");
     }
   };
 
@@ -32,16 +36,10 @@ export function Navbar() {
           );
           setCartCount(totalCount);
         } else {
-          console.warn(
-            "Cart data is not in the expected format:",
-            response.data
-          );
+          console.warn("Cart data is not in the expected format:", response.data);
         }
       } catch (error) {
-        console.error(
-          "Error fetching cart data:",
-          error.response?.data || error.message
-        );
+        console.error("Error fetching cart data:", error.response?.data || error.message);
       }
     };
 
@@ -53,18 +51,9 @@ export function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <div className="container">
           <Link className="navbar-brand me-5" to="/">
-            <img
-              src="/assets/images/Logo.png"
-              alt="Logo"
-              width="40"
-              height="30"
-            />
+            <img src="/assets/images/Logo.png" alt="Logo" width="40" height="30" />
           </Link>
-          <form
-            className="d-flex flex-wrap mx-5 position-relative"
-            role="search"
-            onSubmit={handleSearch}
-          >
+          <form className="d-flex flex-wrap mx-5 position-relative" role="search" onSubmit={handleSearch}>
             <input
               type="search"
               className="form-control search-input"
@@ -89,30 +78,14 @@ export function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="navbar-collapse" id="navbarNav">
-            <Link className="nav-link active" to="/home">
-              Beranda
-            </Link>
-
-            <Link className="nav-link" to="/about">
-              Tentang Kami
-            </Link>
-
-            <Link className="nav-link" to="/product">
-              Produk
-            </Link>
-
+            <Link className="nav-link active" to="/home">Beranda</Link>
+            <Link className="nav-link" to="/about">Tentang Kami</Link>
+            <Link className="nav-link" to="/product">Produk</Link>
             <Link className="nav-link position-relative" to="/keranjang">
               <i className="bi bi-cart"></i>
-              {cartCount > 0 && (
-                <span className="cart-item-count">
-                  {cartCount}
-                </span>
-              )}
+              {cartCount > 0 && <span className="cart-item-count">{cartCount}</span>}
             </Link>
-            <Link
-              className="nav-link"
-              to="https://wa.me/+6289678737216?text=Chat%20Dengan%20Admin"
-            >
+            <Link className="nav-link" to="https://wa.me/+6289678737216?text=Chat%20Dengan%20Admin">
               <i className="bi bi-chat-dots"></i>
             </Link>
             <Link className="nav-link" to="/profile">
