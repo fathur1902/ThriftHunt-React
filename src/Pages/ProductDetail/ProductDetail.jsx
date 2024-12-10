@@ -106,10 +106,10 @@ export function ProductDetail() {
         <div className="col-lg-3 col-md-12">
           <div className="product-details">
             <h1 className="fs-4">{product.name}</h1>
-            <p className="text-danger fw-bold fs-5">
+            <p className="text-white fw-bold fs-5">
               Rp. {product.price.toLocaleString()}
             </p>
-            <p className="text-muted">{product.description}</p>
+            <p className="text-white">{product.description}</p>
             <ul className="list-unstyled">
               <li>
                 <strong>Kategori:</strong> {product.category}
@@ -123,7 +123,7 @@ export function ProductDetail() {
             </Link>
             <Link
               to={"/keranjang"}
-              className="btn btn-outline-secondary w-100"
+              className="btn btn-outline-primary text-white w-100"
               onClick={() => handleAddToCart(product)}
             >
               Masukan Keranjang
@@ -148,8 +148,8 @@ export function ProductDetail() {
                     alt={relatedProduct.name}
                     className="img-fluid rounded mb-2"
                   />
-                  <p className="product-name mb-1">{relatedProduct.name}</p>
-                  <p className="product-price text-danger fw-bold">
+                  <p className="product-name text-white mb-1">{relatedProduct.name}</p>
+                  <p className="product-price text-white fw-bold">
                     Rp. {relatedProduct.price.toLocaleString()}
                   </p>
                 </Link>

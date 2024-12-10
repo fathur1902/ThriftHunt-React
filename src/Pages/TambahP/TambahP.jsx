@@ -166,6 +166,7 @@ export function TambahP() {
                   <option value="AtasanWanita">Atasan Wanita</option>
                   <option value="BawahanWanita">Bawahan Wanita</option>
                   <option value="Aksesoris">Aksesoris</option>
+                  <option value="FlashSale">Flash Sale</option>
                 </select>
               </div>
               <div className="mb-3">

@@ -135,18 +135,6 @@ export function Login() {
                   </button>
                 </div>
 
-                <div className="input-group mb-3">
-                  <button className="btn btn-lg btn-light w-100 fs-6">
-                    <img
-                      src="/assets/images/Google.png"
-                      style={{ width: "20px" }}
-                      className="me-2"
-                      alt="Google"
-                    />
-                    <small>Masuk menggunakan Google</small>
-                  </button>
-                </div>
-
                 {/* Link untuk halaman signup */}
                 <div className="row">
                   <small className=" text-black ">

@@ -33,7 +33,7 @@ export const addToCart = async (req, res) => {
       existingCartItem.quantity += quantity;
       await existingCartItem.save();
     } else {
-      await Cart.create({ usersId, productId, quantity });
+      await Cart.create({ usersId, productId, quantity, selected: true });
     }
 
     res.status(201).json({ message: "Product added to cart" });
