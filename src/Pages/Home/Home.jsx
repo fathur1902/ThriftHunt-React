@@ -7,7 +7,7 @@ export function Home() {
         <section className="hero text-center text-white d-flex align-items-center justify-content-center">
           <div className="container mt-5">
             <div className="row justify-content-center">
-              <div className="col-12 col-md-10 col-lg-8">
+              <div className="col-12 col-md-10 col-lg-8 px-4">
                 <h1 className="display-4">
                   Gaya Unik, Harga Asik. Tampil Keren Tanpa Beban di Kantong!
                 </h1>
@@ -26,7 +26,7 @@ export function Home() {
         </section>
 
         <section className="flash-sale-section mt-5">
-          <div className="container display-flex justify-content-between align-items-center">
+          <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center">
             <h2 className="section-title">Flash Sale</h2>
             <div
               className="countdown-timer mb-4"
@@ -133,7 +133,7 @@ export function Home() {
               Jelajahi koleksi kami yang beragam! Temukan pilihan pakaian yang
               cocok untuk gaya dan kebutuhanmu.
             </p>
-            <div className="row justify-content-center">
+            <div className="row justify-content-center gy-4">
               <div className="col-6 col-md-3">
                 <Link
                   to="/category/Atasan Pria"
@@ -268,65 +268,67 @@ export function Home() {
         <section className="outfit-section">
           <div className="container">
             <div className="row justify-content-center">
-              <div className="col-md-6 d-flex flex-column flex-md-row">
-                <div className="outfit-card flex-grow-1">
-                  <img
-                    src="assets/images/idol.jpg"
-                    className="img-fluid rounded"
-                    alt="Outfit Image"
-                  />
-                </div>
-                <div className="small-cards d-flex flex-column justify-content-start ms-3 mt-3 mt-md-0">
-                  <div className="p-1">
+              <div className="col-md-6 mb-4 mb-md-0">
+                <div className="outfit-card-container d-flex flex-column flex-md-row">
+                  <div className="outfit-card flex-grow-1 mb-3 mb-md-0">
                     <img
-                      src="assets/images/baret abu.jpg"
+                      src="assets/images/idol.jpg"
                       className="img-fluid rounded"
-                      alt="Item 1"
+                      alt="Outfit Image"
                     />
                   </div>
-                  <div className="p-1">
-                    <img
-                      src="assets/images/kemeja putih.jpg"
-                      className="img-fluid rounded"
-                      alt="Item 1"
-                    />
-                  </div>
-                  <div className="p-1">
-                    <img
-                      src="assets/images/rok kotak.jpg"
-                      className="img-fluid rounded"
-                      alt="Item 1"
-                    />
+                  <div className="small-cards d-flex flex-row flex-md-column justify-content-between ms-0 ms-md-3 mt-3 mt-md-0">
+                    <div className="p-1">
+                      <img
+                        src="assets/images/baret abu.jpg"
+                        className="img-fluid rounded"
+                        alt="Item 1"
+                      />
+                    </div>
+                    <div className="p-1">
+                      <img
+                        src="assets/images/kemeja putih.jpg"
+                        className="img-fluid rounded"
+                        alt="Item 2"
+                      />
+                    </div>
+                    <div className="p-1">
+                      <img
+                        src="assets/images/rok kotak.jpg"
+                        className="img-fluid rounded"
+                        alt="Item 3"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 d-flex flex-column align-items-center align-items-md-start mt-4 mt-md-0">
-                <h2 className="section-title-outfit">
+              <div className="col-md-6 d-flex flex-column align-items-center align-items-md-start">
+                <h2 className="section-title-outfit text-center text-md-start">
                   Outfit Hits seperti Idol Favorit
                 </h2>
-                <p className="section-description-outfit">
+                <p className="section-description-outfit text-center text-md-start">
                   Inspirasi gaya dari idol favoritmu! Pilihan outfit kekinian
                   ala selebriti, mulai dari streetwear hingga casual chic, cocok
                   untuk tampil stylish tanpa harus mahal!
                 </p>
-                <div className="outfit-buttons d-flex justify-content-center mt-3 w-100">
-                  <a href="halaman_AW.html" className="text-decoration-none">
-                    <button className="btn btn-outline-light mx-2">
+                <div className="outfit-buttons d-flex flex-wrap justify-content-center justify-content-md-start mt-3 w-100">
+                  <a href="halaman_AW.html" className="text-decoration-none mb-2 me-2">
+                    <button className="btn btn-outline-light">
                       Atasan
                     </button>
                   </a>
-                  <a href="halaman_BW.html" className="text-decoration-none">
-                    <button className="btn btn-outline-light mx-2">
+                  <a href="halaman_BW.html" className="text-decoration-none mb-2 me-2">
+                    <button className="btn btn-outline-light">
                       Bawahan
                     </button>
                   </a>
-                  <a href="halaman_KA.html" className="text-decoration-none">
-                    <button className="btn btn-outline-light mx-2">
+                  <a href="halaman_KA.html" className="text-decoration-none mb-2 me-2">
+                    <button className="btn btn-outline-light">
                       Aksesoris
                     </button>
                   </a>
                 </div>
-                <a href="#" className="text-decoration-none">
+                <a href="#" className="text-decoration-none align-self-center align-self-md-start">
                   <button className="btn btn-primary btn-wish mt-4">
                     Masukkan Keranjang
                   </button>

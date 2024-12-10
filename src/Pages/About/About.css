@@ -18,31 +18,34 @@
   box-sizing: border-box;
   font-family: "Oxygen", sans-serif;
 }
+
 body {
   margin: 0;
-  padding: 0; 
-  overflow-x: hidden; 
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .container-about {
   background: radial-gradient(circle at 20% 40%, #0b3b62, #0a234a, #05162b);
-  padding-top: 1px;
-  margin-top: 0;
+  padding: 50px;
 }
+
 .section-title {
   font-size: 2rem;
   font-weight: bold;
   color: var(--text-color);
   margin-top: 100px;
   margin-bottom: 50px;
+  
+  
 }
 
-/* Sub Judul Tentang Kami */
 .section-tentang {
   font-size: 1.5rem;
   font-weight: bold;
   color: #121212;
   margin-top: 5px;
+  
 }
 
 .deskripsi-tentang {
@@ -57,33 +60,36 @@ body {
 
 .tentang {
   background-color: var(--text-color);
-  padding: 0;
+  padding: 20px; /* Diperbaiki untuk menambahkan satuan */
   margin-top: 100px;
+  border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 .about-text {
   font-size: 1.1rem;
   line-height: 1.6;
   color: var(--text-color);
-  margin-bottom: 40px;
+  margin-bottom: 20px; /* Kembali ke nilai dari Kode 1 */
 }
 
 .about-image {
   width: 100%;
   height: auto;
+  border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Info Kontak */
 .contact-info {
   background: #ffffff;
   padding: 15px;
   color: #333;
   border-radius: 15px;
-  height: 130px;
-  margin-bottom: 30px;
+  height: 130px; /* Diambil dari Kode 2 */
+  margin-bottom: 20px; /* Diambil dari Kode 1 */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Ditambahkan dari Kode 1 */
 }
 
 .contact-info h6 {
@@ -98,7 +104,6 @@ body {
   color: #666;
 }
 
-/* Form Kontak */
 .contact-form input,
 .contact-form textarea {
   margin-bottom: 15px;
@@ -129,7 +134,7 @@ body {
   transition: color 0.3s ease;
 }
 
-.btn-tentang-custom :hover {
+.btn-tentang-custom:hover {
   color: var(--btn-hover-color-start) !important;
   text-decoration: none;
 }
@@ -147,7 +152,7 @@ body {
   margin-bottom: 25px;
 }
 
-.btn-kirim :hover {
+.btn-kirim:hover {
   background: linear-gradient(
     90deg,
     var(--button-color-end),
@@ -162,6 +167,62 @@ body {
   margin-top: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 .form-label {
   color: var(--text-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .tentang {
+    flex-direction: column; 
+  }
+
+  .about-image,
+  .content-container {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .section-tentang {
+    font-size: 1.2rem;
+  }
+
+  .about-text {
+    font-size: 1rem;
+  }
+
+  .contact-info {
+    margin-bottom: 15px;
+  }
+
+  .map {
+    height: 250px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .section-tentang {
+    font-size: 1rem;
+  }
+
+  .deskripsi-tentang {
+    font-size: 0.9rem;
+  }
+
+  .about-text {
+    font-size: 0.9rem;
+  }
 }
