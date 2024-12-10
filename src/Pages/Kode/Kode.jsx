@@ -32,7 +32,7 @@ export function Kode() {
           <strong>Bank Mandiri</strong>
         </div>
         <div className="mb-4">
-          <small>Nomor Rekening:</small>
+          <small>Untuk menyelesaikan pembayaran pesanan Anda, silakan transfer ke nomor rekening berikut:</small>
           <div className="d-flex justify-content-between align-items-center">
             <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
               1234567890123456
@@ -43,8 +43,7 @@ export function Kode() {
           </div>
         </div>
         <div>
-          Bayar pesanan ke Virtual Account di atas sebelum membuat pesanan baru
-          untuk memastikan nomor tetap sama.
+        Setelah pembayaran berhasil, harap segera kirimkan bukti pembayaran ke admin agar pesanan Anda dapat segera diproses. Terima kasih atas kepercayaan Anda! 😊
         </div>
         <a href="/dikirim" className="btn btn-primary mt-4">Selanjutnya</a>
       </div>

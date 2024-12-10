@@ -30,7 +30,7 @@
   color: var(--color-6);
   padding: 20px;
   border-radius: 10px;
-  width: 400px;
+  width: 700px;
   height: 400px;
 }
 
@@ -152,4 +152,40 @@
   color: var(--text-color);
   cursor: pointer;
   float: right;
+}
+
+/* Media Query untuk layar kecil (tablet ke bawah) */
+@media (max-width: 768px) {
+  .profile-content {
+    flex-direction: column; /* Susun secara vertikal */
+    gap: 20px;
+  }
+
+  .profile-info,
+  .address-section {
+    width: 100%; /* Full width */
+    max-width: none; /* Hilangkan batas lebar maksimal */
+  }
+
+  .profile-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .address-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .address-box {
+    padding: 15px;
+    width: auto;
+  }
+
+  .address-box h4 {
+    font-size: 0.9rem;
+  }
+
+  .address-box p {
+    font-size: 0.8rem;
+  }
 }
