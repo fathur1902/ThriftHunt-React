@@ -154,17 +154,44 @@
   float: right;
 }
 
-/* Media Query untuk layar kecil (tablet ke bawah) */
-@media (max-width: 768px) {
-  .profile-content {
-    flex-direction: column; /* Susun secara vertikal */
-    gap: 20px;
+@media screen and (max-width: 1200px) {
+  .address-section {
+    width: 100%;
   }
 
-  .profile-info,
-  .address-section {
-    width: 100%; /* Full width */
-    max-width: none; /* Hilangkan batas lebar maksimal */
+  .profile-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-info {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .address-box {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .section-title-profile {
+    font-size: 1.5em;
+    padding-left: 15px;
+  }
+
+  .profile-content {
+    padding: 15px;
+  }
+
+  .profile-info {
+    height: auto;
+    padding: 15px;
   }
 
   .profile-img {
@@ -172,13 +199,12 @@
     height: 80px;
   }
 
-  .address-section h3 {
-    font-size: 1.2rem;
+  .profile-name {
+    font-size: 1.2em;
   }
 
-  .address-box {
-    padding: 15px;
-    width: auto;
+  .address-section h3 {
+    font-size: 1.2rem;
   }
 
   .address-box h4 {
@@ -189,3 +215,57 @@
     font-size: 0.8rem;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .profile-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .section-title-profile {
+    font-size: 1.2em;
+    padding-left: 10px;
+  }
+
+  .profile-content {
+    padding: 10px;
+  }
+
+  .profile-info {
+    padding: 10px;
+  }
+
+  .profile-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-name {
+    font-size: 1em;
+  }
+
+  .btn-profile {
+    font-size: 0.9em;
+  }
+
+  .address-section h3 {
+    font-size: 1rem;
+  }
+
+  .address-box {
+    padding: 10px;
+  }
+
+  .address-box h4 {
+    font-size: 0.8rem;
+  }
+
+  .address-box p {
+    font-size: 0.7rem;
+  }
+
+  .edit-link {
+    font-size: 0.8em;
+  }
+}
+
