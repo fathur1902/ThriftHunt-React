@@ -12,7 +12,7 @@ export function Home() {
 
   useEffect(() => {
     // Waktu akhir flash sale (ubah sesuai kebutuhan)
-    const flashSaleEndTime = new Date("2024-12-12T00:00:00").getTime();
+    const flashSaleEndTime = new Date("2024-12-16T00:00:00").getTime();
 
     // Fungsi untuk update waktu
     const updateCountdown = () => {
@@ -50,7 +50,7 @@ export function Home() {
         <div className="container mt-5">
           <div className="row justify-content-center">
             <div className="col-12 col-md-10 col-lg-8 px-4">
-              <h1 className="display-4">
+              <h1 className="display-4 judul-home">
                 Gaya Unik, Harga Asik. Tampil Keren Tanpa Beban di Kantong!
               </h1>
               <p className="lead mt-3 mb-4">
@@ -71,8 +71,8 @@ export function Home() {
         <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center">
           <h2 className="section-title mt-5">Flash Sale</h2>
           <div
-            className="countdown-timer mb-1"
-            style={{ marginRight: "auto", marginLeft: "20px" }}
+            className="countdown-timer"
+            // style={{ marginRight: "auto", marginLeft: "20px" }}
           >
             <span className="timer-box">
               {timeLeft.days < 10 ? `0${timeLeft.days}` : timeLeft.days}
@@ -91,7 +91,7 @@ export function Home() {
                 : timeLeft.seconds}
             </span>
           </div>
-          <Link to="/flashsale" className="btn-custom mb-1">
+          <Link to="/flashsale" className="btn-custom mb-3">
             Lihat Semua
           </Link>
         </div>
@@ -192,7 +192,7 @@ export function Home() {
             Jelajahi koleksi kami yang beragam! Temukan pilihan pakaian yang
             cocok untuk gaya dan kebutuhanmu.
           </p>
-          <div className="row justify-content-center gy-4">
+          <div className="kategori-kami row justify-content-center gy-4">
             <div className="col-6 col-md-3">
               <Link to="/category/Atasan Pria" className="text-decoration-none">
                 <div className="kategori-card">
