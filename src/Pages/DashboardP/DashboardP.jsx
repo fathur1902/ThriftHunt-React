@@ -1,13 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./DashboardP.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faBox, faArrowLeft, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { faEdit, faBox, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export function DashboardP() {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/api/checkout/admin/checkout",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      console.log("API Response:", response.data); // Debug log
+
+      if (Array.isArray(response.data)) {
+        setOrders(response.data);
+      } else {
+        console.error("Unexpected response format:", response.data);
+        setOrders([]); // Pastikan tetap array
+      }
+    } catch (err) {
+      setError(err.response?.data?.error || "Gagal mengambil data pesanan");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateOrderStatus = async (orderId, newStatus) => {
+    try {
+      await axios.patch(
+        `http://localhost:3000/api/checkout/checkout/${orderId}`,
+        { status: newStatus },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      // Perbarui status pesanan di UI
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order.id === orderId ? { ...order, status: newStatus } : order
+        )
+      );
+    } catch (err) {
+      alert("Gagal memperbarui status pesanan.");
+    }
+  };
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
   const changePage = (pageUrl) => {
     window.location.href = pageUrl;
   };
+
+  if (loading) return <div>Memuat data...</div>;
+  if (error) return <div className="text-danger">{error}</div>;
+  if (!Array.isArray(orders)) {
+    return <div className="text-danger">Data pesanan tidak valid.</div>;
+  }
 
   return (
     <div className="d-flex">
@@ -20,92 +81,91 @@ export function DashboardP() {
           ></div>
           <h1 className="fs-4 fw-bold">Thrift Hunt</h1>
         </div>
-        <button className="btn btn-gradient mb-3" onClick={() => changePage("dashboard")}>
+        <button
+          className="btn btn-gradient mb-3"
+          onClick={() => changePage("/dashboard")}
+        >
           <FontAwesomeIcon icon={faEdit} className="me-2" />
           Edit Produk
         </button>
-        <button className="btn btn-light mb-3" onClick={() => changePage("/DashboardP")}>
+        <button
+          className="btn btn-light mb-3"
+          onClick={() => changePage("/DashboardP")}
+        >
           <FontAwesomeIcon icon={faBox} className="me-2" />
           Lihat Pesanan
         </button>
-        <button className="btn btn-gradient" onClick={() => changePage("/login")}>
+        <button
+          className="btn btn-gradient"
+          onClick={() => changePage("/login")}
+        >
           <FontAwesomeIcon icon={faArrowLeft} className="me-2" />
           Logout
         </button>
       </div>
 
       {/* Main Content */}
-      <div className="flex-fill p-4 bg-white" >
+      <div className="flex-fill p-4 bg-white">
         <h2 className="fs-3 fw-semibold">Daftar Pesanan</h2>
         <div className="d-flex flex-column gap-4">
-          {/* Pesanan 1 */}
-          <OrderCard
-            name="Dian Putri A."
-            address="Jln, Watu gede, No: 58 Ngaglik, Sariharjo, Sleman, DI Yogyakarta."
-            phone="089787675743"
-            details={[
-              { item: "Cardigan kotak", price: "Rp 50.000" },
-              { item: "Blouse Biru", price: "Rp 50.000" },
-            ]}
-          />
-
-          {/* Pesanan 2 */}
-          <OrderCard
-            name="Jay Park"
-            address="Jln Menganti, No 20 Lidah Kulon, Lakar Santri, Surabaya."
-            phone="086787898901"
-            details={[
-              { item: "Celana Jeans", price: "Rp 100.000" },
-              { item: "Kaos Putih", price: "Rp 50.000" },
-            ]}
-          />
-
-          {/* Pesanan 2 */}
-          <OrderCard
-            name="Jay Park"
-            address="Jln Menganti, No 20 Lidah Kulon, Lakar Santri, Surabaya."
-            phone="086787898901"
-            details={[
-              { item: "Celana Jeans", price: "Rp 100.000" },
-              { item: "Kaos Putih", price: "Rp 50.000" },
-            ]}
-          />
+          {orders.map((order) => (
+            <OrderCard
+              key={order.id}
+              order={order}
+              onUpdateStatus={updateOrderStatus}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function OrderCard({ name, address, phone, details }) {
+function OrderCard({ order, onUpdateStatus }) {
+  const { id, user, cartItems, address, phone, status } = order;
+  const statusOptions = [
+    "Konfirmasi Pesanan",
+    "Sedang Dikemas",
+    "Dikirim",
+    "Selesai",
+  ];
+
   return (
     <div className="order-card position-relative">
-      <div className="close-btn">
-        <i className="fas fa-times"></i>
-      </div>
-      <h5>{name}</h5>
+      <h5>{user?.name}</h5>
       <p>
         Alamat: {address}
         <br />
         No. Telp: {phone}
         <br />
-        Total Produk: {details.length}
+        Total Produk: {cartItems.length}
       </p>
       <p>
         Detail:
         <br />
-        {details.map((detail, index) => (
+        {cartItems.map((item, index) => (
           <span key={index}>
-            {index + 1}. {detail.item}: {detail.price}
+            {index + 1}. {item.Product.name}: Rp {item.Product.price}
             <br />
           </span>
         ))}
       </p>
       <div className="status-container">
-        <button className="status-btn">Konfirmasi Pesanan</button>
-        <button className="status-btn">Sedang Dikemas</button>
-        <button className="status-btn">Dikirim</button>
-        <button className="status-btn">Selesai</button>
-        <button className="btn btn-danger">Hapus</button>
+        {statusOptions.map((option) => (
+          <button
+            key={option}
+            className={`status-btn ${status === option ? "active" : ""}`}
+            onClick={() => onUpdateStatus(id, option)}
+          >
+            {option}
+          </button>
+        ))}
+        <button
+          className="btn btn-danger"
+          onClick={() => onUpdateStatus(id, "Dibatalkan")}
+        >
+          Hapus
+        </button>
       </div>
     </div>
   );

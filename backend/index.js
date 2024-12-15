@@ -6,6 +6,7 @@ import cors from "cors";
 import ProductRoutes from "./routes/ProductRoutes.js";
 import UsersRouter from "./routes/UsersRouter.js";
 import CartRoutes from "./routes/CartRoutes.js";
+import CheckoutRoutes from "./routes/CheckoutRoutes.js"
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use("/uploads", express.static("uploads"));
 //route
 app.use("/api/users", UsersRouter);
 app.use("/api/cart", CartRoutes);
+app.use("/api/checkout", CheckoutRoutes);
 app.use("/api", ProductRoutes);
 
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));

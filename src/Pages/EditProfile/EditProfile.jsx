@@ -49,7 +49,7 @@ export function EditProfile() {
 
       setMessage(response.data.message);
       setTimeout(() => {
-        navigate("/profile"); 
+        navigate("/profile");
       }, 2000);
     } catch (error) {
       console.log(error);
@@ -59,6 +59,11 @@ export function EditProfile() {
 
   return (
     <div className="container p-5 mt-4">
+      <div>
+        <a href="/profile" className="text-decoration-none text-white">
+          <i className="bi bi-arrow-left"></i> Kembali
+        </a>
+      </div>
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
           <h2 className="text-center mb-4">Edit Profil</h2>

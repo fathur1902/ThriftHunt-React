@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Product.css";
 
@@ -11,24 +11,30 @@ export function Product() {
   });
 
   const [products, setProducts] = useState([]);
-  const [filteredProduct, setFilteredProduct] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { search } = useLocation();
+  const query = new URLSearchParams(search).get("query");
 
-  // Fetch data dari backend
+  // Fetch data produk dari API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get("http://localhost:3000/api/products");
         setProducts(response.data);
-        setFilteredProduct(response.data); // Awalnya tampilkan semua produk
-      } catch (error) {
-        console.error("Error fetching products:", error);
+        setFilteredProducts(response.data); // Awalnya tampilkan semua produk
+      } catch (err) {
+        setError("Gagal memuat data produk. Silakan coba lagi.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
 
-  // Update state filters
+  // Handle checkbox filter
   const handleCheckboxChange = (type, value) => {
     setFilters((prev) => {
       const isAlreadySelected = prev[type].includes(value);
@@ -42,10 +48,12 @@ export function Product() {
       };
     });
   };
+
+  // Menangani penambahan ke keranjang
   const handleAddToCart = async (product) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:3000/api/cart",
         {
           productId: product.id,
@@ -58,16 +66,14 @@ export function Product() {
           },
         }
       );
-      // console.log("Product added to cart:", response.data);
+      alert("Produk berhasil ditambahkan ke keranjang!");
     } catch (error) {
-      console.error(
-        "Error adding product to cart:",
-        error?.response?.data || error.message
-      );
+      console.error("Gagal menambahkan produk ke keranjang:", error.message);
+      alert("Gagal menambahkan produk ke keranjang. Silakan coba lagi.");
     }
   };
 
-  // Filter produk berdasarkan kategori, harga, dan ukuran
+  // Filter produk berdasarkan kategori, harga, ukuran, dan pencarian
   useEffect(() => {
     const { categories, prices, sizes } = filters;
 
@@ -86,11 +92,14 @@ export function Product() {
         sizes.length === 0 ||
         sizes.some((size) => product.sizes.includes(size));
 
-      return inCategory && inPrice && inSize;
+      const matchesSearchTerm =
+        !query || product.name.toLowerCase().includes(query.toLowerCase());
+
+      return inCategory && inPrice && inSize && matchesSearchTerm;
     });
 
-    setFilteredProduct(filtered);
-  }, [filters, products]);
+    setFilteredProducts(filtered);
+  }, [filters, products, query]);
 
   return (
     <div className="container mt-5 p-3">
@@ -100,10 +109,10 @@ export function Product() {
           <div className="list-group-container mt-4">
             <h5 className="list-group">| Kategori</h5>
             {[
-              "Atasan Pria",
-              "Bawahan Pria",
-              "Atasan Wanita",
-              "Bawahan Wanita",
+              "AtasanPria",
+              "BawahanPria",
+              "AtasanWanita",
+              "BawahanWanita",
               "Aksesoris",
             ].map((category) => (
               <label
@@ -131,7 +140,7 @@ export function Product() {
           </div>
           <div className="list-group-container mt-3">
             <h5 className="list-group">| Harga</h5>
-            {["20000-50000", "50000-100000", "100000-150000","150000-200000"].map(
+            {["20000-50000", "50000-100000", "100000-150000", "150000-200000"].map(
               (priceRange) => (
                 <label
                   key={priceRange}
@@ -175,10 +184,14 @@ export function Product() {
 
         {/* Produk */}
         <section className="col-12 col-md-9 mt-3 mb-4">
-          <div className="row gy-4">
-            <h1 className="tittle mb-2 text-start">Koleksi Produk Kami</h1>
-            {filteredProduct.length > 0 ? (
-              filteredProduct.map((product) => (
+          {loading ? (
+            <p className="text-center">Memuat produk...</p>
+          ) : error ? (
+            <p className="text-center text-danger">{error}</p>
+          ) : filteredProducts.length > 0 ? (
+            <div className="row gy-4">
+              <h1 className="tittle mb-2 text-start">Koleksi Produk Kami</h1>
+              {filteredProducts.map((product) => (
                 <div key={product.id} className="col-6 col-md-4 col-lg-3">
                   <div className="card product-card">
                     <Link to={`/product/${product.id}`}>
@@ -204,13 +217,11 @@ export function Product() {
                     </div>
                   </div>
                 </div>
-              ))
-            ) : (
-              <p className="text-center">
-                Tidak ada produk yang sesuai dengan filter.
-              </p>
-            )}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center">Tidak ada produk yang sesuai dengan filter.</p>
+          )}
         </section>
       </div>
     </div>

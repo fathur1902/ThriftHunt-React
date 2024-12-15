@@ -182,7 +182,7 @@ export const updateProfile = async (req, res) => {
         }
       }
 
-      user.profileImage = `/uploads/${file.name}`; // URL file
+      user.profileImage = `/uploads/${file.name}`; 
     }
 
     await user.save();

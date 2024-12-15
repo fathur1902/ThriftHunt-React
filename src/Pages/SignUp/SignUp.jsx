@@ -93,23 +93,30 @@ export function Signup() {
   return (
     <div className="container-signup">
       <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        <div className="row border rounded-5 p-3 bg-white shadow box-area">
+        <div
+          className="row border rounded-5 p-3 bg-white shadow box-area w-100 mb-5"
+          style={{ maxWidth: "900px" }}
+        >
           {/* Left Box */}
-          <div className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
-            <div className="featured-image mb-3">
+          <div className="col-md-6 d-flex justify-content-center align-items-center flex-column left-box mb-4 mb-md-0">
+            <div className="featured-image">
               <img
                 src="/assets/images/Signup.png"
                 className="img-fluid"
-                style={{ width: "950px" }}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                }}
                 alt="Signup"
               />
             </div>
           </div>
-
+  
           {/* Right Box */}
-          <div className="col-md-6 right-box">
+          <div className="col-md-6 right-box d-flex flex-column justify-content-center">
             <div className="row align-items-center">
-              <div className="header-text mb-2">
+              <div className="header-text mb-3">
                 <h2 className="text-black">Daftar</h2>
               </div>
               <small className="text-black">Nama Lengkap</small>
@@ -195,19 +202,8 @@ export function Signup() {
                   Daftar
                 </button>
               </div>
-              <div className="input-group mb-3">
-                <button className="btn btn-lg btn-light w-100 fs-6">
-                  <img
-                    src="/assets/images/Google.png"
-                    style={{ width: "20px" }}
-                    className="me-2"
-                    alt="Google"
-                  />
-                  <small>Daftar menggunakan Google</small>
-                </button>
-              </div>
               <div className="row">
-                <small className="text-black">
+                <small className="text-black text-center">
                   Sudah punya akun? <a href="/Login">Masuk aja</a>
                 </small>
               </div>
@@ -216,5 +212,5 @@ export function Signup() {
         </div>
       </div>
     </div>
-  );
+  );  
 }

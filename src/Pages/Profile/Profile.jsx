@@ -153,7 +153,7 @@ export function Profile() {
                 Edit Profil
               </a>
               <a
-                href="/riwayatpesanan"
+                href="/selesai"
                 className="btn-profile edit-btn text-center"
               >
                Riwayat Pesanan

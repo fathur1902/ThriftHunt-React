@@ -58,27 +58,41 @@ export function Login() {
   return (
     <>
       <div className="login-container">
-        <div className="container d-flex justify-content-center">
-          <div className="row border rounded-5 p-3 bg-white shadow box-area">
+        <div className="container d-flex justify-content-center align-items-center min-vh-100">
+          <div
+            className="row border rounded-5 p-3 bg-white shadow box-area w-100"
+            style={{ maxWidth: "900px" }}
+          >
             {/* Left Box */}
-            <div className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
-              <div className="featured-image mb-3">
+            <div className="col-md-6 d-flex justify-content-center align-items-center flex-column left-box mb-3 mb-md-0">
+              <div
+                className="featured-image mb-3"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
                 <img
                   src="/assets/images/Login.png"
                   className="img-fluid"
-                  style={{ width: "450px" }}
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                  }}
                   alt="Login"
                 />
               </div>
             </div>
-
+  
             {/* Right Box */}
             <div className="col-md-6 right-box">
               <div className="row align-items-center">
-                <div className="header-text mb-2">
-                  <h2 className=" text-black ">Masuk</h2>
+                <div className="header-text mb-3">
+                  <h2 className="text-black">Masuk</h2>
                 </div>
-                <small className=" text-black ">Masukkan email</small>
+                <small className="text-black">Masukkan email</small>
                 <div className="input-group mb-3">
                   <input
                     type="email"
@@ -86,22 +100,22 @@ export function Login() {
                     className="form-control form-control-lg bg-light fs-6"
                     placeholder="Alamat email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)} // Mengatur state email
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-
-                <small className=" text-black ">Masukkan sandi</small>
-                <div className="input-group mb-1">
+  
+                <small className="text-black">Masukkan sandi</small>
+                <div className="input-group mb-3">
                   <input
                     type="password"
                     id="password"
                     className="form-control form-control-lg bg-light fs-6"
                     placeholder="Sandi"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)} // Mengatur state password
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-
+  
                 <div className="input-group mb-3 d-flex justify-content-between">
                   <div className="form-check">
                     <input
@@ -109,13 +123,13 @@ export function Login() {
                       className="form-check-input"
                       id="formCheck"
                       checked={rememberMe}
-                      onChange={() => setRememberMe(!rememberMe)} // Mengatur state rememberMe
+                      onChange={() => setRememberMe(!rememberMe)}
                     />
                     <label
                       htmlFor="formCheck"
                       className="form-check-label text-secondary"
                     >
-                      <small className=" text-black ">Ingat saya</small>
+                      <small className="text-black">Ingat saya</small>
                     </label>
                   </div>
                   <div className="forgot">
@@ -124,32 +138,17 @@ export function Login() {
                     </small>
                   </div>
                 </div>
-
-                {/* Tombol Masuk */}
+  
                 <div className="input-group mb-3">
                   <button
                     className="btn btn-lg btn-primary w-100 fs-6"
-                    onClick={validateLogin} // Menangani klik tombol
+                    onClick={validateLogin}
                   >
                     Masuk
                   </button>
                 </div>
-
-                <div className="input-group mb-3">
-                  <button className="btn btn-lg btn-light w-100 fs-6">
-                    <img
-                      src="/assets/images/Google.png"
-                      style={{ width: "20px" }}
-                      className="me-2"
-                      alt="Google"
-                    />
-                    <small>Masuk menggunakan Google</small>
-                  </button>
-                </div>
-
-                {/* Link untuk halaman signup */}
                 <div className="row">
-                  <small className=" text-black ">
+                  <small className="text-black">
                     Belum memiliki akun? <a href="/SignUp">Buat akun</a>
                   </small>
                 </div>
@@ -160,4 +159,4 @@ export function Login() {
       </div>
     </>
   );
-}
+}  

@@ -43,7 +43,7 @@ header {
     0 0 0 2px linear-gradient(90deg, #1895e4, #3864da, #5e3ed7);
 }
 
-.navbar .form-control :focus {
+.navbar .form-control:focus {
   box-shadow: 0 0 0 2px transparent,
     0 0 0 2px linear-gradient(90deg, #1895e4, #3864da, #5e3ed7);
 }
@@ -70,6 +70,7 @@ header {
   font-size: 13px;
   pointer-events: none;
 }
+
 .cart-item-count {
   position: relative;
   top: -10px;
@@ -83,6 +84,59 @@ header {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.navbar-toggler {
+  background: linear-gradient(45deg, var(--button-color-start), var(--button-color-end));
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  background: linear-gradient(45deg, var(--btn-hover-color-start), var(--btn-hover-color-end));
+  transform: scale(1.1);
+}
+
+.navbar-toggler.active {
+  transform: rotate(90deg);
+}
+
+/* Menu Pop-up ketika menu dibuka */
+.menu-popup {
+  position: fixed; /* Menggunakan fixed agar tetap di atas saat scroll */
+  top: 60px; /* Memberikan jarak dari navbar */
+  right: 0;
+  background-color: var(--navbar-bg-color);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  z-index: 9999; /* Agar tetap di atas elemen lain */
+  width: 200px;
+}
+
+.menu-popup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-popup ul li {
+  padding: 10px 20px;
+}
+
+.menu-popup ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.menu-popup ul li:hover {
+  background-color: var(--btn-hover-color-start);
+  border-radius: 5px;
+}
 
 /* Responsive Design */
 @media screen and (max-width: 992px) {
@@ -92,13 +146,24 @@ header {
     padding: 0.5rem;
   }
 
+  .navbar-collapse {
+    display: none; /* Menyembunyikan item navbar di mobile/tablet */
+  }
+
+  .navbar .form-control {
+    width: 350px;
+    height: 20px;
+    border-radius: 20px;
+    padding: 0 10px;
+  }
+
   .navbar .form-control {
     width: 100%;
     margin-bottom: 10px;
   }
 
   .navbar-collapse {
-    padding-left: 0;
+    padding-left: 10px;
     gap: 10px;
     flex-direction: column;
     align-items: center;
@@ -117,11 +182,14 @@ header {
 
   .navbar .form-control {
     font-size: 14px;
+    margin-left: -7px;
+  }
+
+  .search-icon {
+    right: 13px;
   }
 
   .navbar-collapse .nav-link {
     font-size: 0.9rem;
   }
 }
-
-
