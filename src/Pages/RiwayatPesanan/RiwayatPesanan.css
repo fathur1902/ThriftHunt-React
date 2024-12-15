@@ -62,6 +62,7 @@
     border: none;
     border-radius: 20px;
     padding: 10px 20px;
+    
 }
 
 .btn-outline-primary {
@@ -69,9 +70,33 @@
     border-color: #6c5ce7;
     border-radius: 20px;
     padding: 10px 20px;
+    
 }
 
 .btn-outline-primary:hover {
     background: #6c5ce7;
     color: white;
 }
+
+@media (max-width: 480px) {
+    .order-status-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .order-status-item {
+        width: 100%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .order-status-container {
+        gap: 8px;
+    }
+    
+    .order-status-item {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+

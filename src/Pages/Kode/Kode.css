@@ -36,3 +36,13 @@
 .btn-link {
   color: #0008ff;
 }
+
+@media (min-width: 768px) {
+  .card-kode {
+    margin: 147px auto;
+  }
+
+  .va-number {
+    font-size: 1.5rem;
+  }
+}
