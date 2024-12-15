@@ -6,15 +6,14 @@ import "./Navbar.css";
 export function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [cartCount, setCartCount] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false); // State untuk pop-up menu
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      // Jika ada kata kunci pencarian, lanjutkan ke halaman pencarian
       navigate(`/product?query=${searchTerm}`);
     } else {
-      // Jika tidak ada kata kunci, kembalikan ke halaman produk tanpa query
       navigate("/product");
     }
   };
@@ -25,7 +24,7 @@ export function Navbar() {
         const token = localStorage.getItem("token");
         const response = await axios.get("http://localhost:3000/api/cart", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Jika API memerlukan token
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
 
@@ -44,7 +43,7 @@ export function Navbar() {
     };
 
     fetchCartCount();
-  }, []); // Kosongkan dependencies agar hanya dipanggil sekali
+  }, []);
 
   return (
     <header>
@@ -67,17 +66,14 @@ export function Navbar() {
             </span>
           </form>
           <button
-            className="navbar-toggler"
+            className={`navbar-toggler ${menuOpen ? "active" : ""}`}
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="navbar-collapse" id="navbarNav">
+          <div className={`navbar-collapse ${menuOpen ? "show" : ""}`} id="navbarNav">
             <Link className="nav-link active" to="/home">Beranda</Link>
             <Link className="nav-link" to="/about">Tentang Kami</Link>
             <Link className="nav-link" to="/product">Produk</Link>
@@ -94,6 +90,18 @@ export function Navbar() {
           </div>
         </div>
       </nav>
+      {menuOpen && (
+        <div className="menu-popup">
+          <ul>
+            <li><Link to="/home">Beranda</Link></li>
+            <li><Link to="/about">Tentang Kami</Link></li>
+            <li><Link to="/product">Produk</Link></li>
+            <li><Link to="/keranjang">Keranjang</Link></li>
+            <li><Link to="https://wa.me/+6289678737216?text=Chat%20Dengan%20Admin">Chat</Link></li>
+            <li><Link to="/profile">Profil</Link></li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

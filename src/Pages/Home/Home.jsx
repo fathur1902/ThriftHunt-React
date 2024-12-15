@@ -12,7 +12,7 @@ export function Home() {
 
   useEffect(() => {
     // Waktu akhir flash sale (ubah sesuai kebutuhan)
-    const flashSaleEndTime = new Date("2024-12-12T00:00:00").getTime();
+    const flashSaleEndTime = new Date("2024-12-16T00:00:00").getTime();
 
     // Fungsi untuk update waktu
     const updateCountdown = () => {
@@ -48,7 +48,7 @@ export function Home() {
         <div className="container mt-5">
           <div className="row justify-content-center">
             <div className="col-12 col-md-10 col-lg-8 px-4">
-              <h1 className="display-4">
+              <h1 className="display-4 judul-home">
                 Gaya Unik, Harga Asik. Tampil Keren Tanpa Beban di Kantong!
               </h1>
               <p className="lead mt-3 mb-4">
@@ -68,7 +68,7 @@ export function Home() {
       <section className="flash-sale-section mt-5">
         <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center">
           <h2 className="section-title mt-5">Flash Sale</h2>
-          <div className="countdown-timer mb-1" style={{ marginRight: "auto", marginLeft: "20px" }}>
+          <div className="countdown-timer ">
             <span className="timer-box">
               {timeLeft.days < 10 ? `0${timeLeft.days}` : timeLeft.days}
             </span>
@@ -87,58 +87,60 @@ export function Home() {
           </Link>
         </div>
 
-        <div className="row justify-content-center">
-          <div className="col-5 col-md-2">
-            <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
-              <img src="/assets/images/celana1.jpg" alt="Jeans Levi's 501 Vintage" className="card-img-top" />
-              <div className="card-body text-center">
-                <span className="badge-top">Tersisa 1</span>
-                <h5 className="card-title mt-3">Jeans Levi's 501 Vintage</h5>
-                <p className="card-text">
-                  <del>Rp 200.000</del> <strong>Rp 100.000</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-5 col-md-2">
-            <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
-              <img src="/assets/images/Flanel Ralph Lauren2.jpg" alt="Flanel Ralph Lauren" className="card-img-top" />
-              <div className="card-body text-center">
-                <span className="badge-top">Tersisa 1</span>
-                <h5 className="card-title mt-3">Flanel Ralph Lauren</h5>
-                <p className="card-text">
-                  <del>Rp 100.000</del> <strong>Rp 50.000</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-5 col-md-2">
-            <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
-              <img src="/assets/images/Denim Wrangler 80s.jpg" alt="Denim Wrangler 80s" className="card-img-top" />
-              <div className="card-body text-center">
-                <span className="badge-top">Tersisa 1</span>
-                <h5 className="card-title mt-3">Denim Wrangler 80s</h5>
-                <p className="card-text">
-                  <del>Rp 300.000</del> <strong>Rp 150.000</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="col-5 col-md-2">
-            <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
-              <img src="/assets/images/Tas Coach Signature.jpg" alt="Tas Coach Signature" className="card-img-top" />
-              <div className="card-body text-center">
-                <span className="badge-top">Tersisa 1</span>
-                <h5 className="card-title mt-3">Tas Coach Signature</h5>
-                <p className="card-text">
-                  <del>Rp 200.000</del> <strong>Rp 50.000</strong>
-                </p>
-              </div>
+        <div className="row justify-content-center g-3">
+        <div className="col-6 col-md-3 col-lg-2">
+          <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)", position: 'relative' }}>
+            <span className="badge-top position-absolute top start bg-danger">Tersisa 1</span>
+            <img src="/assets/images/celana1.jpg" alt="Jeans Levi's 501 Vintage" className="card-img-top" />
+            <div className="card-body text-center">
+              <h5 className="card-title mt-3">Jeans Levi's 501 Vintage</h5>
+              <p className="card-text text-nowrap">
+                <del>Rp 200.000</del> <strong>Rp 100.000</strong>
+              </p>
             </div>
           </div>
         </div>
+
+        <div className="col-6 col-md-3 col-lg-2">
+          <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)", position: 'relative' }}>
+            <span className="badge-top position-absolute top start bg-danger">Tersisa 1</span>
+            <img src="/assets/images/Flanel Ralph Lauren2.jpg" alt="Flanel Ralph Lauren" className="card-img-top" />
+            <div className="card-body text-center">
+              <h5 className="card-title mt-3">Flanel Ralph Lauren</h5>
+              <p className="card-text text-nowrap">
+                <del>Rp 100.000</del> <strong>Rp 50.000</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-6 col-md-3 col-lg-2">
+          <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)", position: 'relative' }}>
+            <span className="badge-top position-absolute top start bg-danger">Tersisa 1</span>
+            <img src="/assets/images/Denim Wrangler 80s.jpg" alt="Denim Wrangler 80s" className="card-img-top" />
+            <div className="card-body text-center">
+              <h5 className="card-title mt-3">Denim Wrangler 80s</h5>
+              <p className="card-text text-nowrap">
+                <del>Rp 300.000</del> <strong>Rp 150.000</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-6 col-md-3 col-lg-2">
+          <div className="card text-white border-0" style={{ backgroundColor: "rgba(0, 0, 0, 0)", position: 'relative' }}>
+            <span className="badge-top position-absolute top start bg-danger">Tersisa 1</span>
+            <img src="/assets/images/Tas Coach Signature.jpg" alt="Tas Coach Signature" className="card-img-top" />
+            <div className="card-body text-center">
+              <h5 className="card-title mt-3">Tas Coach Signature</h5>
+              <p className="card-text text-nowrap">
+                <del>Rp 200.000</del> <strong>Rp 50.000</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       </section>
         <section className="kategori-section py-5">
           <div className="container text-center">
@@ -147,7 +149,7 @@ export function Home() {
               Jelajahi koleksi kami yang beragam! Temukan pilihan pakaian yang
               cocok untuk gaya dan kebutuhanmu.
             </p>
-            <div className="row justify-content-center gy-4">
+            <div className="kategori-kami row justify-content-center gy-4">
               <div className="col-6 col-md-3">
                 <Link
                   to="/category/Atasan Pria"
