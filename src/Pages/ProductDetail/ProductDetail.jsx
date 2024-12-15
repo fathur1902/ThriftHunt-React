@@ -72,13 +72,9 @@ export function ProductDetail() {
     <div className="container py-5 p-5">
       {/* Tombol Kembali */}
       <div className="p-4 mt-3">
-        <button
-          className="btn btn-light d-flex align-items-center gap-2"
-          onClick={() => navigate("/product")}
-        >
-          <i className="bi bi-arrow-left-circle"></i>
-          Kembali
-        </button>
+        <a href="/product" className="text-decoration-none text-white">
+          <i className="bi bi-arrow-left"></i> Kembali
+        </a>
       </div>
 
       <div className="row g-4">
@@ -132,6 +128,53 @@ export function ProductDetail() {
         </div>
       </div>
 
+      {/* <div className="reviews-section mt-5">
+        <h2 className="fs-5 mb-4">Ulasan Pembeli</h2>
+        <div className="review-list mb-4">
+          <div className="review-item mb-3 p-3 rounded">
+            <div className="d-flex justify-content-between">
+              <h5 className="mb-0">Adi Wibowo</h5>
+              <div className="text-warning">★★★★★</div>
+            </div>
+            <p className="mb-1">
+              Produk sangat keren! Warna sesuai dengan foto dan kualitasnya
+              sangat bagus.
+            </p>
+            <small className="text-muted">5 menit yang lalu</small>
+          </div>
+          <div className="review-item mb-3 p-3 rounded">
+            <div className="d-flex justify-content-between">
+              <h5 className="mb-0">Novi Lestari</h5>
+              <div className="text-warning">★★★★☆</div>
+            </div>
+            <p className="mb-1">Barang oke, hanya saja pengiriman agak lama.</p>
+            <small className="text-muted">2 hari yang lalu</small>
+          </div>
+          <div className="review-item mb-3 p-3 rounded">
+            <div className="d-flex justify-content-between">
+              <h5 className="mb-0">Rico Mardian</h5>
+              <div className="text-warning">★★★★★</div>
+            </div>
+            <p className="mb-1">
+              Luar biasa, pengemasan sangat rapi dan barang sesuai deskripsi!
+            </p>
+            <small className="text-muted">3 hari yang lalu</small>
+          </div>
+        </div>
+        <div className="review-form">
+          <textarea
+            className="form-control mb-2"
+            placeholder="Tulis ulasan Anda..."
+          ></textarea>
+          <div className="d-flex justify-content-between">
+            <div className="rating-stars">
+              <span className="text-warning">★★★★★</span>
+            </div>
+            <button className="btn btn-primary">Kirim Ulasan</button>
+          </div>
+        </div>
+      </div> */}
+
       {/* Related Products Section */}
       <div className="related-products mt-5">
         <h2 className="fs-5 mb-4">Pilihan Lainnya</h2>
@@ -148,7 +191,9 @@ export function ProductDetail() {
                     alt={relatedProduct.name}
                     className="img-fluid rounded mb-2"
                   />
-                  <p className="product-name text-white mb-1">{relatedProduct.name}</p>
+                  <p className="product-name text-white mb-1">
+                    {relatedProduct.name}
+                  </p>
                   <p className="product-price text-white fw-bold">
                     Rp. {relatedProduct.price.toLocaleString()}
                   </p>
