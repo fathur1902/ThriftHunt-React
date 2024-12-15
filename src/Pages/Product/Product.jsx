@@ -109,10 +109,10 @@ export function Product() {
           <div className="list-group-container mt-4">
             <h5 className="list-group">| Kategori</h5>
             {[
-              "Atasan Pria",
-              "Bawahan Pria",
-              "Atasan Wanita",
-              "Bawahan Wanita",
+              "AtasanPria",
+              "BawahanPria",
+              "AtasanWanita",
+              "BawahanWanita",
               "Aksesoris",
             ].map((category) => (
               <label
@@ -205,7 +205,7 @@ export function Product() {
                       <h5 className="card-title mb-auto">{product.name}</h5>
                       <div className="d-flex justify-content-between align-items-center mt-3">
                         <span className="price">
-                          Rp. {product.price.toLocaleString()}
+                          {product.price.toLocaleString()}
                         </span>
                         <button
                           className="btn-cart"

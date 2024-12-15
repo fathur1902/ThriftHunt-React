@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./RiwayatPesanan.css";
 
 export const RiwayatPesanan = () => {
+  const [checkoutData, setCheckoutData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchCheckoutData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/api/checkout/checkout",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      setCheckoutData(response.data); // Set data checkout
+    } catch (err) {
+      setError(err.response?.data?.error || "Gagal mengambil data checkout");
+    } finally {
+      setLoading(false); // Hentikan loading
+    }
+  };
+
+  useEffect(() => {
+    fetchCheckoutData();
+  }, []);
+
   const changePage = (pageUrl) => {
-    // Redirect ke halaman yang sesuai
     window.location.href = pageUrl;
   };
+
+  if (loading) return <div>Memuat data...</div>;
+  if (error) return <div className="text-danger">{error}</div>;
+
+  const { cartItems, total } = checkoutData || { cartItems: [], total: 0 };
 
   return (
     <div className="container mt-5 p-5">
@@ -14,7 +45,7 @@ export const RiwayatPesanan = () => {
 
       {/* Tabs */}
       <div className="tabs-container my-4 d-flex justify-content-around bg-white p-3 rounded">
-      <div
+        <div
           className="tab-item"
           onClick={() => changePage("/konfirmasipesanan")}
         >
@@ -26,104 +57,62 @@ export const RiwayatPesanan = () => {
         >
           Sedang Dikemas
         </div>
-        <div
-          className="tab-item"
-          onClick={() => changePage("/dikirim")}
-        >
+        <div className="tab-item" onClick={() => changePage("/dikirim")}>
           Dikirim
         </div>
-        <div
-          className="tab-item"
-          onClick={() => changePage("/Selesai")}
-        >
+        <div className="tab-item" onClick={() => changePage("/selesai")}>
           Selesai
         </div>
-        <div
-          className="tab-item"
-          onClick={() => changePage("/dikirim")}
-        >
+        <div className="tab-item" onClick={() => changePage("/dibatalkan")}>
           Dibatalkan
         </div>
       </div>
 
-      {/* Content */}
       <div className="card-riwayat">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div className="order-header">
             Sedang Dikemas – Pesanan Anda sedang diproses untuk pengiriman.
           </div>
-          <a href="#" className="text-primary font-weight-bold">
-            LIHAT DETAIL
-          </a>
         </div>
 
         {/* Product List */}
-        <div className="product-row">
-          <img
-            src="https://via.placeholder.com/80"
-            alt="Thrift Kaos Vneck Hitam"
-            className="product-img"
-          />
-          <div className="w-100 d-flex justify-content-between align-items-center">
-            <div>
-              <div className="font-weight-bold">Thrift Kaos Vneck Hitam</div>
-              <div className="order-details">Ukuran: M</div>
+        {cartItems.length > 0 ? (
+          cartItems.map((item) => (
+            <div className="product-row" key={item.id}>
+              <img
+                src={`http://localhost:3000/uploads/${item.Product.image}`}
+                alt={item.Product.name}
+                className="product-img"
+              />
+              <div className="w-100 d-flex justify-content-between align-items-center">
+                <div>
+                  <div className="font-weight-bold">{item.Product.name}</div>
+                  <div className="order-details">
+                    Ukuran: {item.Product.sizes}
+                  </div>
+                </div>
+                <div className="font-weight-bold">
+                  Rp. {parseInt(item.Product.price).toLocaleString("id-ID")} x{" "}
+                  {item.quantity}
+                </div>
+              </div>
             </div>
-            <div className="font-weight-bold">Rp. 100.000</div>
-          </div>
-        </div>
-        <div className="product-row">
-          <img
-            src="https://via.placeholder.com/80"
-            alt="Denim Wrangler 80s"
-            className="product-img"
-          />
-          <div className="w-100 d-flex justify-content-between align-items-center">
-            <div>
-              <div className="font-weight-bold">Denim Wrangler 80s</div>
-              <div className="order-details">Ukuran: L</div>
-            </div>
-            <div className="font-weight-bold">Rp. 50.000</div>
-          </div>
-        </div>
-        <div className="product-row">
-          <img
-            src="https://via.placeholder.com/80"
-            alt="Vans Checkerboard Classic"
-            className="product-img"
-          />
-          <div className="w-100 d-flex justify-content-between align-items-center">
-            <div>
-              <div className="font-weight-bold">Vans Checkerboard Classic</div>
-              <div className="order-details">Ukuran: 39</div>
-            </div>
-            <div className="font-weight-bold">Rp. 100.000</div>
-          </div>
-        </div>
-        <div className="product-row">
-          <img
-            src="https://via.placeholder.com/80"
-            alt="Kaos Band Metallica 90s"
-            className="product-img"
-          />
-          <div className="w-100 d-flex justify-content-between align-items-center">
-            <div>
-              <div className="font-weight-bold">Kaos Band Metallica 90s</div>
-              <div className="order-details">Ukuran: L</div>
-            </div>
-            <div className="font-weight-bold">Rp. 50.000</div>
-          </div>
-        </div>
+          ))
+        ) : (
+          <div>Keranjang Anda kosong.</div>
+        )}
 
-        {/* Total Price */}
         <div className="d-flex justify-content-between align-items-center font-weight-bold mt-4">
           <div>Total Pesanan:</div>
-          <div>Rp. 290.000</div>
+          <div>Rp. {parseInt(total).toLocaleString("id-ID")}</div>
         </div>
-
-        {/* Buttons */}
         <div className="d-flex justify-content-end mt-4">
-          <button className="btn btn-primary mr-3">Hubungi Kami</button>
+          <a
+            href="https://wa.me/+6285231585582?text=Chat%20Dengan%20Admin%20Untuk%20Konfirmasi"
+            className="btn btn-primary mr-3"
+          >
+            Hubungi Kami
+          </a>
         </div>
       </div>
     </div>

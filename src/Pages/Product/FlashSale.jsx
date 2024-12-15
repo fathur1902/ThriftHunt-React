@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios"; // Tambahkan axios untuk melakukan HTTP request
 import "./Product.css";
 
 export function FlashSale() {
-  const [filters, setFilters] = useState({
-    categories: [],
-    prices: [],
-    sizes: [],
-  });
-
   const [timers, setTimers] = useState({
     countdown1: 7200, // 2 jam
     countdown2: 14400, // 4 jam
@@ -16,62 +11,22 @@ export function FlashSale() {
 
   const [filteredProduct, setFilteredProduct] = useState([]);
 
-  const product = [
-    {
-      id: 1,
-      name: "Celana Chino",
-      price: 40000,
-      category: "Bawahan Pria",
-      sizes: "M",
-      img: "/assets/images/Celana Chino.jpg",
-    },
-    {
-      id: 2,
-      name: "Celana Jeans",
-      price: 50000,
-      category: "Bawahan Wanita",
-      sizes: "L",
-      img: "/assets/images/Celana Jeans.jpg",
-    },
-    {
-      id: 3,
-      name: "Kaos Vneck Hitam",
-      price: 50000,
-      category: "Atasan Pria",
-      sizes: "M",
-      img: "/assets/images/Kaos Vneck Hitam.jpg",
-    },
-    {
-      id: 4,
-      name: "Rok A-Line",
-      price: 30000,
-      category: "Bawahan Wanita",
-      sizes: "S",
-      img: "/assets/images/Rok A-Line.jpg",
-    },
-  ];
-
-  // Filter produk sesuai filter yang dipilih
+  // Ambil produk dari backend berdasarkan kategori flash sale
   useEffect(() => {
-    const { categories, prices, sizes } = filters;
-    const filtered = product.filter((product) => {
-      const inCategory =
-        categories.length === 0 || categories.includes(product.category);
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/products"); // Ubah URL ke endpoint backend Anda
+        const flashSaleProducts = response.data.filter(
+          (product) => product.category === "FlashSale"
+        );
+        setFilteredProduct(flashSaleProducts);
+      } catch (error) {
+        console.error("Gagal mengambil data produk:", error);
+      }
+    };
 
-      const inPrice =
-        prices.length === 0 ||
-        prices.some((range) => {
-          const [min, max] = range.split("-").map(Number);
-          return product.price >= min && product.price <= max;
-        });
-
-      const inSize = sizes.length === 0 || sizes.includes(product.sizes);
-
-      return inCategory && inPrice && inSize;
-    });
-
-    setFilteredProduct(filtered);
-  }, [filters]);
+    fetchProducts();
+  }, []);
 
   // Countdown timer
   useEffect(() => {
@@ -98,6 +53,30 @@ export function FlashSale() {
       "0"
     )}:${String(sec).padStart(2, "0")}`;
   };
+  const handleAddToCart = async (product) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/cart",
+        {
+          productId: product.id,
+          quantity: 1,
+          selected: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // console.log("Product added to cart:", response.data);
+    } catch (error) {
+      console.error(
+        "Error adding product to cart:",
+        error?.response?.data || error.message
+      );
+    }
+  };
 
   return (
     <div className="container mt-5 p-5">
@@ -120,28 +99,34 @@ export function FlashSale() {
       <div className="row">
         {filteredProduct.length > 0 ? (
           filteredProduct.map((product) => (
-            <div
-              key={product.id}
-              className="col-6 col-md-4 col-lg-3 mb-4"
-            >
+            <div key={product.id} className="col-6 col-md-4 col-lg-3 mb-4">
               <div className="card product-card">
                 <img
-                  src={product.img}
+                  src={`http://localhost:3000/uploads/${product.image}`}
                   className="card-img-top img-fluid"
                   alt={product.name}
                 />
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title text-center">{product.name}</h5>
                   <div className="d-flex justify-content-between align-items-center mt-3">
-                    <span className="price"><del>399.000</del> {`${product.price.toLocaleString()}`}</span>
-                    <i className="bi bi-plus-circle fs-5"></i>
+                    <span className="price">
+                      <del>599.000</del> {`${product.price.toLocaleString()}`}
+                    </span>
+                    <button
+                      className="btn-cart"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      <i className="bi bi-plus-circle fs-5"></i>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <p className="text-center">Tidak ada produk yang sesuai filter.</p>
+          <p className="text-center">
+            Tidak ada produk flash sale yang tersedia.
+          </p>
         )}
       </div>
     </div>

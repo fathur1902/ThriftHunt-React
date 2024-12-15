@@ -49,7 +49,7 @@ export function Navbar() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <div className="container">
-          <Link className="navbar-brand me-5" to="/">
+          <Link className="navbar-brand me-5" to="/home">
             <img src="/assets/images/Logo.png" alt="Logo" width="40" height="30" />
           </Link>
           <form className="d-flex flex-wrap mx-5 position-relative" role="search" onSubmit={handleSearch}>

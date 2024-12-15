@@ -133,7 +133,7 @@
   background-color: transparent;
   border: 2px solid;
   padding: 20px;
-  width: calc(40% - 10px);
+  width: auto;
   border-radius: 10px;
   position: relative;
 }
