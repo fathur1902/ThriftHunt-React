@@ -11,6 +11,6 @@ const router = express.Router();
 
 router.get("/checkout", authenticateJWT, getCheckoutData);
 router.post("/order", authenticateJWT, createOrder);
-router.get("/admin/checkout", authenticateJWT, isAdmin, getAllCheckoutData);
+router.get("/admin/checkout", authenticateJWT,  getAllCheckoutData);
 
 export default router;

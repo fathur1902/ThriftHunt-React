@@ -5,7 +5,7 @@ import "./RiwayatPesanan.css";
 export const Dikirim = () => {
   const [checkoutData, setCheckoutData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
 
   const fetchCheckoutData = async () => {
     try {
@@ -113,7 +113,6 @@ export const Dikirim = () => {
           >
             Hubungi Kami
           </a>
-          <button className="btn btn-outline-primary">Batalkan Pesanan</button>
         </div>
       </div>
     </div>

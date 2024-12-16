@@ -12,7 +12,7 @@ export function Home() {
 
   useEffect(() => {
     // Waktu akhir flash sale (ubah sesuai kebutuhan)
-    const flashSaleEndTime = new Date("2024-12-16T00:00:00").getTime();
+    const flashSaleEndTime = new Date("2025-12-20T00:00:00").getTime();
 
     // Fungsi untuk update waktu
     const updateCountdown = () => {
@@ -103,11 +103,11 @@ export function Home() {
               style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
             >
               <Link to="/product/54">
-              <img
-                src="/assets/images/celana1.jpg"
-                alt="Jeans Levi's 501 Vintage"
-                className="card-img-top"
-              />
+                <img
+                  src="/assets/images/celana1.jpg"
+                  alt="Jeans Levi's 501 Vintage"
+                  className="card-img-top"
+                />
               </Link>
               <div className="card-body text-center">
                 <span className="badge-top">Tersisa 1</span>
@@ -125,11 +125,11 @@ export function Home() {
               style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
             >
               <Link to="/product/22">
-              <img
-                src="/assets/images/Flanel Ralph Lauren2.jpg"
-                alt="Flanel Ralph Lauren"
-                className="card-img-top"
-              />
+                <img
+                  src="/assets/images/Flanel Ralph Lauren2.jpg"
+                  alt="Flanel Ralph Lauren"
+                  className="card-img-top"
+                />
               </Link>
               <div className="card-body text-center">
                 <span className="badge-top">Tersisa 1</span>
@@ -147,11 +147,11 @@ export function Home() {
               style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
             >
               <Link to="/product/55">
-              <img
-                src="/assets/images/Denim Wrangler 80s.jpg"
-                alt="Denim Wrangler 80s"
-                className="card-img-top"
-              />
+                <img
+                  src="/assets/images/Denim Wrangler 80s.jpg"
+                  alt="Denim Wrangler 80s"
+                  className="card-img-top"
+                />
               </Link>
               <div className="card-body text-center">
                 <span className="badge-top">Tersisa 1</span>
@@ -168,11 +168,11 @@ export function Home() {
               style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
             >
               <Link to="/product/56">
-              <img
-                src="/assets/images/Tas Coach Signature.jpg"
-                alt="Tas Coach Signature"
-                className="card-img-top"
-              />
+                <img
+                  src="/assets/images/Tas Coach Signature.jpg"
+                  alt="Tas Coach Signature"
+                  className="card-img-top"
+                />
               </Link>
               <div className="card-body text-center">
                 <span className="badge-top">Tersisa 1</span>
@@ -194,7 +194,10 @@ export function Home() {
           </p>
           <div className="kategori-kami row justify-content-center gy-4">
             <div className="col-6 col-md-3">
-              <Link to="/category/Atasan Pria" className="text-decoration-none">
+              <Link
+                to="/product?category=AtasanPria,BawahanPria"
+                className="text-decoration-none"
+              >
                 <div className="kategori-card">
                   <img
                     src="/assets/images/pakaian pria.jpg"
@@ -209,7 +212,7 @@ export function Home() {
             </div>
             <div className="col-3 d-flex flex-column kategori-dual mt-3">
               <Link
-                to="/category/bawahan wanita"
+                to="/product?category=AtasanWanita,BawahanWanita"
                 className="text-decoration-none kategori-link"
               >
                 <div className="kategori-card mb-2 mt-4">
@@ -224,7 +227,7 @@ export function Home() {
                 </div>
               </Link>
               <Link
-                to="/category/aksesoris"
+                to="/product?category=Aksesoris"
                 className="text-decoration-none kategori-link"
               >
                 <div className="kategori-card mt-5">
@@ -283,47 +286,47 @@ export function Home() {
                   </div>
                   <div className="produk-card">
                     <Link to="/product/63">
-                    <img
-                      src="/assets/images/Polo Lacoste Original.jpg"
-                      alt="Polo Lacoste Original"
-                      className="produk-image"
-                    />
+                      <img
+                        src="/assets/images/Polo Lacoste Original.jpg"
+                        alt="Polo Lacoste Original"
+                        className="produk-image"
+                      />
                     </Link>
                   </div>
                   <div className="produk-card">
                     <Link to="/product/57">
-                    <img
-                      src="/assets/images/Vans Checkerboard Classic.jpg"
-                      alt="Vans Checkerboard Classic"
-                      className="produk-image"
-                    />
+                      <img
+                        src="/assets/images/Vans Checkerboard Classic.jpg"
+                        alt="Vans Checkerboard Classic"
+                        className="produk-image"
+                      />
                     </Link>
                   </div>
                   <div className="produk-card">
                     <Link to="/product/59">
-                    <img
-                      src="/assets/images/Blazer Gucci Vintage.jpg"
-                      alt="Blazer Gucci Vintage"
-                      className="produk-image"
-                    />
+                      <img
+                        src="/assets/images/Blazer Gucci Vintage.jpg"
+                        alt="Blazer Gucci Vintage"
+                        className="produk-image"
+                      />
                     </Link>
                   </div>
                   <div className="produk-card me-3">
                     <Link to="/product/64">
-                    <img
-                      src="/assets/images/Jaket Kulit Harley Davidson.jpg"
-                      alt="Jaket Kulit Harley Davidson"
-                      className="produk-image"
-                    />
+                      <img
+                        src="/assets/images/Jaket Kulit Harley Davidson.jpg"
+                        alt="Jaket Kulit Harley Davidson"
+                        className="produk-image"
+                      />
                     </Link>
                   </div>
                   <div className="produk-card me-3">
                     <Link to="/product/55">
-                    <img
-                      src="/assets/images/Denim Wrangler 80s.jpg"
-                      alt="Denim Wrangler 80s"
-                      className="produk-image"
-                    />
+                      <img
+                        src="/assets/images/Denim Wrangler 80s.jpg"
+                        alt="Denim Wrangler 80s"
+                        className="produk-image"
+                      />
                     </Link>
                   </div>
                 </div>
@@ -403,9 +406,9 @@ export function Home() {
                 href="#"
                 className="text-decoration-none align-self-center align-self-md-start"
               >
-                <button className="btn btn-primary btn-wish mt-4">
-                  Masukkan Keranjang
-                </button>
+                <a href="/keranjang" className="btn btn-primary btn-wish mt-4">
+                  Lihat Keranjang
+                </a>
               </a>
             </div>
           </div>

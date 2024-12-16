@@ -101,6 +101,17 @@ export function Product() {
     setFilteredProducts(filtered);
   }, [filters, products, query]);
 
+  useEffect(() => {
+    const queryCategory = new URLSearchParams(search).get("category");
+    if (queryCategory) {
+      const categories = queryCategory.split(",");
+      setFilters((prev) => ({
+        ...prev,
+        categories,
+      }));
+    }
+  }, [search]);
+
   return (
     <div className="container mt-5 p-3">
       <div className="row">
@@ -140,26 +151,27 @@ export function Product() {
           </div>
           <div className="list-group-container mt-3">
             <h5 className="list-group">| Harga</h5>
-            {["20000-50000", "50000-100000", "100000-150000", "150000-200000"].map(
-              (priceRange) => (
-                <label
-                  key={priceRange}
-                  className={`list-group-item list-group-item-action ${
-                    filters.prices.includes(priceRange)
-                      ? "selected-category"
-                      : ""
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    className="me-2"
-                    value={priceRange}
-                    onChange={() => handleCheckboxChange("prices", priceRange)}
-                  />
-                  {`Rp. ${priceRange.replace("-", " - Rp. ")}`}
-                </label>
-              )
-            )}
+            {[
+              "20000-50000",
+              "50000-100000",
+              "100000-150000",
+              "150000-200000",
+            ].map((priceRange) => (
+              <label
+                key={priceRange}
+                className={`list-group-item list-group-item-action ${
+                  filters.prices.includes(priceRange) ? "selected-category" : ""
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  className="me-2"
+                  value={priceRange}
+                  onChange={() => handleCheckboxChange("prices", priceRange)}
+                />
+                {`Rp. ${priceRange.replace("-", " - Rp. ")}`}
+              </label>
+            ))}
           </div>
           <div className="list-group-container mt-3">
             <h5 className="list-group">| Ukuran</h5>
@@ -220,7 +232,9 @@ export function Product() {
               ))}
             </div>
           ) : (
-            <p className="text-center">Tidak ada produk yang sesuai dengan filter.</p>
+            <p className="text-center">
+              Tidak ada produk yang sesuai dengan filter.
+            </p>
           )}
         </section>
       </div>
