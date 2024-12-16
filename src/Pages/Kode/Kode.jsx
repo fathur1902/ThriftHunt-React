@@ -100,6 +100,7 @@ export function Kode() {
             </div>
 
             <div className="mb-4">
+              <p>Detail Produk : </p>
               <ul>
                 {cartItems.map((item) => (
                   <li key={item.id}>

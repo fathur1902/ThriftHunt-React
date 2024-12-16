@@ -117,6 +117,7 @@ export const getAllCheckoutData = async (req, res) => {
       include: [
         {
           model: Users,
+          required: false,
           attributes: [
             "name",
             "address",
@@ -129,6 +130,7 @@ export const getAllCheckoutData = async (req, res) => {
         },
         {
           model: Product,
+          required: false,
           attributes: ["name", "price", "sizes", "image"],
         },
       ],
