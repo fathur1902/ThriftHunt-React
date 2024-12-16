@@ -7,13 +7,13 @@
   background: white;
 }
 
-/* .card-header {
-    background: linear-gradient(90deg, #2e3192 0%, #1bffff 100%);
+.card-header {
+    background: linear-gradient(90deg, #115087, #352588, #352588);
     color: white;
     font-weight: bold;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  } */
+    border-radius: 8px !important;
+    height: 90px;
+  }
 
 .btn-primary {
   background: linear-gradient(90deg, #2e3192 0%, #1bffff 100%);
@@ -37,12 +37,56 @@
   color: #0008ff;
 }
 
-@media (min-width: 768px) {
+.kode-rekening{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@media (max-width: 525px) {
   .card-kode {
-    margin: 147px auto;
+    padding: 10px;
   }
 
-  .va-number {
-    font-size: 1.5rem;
+  .card-header {
+    background: linear-gradient(90deg, #115087, #352588, #352588);
+    color: white;
+    font-weight: bold;
+    border-radius: 8px !important;
+    height: 90px;
+    font-size: 12px;
+  }
+
+  .card-header .harga {
+    font-size: 15px !important;
+  }
+
+  .card-body small {
+    font-size: 0.8rem;
+  }
+
+  .card-body .btn-link {
+    font-size: 0.8rem;
+  }
+
+  .card-body ul {
+    margin-left: 10px;
+  }
+
+  .card-body li div {
+    font-size: 0.85rem;
+  }
+
+  .fs-4 {
+    font-size: 1.2rem !important;
+  }
+
+  .btn-primary {
+    font-size: 0.9rem !important;
+    padding: 8px 12px;
+  }
+
+  .kode-rekening{
+    font-size: 20px !important;
+    font-weight: bold;
   }
 }

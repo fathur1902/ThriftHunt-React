@@ -39,7 +39,7 @@ export const KonfimasiPesanan = () => {
   const { cartItems, total } = checkoutData || { cartItems: [], total: 0 };
 
   return (
-    <div className="container mt-5 p-5">
+    <div className="hubungi container mt-5 p-5">
       {/* Header */}
       <h4>ThriftHunt | Riwayat Pesanan</h4>
 
@@ -104,7 +104,7 @@ export const KonfimasiPesanan = () => {
           <div>Total Pesanan:</div>
           <div>Rp. {parseInt(total).toLocaleString("id-ID")}</div>
         </div>
-        <div className="d-flex justify-content-end mt-4">
+        <div className="button-hubungi d-flex justify-content-end mt-4">
           <a
             href="https://wa.me/+6285231585582?text=Chat%20dengan%20Admin%20untuk%20Konfirmasi"
             className="btn btn-primary mr-3"
