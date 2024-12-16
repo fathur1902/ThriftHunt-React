@@ -1,4 +1,8 @@
-.tabs-container {
+    .hubungi{
+    min-height: 520px;
+    }
+    
+    .tabs-container {
     display: flex;
     justify-content: space-around;
     background: #fff;
@@ -78,25 +82,18 @@
     color: white;
 }
 
-@media (max-width: 480px) {
-    .order-status-container {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .order-status-item {
-        width: 100%;
-    }
+.button-hubungi{
+    gap: 8px;
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
-    .order-status-container {
-        gap: 8px;
+
+@media (max-width: 481px) and (max-width: 768px) {
+    .tabs-container{
+        font-size: 10px;
     }
-    
-    .order-status-item {
-        padding: 8px;
-        font-size: 14px;
-    }
+
+    .button-hubungi .btn {
+        font-size: 13px;
+    }    
 }
 

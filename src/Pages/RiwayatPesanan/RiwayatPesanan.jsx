@@ -39,7 +39,7 @@ export const RiwayatPesanan = () => {
   const { cartItems, total } = checkoutData || { cartItems: [], total: 0 };
 
   return (
-    <div className="container mt-5 p-5">
+    <div className="hubungi container mt-5 p-5">
       {/* Header */}
       <h4>ThriftHunt | Riwayat Pesanan</h4>
 
@@ -102,7 +102,7 @@ export const RiwayatPesanan = () => {
           <div>Keranjang Anda kosong.</div>
         )}
 
-        <div className="d-flex justify-content-between align-items-center font-weight-bold mt-4">
+        <div className="button-hubungi d-flex justify-content-between align-items-center font-weight-bold mt-4">
           <div>Total Pesanan:</div>
           <div>Rp. {parseInt(total).toLocaleString("id-ID")}</div>
         </div>

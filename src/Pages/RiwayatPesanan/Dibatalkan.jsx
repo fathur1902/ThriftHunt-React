@@ -39,7 +39,7 @@ export const Dibatalkan = () => {
   const { cartItems, total } = checkoutData || { cartItems: [], total: 0 };
 
   return (
-    <div className="container mt-5 p-5">
+    <div className="hubungi container mt-5 p-5">
       {/* Header */}
       <h4>ThriftHunt | Riwayat Pesanan</h4>
 
@@ -109,7 +109,7 @@ export const Dibatalkan = () => {
         </div>
 
         {/* Buttons */}
-        <div className="d-flex justify-content-end mt-4">
+        <div className="button-hubungi d-flex justify-content-end mt-4">
           <a
             href="https://wa.me/+6285231585582?text=Chat%20Dengan%20Admin%20Untuk%20Konfirmasi"
             className="btn btn-primary mr-3"

@@ -10,6 +10,7 @@
 .badan {
     margin: 0 auto;
     color: white;
+    min-height: 560px;
 }
 
 .tulisan {
