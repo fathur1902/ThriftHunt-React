@@ -63,8 +63,25 @@
   margin: 0;
 }
 
-/* Responsive Modifications */
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 480px) {
+  .footer-logo {
+    width: 40px;
+  }
+
+  .footer-text {
+    font-size: 0.6rem;
+  }
+
+  .footer-icon {
+    font-size: 1.2rem;
+    margin: 0 5px;
+  }
+
+  .footer-bottom {
+    font-size: 0.7rem;
+  }
+
   .footer-section .row {
     display: flex;
     flex-direction: column;
@@ -88,24 +105,5 @@
 
   .footer-bottom {
     text-align: center !important;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .footer-logo {
-    width: 40px;
-  }
-
-  .footer-text {
-    font-size: 0.6rem;
-  }
-
-  .footer-icon {
-    font-size: 1.2rem;
-    margin: 0 5px;
-  }
-
-  .footer-bottom {
-    font-size: 0.7rem;
   }
 }

@@ -67,12 +67,12 @@ export function Kode() {
       ) : (
         <>
           <div className="card-header d-flex justify-content-between align-items-center">
-            <div>
+            <div className=" ms-3 ">
               <div>Total Pembayaran</div>
               <small>Waktu Akhir Pembayaran</small>
             </div>
-            <div className="text-end">
-              <div className="fs-4 fw-bold">
+            <div className="text-end me-3">
+              <div className="harga fs-5 fw-bold">
                 Rp. {totalPrice.toLocaleString("id-ID")}
               </div>
               <small>
@@ -90,7 +90,7 @@ export function Kode() {
                 nomor rekening berikut:
               </small>
               <div className="d-flex justify-content-between align-items-center">
-                <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+                <div className="kode-rekening">
                   {vaNumber}
                 </div>
                 <button className="btn btn-link" onClick={copyToClipboard}>
