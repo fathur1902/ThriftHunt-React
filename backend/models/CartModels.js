@@ -41,13 +41,14 @@ const Cart = db.define(
   }
 );
 
-Cart.associate = (models) => {
-  Cart.belongsTo(models.Users, {
+
+  Cart.belongsTo(Users, {
     foreignKey: "usersId",
+    as: "user",
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   });
-};
+
 
 Product.hasMany(Cart, { foreignKey: "productId" });
 Cart.belongsTo(Product, { foreignKey: "productId" });

@@ -9,7 +9,6 @@ export function Checkout() {
   const [error, setError] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export function Checkout() {
     };
 
     fetchCheckoutData();
-  }, []);
+  }, []); // Re-fetch data ketika halaman dimuat
 
   const handlePaymentChange = (event) => {
     setPaymentMethod(event.target.value); // Tangkap nilai metode pembayaran
@@ -62,13 +61,11 @@ export function Checkout() {
       Swal.fire({
         icon: "success",
         title: "Pesanan berhasil dibuat!",
-        showConfirmButton: false,
         timer: 1500,
         showConfirmButton: true,
       }).then(() => {
         navigate("/kode", { state: { orderId: response.data.orderId } });
       });
-      console.log(response.data);
 
       // Navigasi ke halaman kode setelah pesanan dibuat
     } catch (err) {
