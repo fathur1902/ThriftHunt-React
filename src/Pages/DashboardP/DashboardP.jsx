@@ -122,7 +122,8 @@ export function DashboardP() {
 }
 
 function OrderCard({ order, onUpdateStatus }) {
-  const { id, user, cartItems, address, phone, status } = order;
+  const { id, user, Product, quantity, address, phone, status } = order;
+
   const statusOptions = [
     "Konfirmasi Pesanan",
     "Sedang Dikemas",
@@ -132,23 +133,24 @@ function OrderCard({ order, onUpdateStatus }) {
 
   return (
     <div className="order-card position-relative">
-      <h5>{user?.name}</h5>
+      <h5>{user?.name || "Nama tidak tersedia"}</h5>
       <p>
-        Alamat: {address}
+        Alamat: {user?.address || "Alamat tidak tersedia"}
         <br />
-        No. Telp: {phone}
+        No. Telp: {user?.phone || "Nomor telepon tidak tersedia"}
         <br />
-        Total Produk: {cartItems.length}
+        Total Produk: {quantity || 0}
       </p>
       <p>
-        Detail:
+        Detail Produk:
         <br />
-        {cartItems.map((item, index) => (
-          <span key={index}>
-            {index + 1}. {item.Product.name}: Rp {item.Product.price}
-            <br />
-          </span>
-        ))}
+        {Product ? (
+          <>
+            {Product.name}: Rp {Product.price} ({Product.sizes})
+          </>
+        ) : (
+          "Data produk tidak tersedia"
+        )}
       </p>
       <div className="status-container">
         {statusOptions.map((option) => (

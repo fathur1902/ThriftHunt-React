@@ -8,6 +8,7 @@ export const getCheckoutData = async (req, res) => {
   try {
     const user = await Users.findByPk(usersId, {
       attributes: [
+        "id",
         "name",
         "address",
         "phone",
@@ -117,6 +118,7 @@ export const getAllCheckoutData = async (req, res) => {
       include: [
         {
           model: Users,
+          as: "user",
           required: false,
           attributes: [
             "name",
@@ -135,6 +137,7 @@ export const getAllCheckoutData = async (req, res) => {
         },
       ],
     });
+    console.log("Debug Orders:", JSON.stringify(orders, null, 2));
 
     if (!orders || orders.length === 0) {
       return res.status(404).json({ error: "Tidak ada pesanan ditemukan." });
@@ -151,5 +154,32 @@ export const isAdmin = (req, res, next) => {
     next();
   } else {
     res.status(403).json({ error: "Akses ditolak. Hanya untuk admin." });
+  }
+};
+
+export const updateOrderStatus = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    if (!status) {
+      return res.status(400).json({ error: "Status is required" });
+    }
+
+    const order = await Cart.findByPk(id);
+
+    if (!order) {
+      return res.status(404).json({ error: "Order not found" });
+    }
+    order.status = status;
+    await order.save();
+
+    console.log(`Order ID ${id} status updated to: ${status}`);
+    res
+      .status(200)
+      .json({ message: "Order status updated successfully", order });
+  } catch (err) {
+    console.error("Error updating order status:", err.message);
+    res.status(500).json({ error: err.message });
   }
 };

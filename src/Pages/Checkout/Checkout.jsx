@@ -23,6 +23,7 @@ export function Checkout() {
             },
           }
         );
+        console.log("Response Checkout Data:", response.data);
         setCheckoutData(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "Gagal memuat data");
@@ -30,7 +31,7 @@ export function Checkout() {
     };
 
     fetchCheckoutData();
-  }, []);
+  }, []); // Re-fetch data ketika halaman dimuat
 
   const handlePaymentChange = (event) => {
     setPaymentMethod(event.target.value); // Tangkap nilai metode pembayaran
@@ -77,7 +78,6 @@ export function Checkout() {
       Swal.fire({
         icon: "success",
         title: "Pesanan berhasil dibuat!",
-        showConfirmButton: false,
         timer: 1500,
       }).then(() => {
         navigate("/kode", { state: { orderId: response.data.orderId } });
@@ -102,8 +102,14 @@ export function Checkout() {
     return <p>Loading...</p>;
   }
 
-  const { user, cartItems = [], subtotal, shipping, discount, total } =
-    checkoutData;
+  const {
+    user,
+    cartItems = [],
+    subtotal,
+    shipping,
+    discount,
+    total,
+  } = checkoutData;
 
   return (
     <div className="container my-5 p-5">
