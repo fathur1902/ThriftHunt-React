@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./EditProfile.css";
 
 export function EditProfile() {
   const [formData, setFormData] = useState({
@@ -57,8 +58,10 @@ export function EditProfile() {
     }
   };
 
+  
+
   return (
-    <div className="container p-5 mt-4">
+    <div className="edit container p-5 mt-4">
       <div>
         <a href="/profile" className="text-decoration-none text-white">
           <i className="bi bi-arrow-left"></i> Kembali

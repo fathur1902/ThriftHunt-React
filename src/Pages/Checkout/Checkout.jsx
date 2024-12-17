@@ -9,7 +9,6 @@ export function Checkout() {
   const [error, setError] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,7 +48,22 @@ export function Checkout() {
 
     setIsSubmitting(true); // Set state ke "sedang mengirim"
 
+    if (paymentMethod === "cod") {
+      // Jika metode pembayaran COD
+      Swal.fire({
+        icon: "info",
+        title: "Harap Siapkan Uang Tunai",
+        text: "Harap siapkan uang tunai yang sesuai saat kurir tiba. Pastikan alamat dan nomor telepon Anda benar untuk memudahkan pengiriman.",
+        confirmButtonText: "Lanjutkan",
+      }).then(() => {
+        navigate("/konfirmasipesanan");
+      });
+      setIsSubmitting(false); // Reset state
+      return;
+    }
+
     try {
+      // Proses jika metode selain COD
       const response = await axios.post(
         "http://localhost:3000/api/checkout/order",
         { paymentMethod },
@@ -59,18 +73,15 @@ export function Checkout() {
           },
         }
       );
+
       Swal.fire({
         icon: "success",
         title: "Pesanan berhasil dibuat!",
         showConfirmButton: false,
         timer: 1500,
-        showConfirmButton: true,
       }).then(() => {
         navigate("/kode", { state: { orderId: response.data.orderId } });
       });
-      console.log(response.data);
-
-      // Navigasi ke halaman kode setelah pesanan dibuat
     } catch (err) {
       console.error("Error saat membuat pesanan:", err.response || err);
       Swal.fire({
@@ -91,14 +102,8 @@ export function Checkout() {
     return <p>Loading...</p>;
   }
 
-  const {
-    user,
-    cartItems = [],
-    subtotal,
-    shipping,
-    discount,
-    total,
-  } = checkoutData;
+  const { user, cartItems = [], subtotal, shipping, discount, total } =
+    checkoutData;
 
   return (
     <div className="container my-5 p-5">
@@ -111,7 +116,7 @@ export function Checkout() {
           {user.name} ({user.phone})
         </strong>
         <br />
-        {user.address},{user.city}, {user.province}, {user.postalCode},{" "}
+        {user.address}, {user.city}, {user.province}, {user.postalCode},{" "}
         {user.country}
         <a
           className="btn btn-custom btn-sm ms-3 mt-3"
@@ -225,7 +230,7 @@ export function Checkout() {
         <button
           onClick={handleCreateOrder}
           className="btn btn-custom w-100 mt-3"
-          disabled={isSubmitting} // Disable tombol saat proses berjalan
+          disabled={isSubmitting}
         >
           {isSubmitting ? "Memproses..." : "Buat Pesanan"}
         </button>

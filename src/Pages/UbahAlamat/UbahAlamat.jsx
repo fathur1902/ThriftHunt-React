@@ -83,7 +83,7 @@ export const UbahAlamat = () => {
       <div className="ubah-alamat form-container w-100">
         <div>
           <a href="/profile" class="text-decoration-none text-white">
-            <i class="bi bi-arrow-left"> Kembali</i>
+            <i class="bi bi-arrow-left"> </i>Kembali
           </a>
         </div>
         <form onSubmit={handleSubmit}>

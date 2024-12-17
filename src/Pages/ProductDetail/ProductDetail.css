@@ -106,6 +106,22 @@
   font-weight: bold;
 }
 
+.review-item{
+  /* background-color: transparent; */
+  border: 2px solid;
+  border-image: linear-gradient(to right, #4b6b9d, #00c6ff);
+  border-image-slice: 1;
+}
+
+.reviews-section{
+  background-color: whitesmoke;
+  border-radius: 16px;
+  color: black !important;
+}
+
+.review-form{
+  margin-top: -40px;
+}
 
 /* Responsivitas */
 @media (max-width: 768px) {
