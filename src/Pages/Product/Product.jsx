@@ -52,6 +52,10 @@ export function Product() {
   // Menangani penambahan ke keranjang
   const handleAddToCart = async (product) => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Silakan login untuk menambahkan produk ke keranjang.");
+      return;
+    }
     try {
       await axios.post(
         "http://localhost:3000/api/cart",
@@ -66,9 +70,9 @@ export function Product() {
           },
         }
       );
-      alert("Produk berhasil ditambahkan ke keranjang!");
+      alert(`Produk ${product.name} berhasil ditambahkan ke keranjang!`);
     } catch (error) {
-      console.error("Gagal menambahkan produk ke keranjang:", error.message);
+      console.error("Gagal menambahkan produk ke keranjang:", error.response || error.message);
       alert("Gagal menambahkan produk ke keranjang. Silakan coba lagi.");
     }
   };
@@ -119,19 +123,11 @@ export function Product() {
         <section className="col-12 col-md-3 mb-4">
           <div className="list-group-container mt-4">
             <h5 className="list-group">| Kategori</h5>
-            {[
-              "AtasanPria",
-              "BawahanPria",
-              "AtasanWanita",
-              "BawahanWanita",
-              "Aksesoris",
-            ].map((category) => (
+            {[ "AtasanPria", "BawahanPria", "AtasanWanita", "BawahanWanita", "Aksesoris" ].map((category) => (
               <label
                 key={category}
                 className={`list-group-item list-group-item-action ${
-                  filters.categories.includes(category)
-                    ? "selected-category"
-                    : ""
+                  filters.categories.includes(category) ? "selected-category" : ""
                 }`}
               >
                 <input
@@ -151,12 +147,7 @@ export function Product() {
           </div>
           <div className="list-group-container mt-3">
             <h5 className="list-group">| Harga</h5>
-            {[
-              "20000-50000",
-              "50000-100000",
-              "100000-150000",
-              "150000-200000",
-            ].map((priceRange) => (
+            {[ "20000-50000", "50000-100000", "100000-150000", "150000-200000" ].map((priceRange) => (
               <label
                 key={priceRange}
                 className={`list-group-item list-group-item-action ${

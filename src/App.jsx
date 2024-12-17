@@ -39,14 +39,14 @@ function AppContent() {
     !isRootPath &&
     !location.pathname.toLowerCase().includes("/login") &&
     !location.pathname.toLowerCase().includes("/signup") &&
-    !location.pathname.toLowerCase().includes("/editp") &&
+    // !location.pathname.toLowerCase().includes("/editp") &&
     !location.pathname.toLowerCase().includes("/dashboardp") &&
     !location.pathname.toLowerCase().includes("/tambahp") &&
     !location.pathname.toLowerCase().includes("/dashboard");
 
   const showNavbar =
     !isRootPath &&
-    !location.pathname.toLowerCase().includes("/editp") &&
+    // !location.pathname.toLowerCase().includes("/editp") &&
     !location.pathname.toLowerCase().includes("/login") &&
     !location.pathname.toLowerCase().includes("/signup") &&
     !location.pathname.toLowerCase().includes("/dashboardp") &&
