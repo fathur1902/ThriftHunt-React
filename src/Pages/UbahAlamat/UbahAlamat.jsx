@@ -82,8 +82,8 @@ export const UbahAlamat = () => {
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="ubah-alamat form-container w-100">
         <div>
-          <a href="/profile" class="text-decoration-none text-white">
-            <i class="bi bi-arrow-left"> Kembali</i>
+          <a href="/profile" className="text-decoration-none text-white">
+            <i className="bi bi-arrow-left"> </i>Kembali
           </a>
         </div>
         <form onSubmit={handleSubmit}>

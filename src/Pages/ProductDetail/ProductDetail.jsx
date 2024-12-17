@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios"; // Import Axios
+import axios from "axios";
 import "./ProductDetail.css";
 
 export function ProductDetail() {
@@ -23,29 +23,33 @@ export function ProductDetail() {
       });
   }, [id]);
 
-  // Fetch data produk serupa (mengambil data dari semua produk lalu menyaringnya)
+  // Fetch data produk serupa
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/products")
-      .then((response) => {
-        if (product) {
+    if (product) {
+      axios
+        .get("http://localhost:3000/api/products")
+        .then((response) => {
           const related = response.data.filter(
             (p) => p.category === product.category && p.id !== product.id
           );
           setRelatedProducts(related);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching related products:", error);
-      });
+        })
+        .catch((error) => {
+          console.error("Error fetching related products:", error);
+        });
+    }
   }, [product]);
 
   if (!product) {
     return <div className="text-center my-5">Produk tidak ditemukan</div>;
   }
-  const handleAddToCart = async (product) => {
+
+  // Fungsi untuk Beli Sekarang: tambahkan ke keranjang dan arahkan ke checkout
+  const handleBuyNow = async () => {
     const token = localStorage.getItem("token");
+
     try {
+      // Tambahkan produk ke keranjang
       const response = await axios.post(
         "http://localhost:3000/api/cart",
         {
@@ -59,10 +63,12 @@ export function ProductDetail() {
           },
         }
       );
-      // console.log("Product added to cart:", response.data);
+
+      // Arahkan ke halaman checkout dengan data produk di keranjang
+      navigate("/checkout", { state: { cartItem: response.data } });
     } catch (error) {
       console.error(
-        "Error adding product to cart:",
+        "Error adding product to cart and navigating to checkout:",
         error?.response?.data || error.message
       );
     }
@@ -72,9 +78,9 @@ export function ProductDetail() {
     <div className="container py-5 p-5">
       {/* Tombol Kembali */}
       <div className="p-4 mt-3">
-        <a href="/product" className="text-decoration-none text-white">
+        <Link to="/product" className="text-decoration-none text-white">
           <i className="bi bi-arrow-left"></i> Kembali
-        </a>
+        </Link>
       </div>
 
       <div className="row g-4">
@@ -114,13 +120,19 @@ export function ProductDetail() {
                 <strong>Ukuran:</strong> {product.size}
               </li>
             </ul>
-            <Link to={"/checkout"} className="btn btn-primary w-100 mb-2">
+
+            {/* Tombol Beli Sekarang */}
+            <button
+              onClick={handleBuyNow}
+              className="btn btn-primary w-100 mb-2"
+            >
               Beli Sekarang
-            </Link>
+            </button>
+
+            {/* Tombol Masukan Keranjang */}
             <Link
-              to={"/keranjang"}
+              to="/keranjang"
               className="btn btn-outline-primary text-white w-100"
-              onClick={() => handleAddToCart(product)}
             >
               Masukan Keranjang
             </Link>
@@ -128,12 +140,15 @@ export function ProductDetail() {
         </div>
       </div>
 
-      {/* <div className="reviews-section mt-5">
-        <h2 className="fs-5 mb-4">Ulasan Pembeli</h2>
-        <div className="review-list mb-4">
+      {/* Ulasan Produk */}
+      <div className="container reviews-section mt-5">
+        <h2 className="fs-4 bol p-4">
+          <b>Ulasan Pembeli</b>
+        </h2>
+        <div className="review-list mb-5 me-4 ms-4">
           <div className="review-item mb-3 p-3 rounded">
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Adi Wibowo</h5>
+              <h5 className="mb-0">Cahaya Ilahi</h5>
               <div className="text-warning">★★★★★</div>
             </div>
             <p className="mb-1">
@@ -144,7 +159,7 @@ export function ProductDetail() {
           </div>
           <div className="review-item mb-3 p-3 rounded">
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Novi Lestari</h5>
+              <h5 className="mb-0">Daffa Geming 1234</h5>
               <div className="text-warning">★★★★☆</div>
             </div>
             <p className="mb-1">Barang oke, hanya saja pengiriman agak lama.</p>
@@ -152,7 +167,7 @@ export function ProductDetail() {
           </div>
           <div className="review-item mb-3 p-3 rounded">
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Rico Mardian</h5>
+              <h5 className="mb-0">Sigit Rendang</h5>
               <div className="text-warning">★★★★★</div>
             </div>
             <p className="mb-1">
@@ -161,7 +176,7 @@ export function ProductDetail() {
             <small className="text-muted">3 hari yang lalu</small>
           </div>
         </div>
-        <div className="review-form">
+        <div className="review-form p-4">
           <textarea
             className="form-control mb-2"
             placeholder="Tulis ulasan Anda..."
@@ -173,7 +188,7 @@ export function ProductDetail() {
             <button className="btn btn-primary">Kirim Ulasan</button>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Related Products Section */}
       <div className="related-products mt-5">
@@ -201,9 +216,7 @@ export function ProductDetail() {
               </div>
             ))
           ) : (
-            <p className="text-center">
-              Tidak ada produk serupa yang tersedia.
-            </p>
+            <p className="text-center">Tidak ada produk serupa yang tersedia.</p>
           )}
         </div>
       </div>

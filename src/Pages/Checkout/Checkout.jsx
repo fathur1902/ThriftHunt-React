@@ -23,6 +23,7 @@ export function Checkout() {
             },
           }
         );
+        console.log("Response Checkout Data:", response.data);
         setCheckoutData(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "Gagal memuat data");
@@ -48,7 +49,22 @@ export function Checkout() {
 
     setIsSubmitting(true); // Set state ke "sedang mengirim"
 
+    if (paymentMethod === "cod") {
+      // Jika metode pembayaran COD
+      Swal.fire({
+        icon: "info",
+        title: "Harap Siapkan Uang Tunai",
+        text: "Harap siapkan uang tunai yang sesuai saat kurir tiba. Pastikan alamat dan nomor telepon Anda benar untuk memudahkan pengiriman.",
+        confirmButtonText: "Lanjutkan",
+      }).then(() => {
+        navigate("/konfirmasipesanan");
+      });
+      setIsSubmitting(false); // Reset state
+      return;
+    }
+
     try {
+      // Proses jika metode selain COD
       const response = await axios.post(
         "http://localhost:3000/api/checkout/order",
         { paymentMethod },
@@ -58,16 +74,14 @@ export function Checkout() {
           },
         }
       );
+
       Swal.fire({
         icon: "success",
         title: "Pesanan berhasil dibuat!",
         timer: 1500,
-        showConfirmButton: true,
       }).then(() => {
         navigate("/kode", { state: { orderId: response.data.orderId } });
       });
-
-      // Navigasi ke halaman kode setelah pesanan dibuat
     } catch (err) {
       console.error("Error saat membuat pesanan:", err.response || err);
       Swal.fire({
@@ -108,7 +122,7 @@ export function Checkout() {
           {user.name} ({user.phone})
         </strong>
         <br />
-        {user.address},{user.city}, {user.province}, {user.postalCode},{" "}
+        {user.address}, {user.city}, {user.province}, {user.postalCode},{" "}
         {user.country}
         <a
           className="btn btn-custom btn-sm ms-3 mt-3"
@@ -222,7 +236,7 @@ export function Checkout() {
         <button
           onClick={handleCreateOrder}
           className="btn btn-custom w-100 mt-3"
-          disabled={isSubmitting} // Disable tombol saat proses berjalan
+          disabled={isSubmitting}
         >
           {isSubmitting ? "Memproses..." : "Buat Pesanan"}
         </button>

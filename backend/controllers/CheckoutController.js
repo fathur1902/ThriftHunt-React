@@ -8,6 +8,7 @@ export const getCheckoutData = async (req, res) => {
   try {
     const user = await Users.findByPk(usersId, {
       attributes: [
+        "id",
         "name",
         "address",
         "phone",
